@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 110" fill="none">
+  <defs>
+    <linearGradient id="bgCircle" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B3A8F"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#93C5FD"/>
+      <stop offset="60%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#BFDBFE"/>
+    </linearGradient>
+    <linearGradient id="subGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#93C5FD"/>
+    </linearGradient>
+    <linearGradient id="orbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#93C5FD" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Circle background -->
+  <circle cx="55" cy="55" r="50" fill="url(#bgCircle)"/>
+
+  <!-- Orbital ring 1 -->
+  <ellipse cx="55" cy="55" rx="64" ry="18" stroke="url(#orbGrad)" stroke-width="2.5" fill="none" transform="rotate(-18 55 55)" stroke-linecap="round" stroke-dasharray="105 55"/>
+  <!-- Orbital ring 2 -->
+  <ellipse cx="55" cy="55" rx="70" ry="14" stroke="#60A5FA" stroke-width="2" fill="none" transform="rotate(28 55 55)" stroke-linecap="round" stroke-dasharray="70 90"/>
+
+  <!-- Cash register: screen -->
+  <rect x="36" y="24" width="38" height="18" rx="3" fill="white" opacity="0.95"/>
+  <rect x="39" y="27" width="32" height="11" rx="2" fill="#1B3A8F" opacity="0.6"/>
+  <line x1="42" y1="30" x2="54" y2="30" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <line x1="42" y1="34" x2="50" y2="34" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Cash register: body -->
+  <rect x="31" y="44" width="48" height="30" rx="4" fill="white" opacity="0.95"/>
+  <!-- Keypad -->
+  <rect x="37" y="49" width="6" height="4" rx="1" fill="#1B3A8F" opacity="0.6"/>
+  <rect x="46" y="49" width="6" height="4" rx="1" fill="#1B3A8F" opacity="0.6"/>
+  <rect x="55" y="49" width="6" height="4" rx="1" fill="#1B3A8F" opacity="0.6"/>
+  <rect x="37" y="56" width="6" height="4" rx="1" fill="#1B3A8F" opacity="0.6"/>
+  <rect x="46" y="56" width="6" height="4" rx="1" fill="#1B3A8F" opacity="0.6"/>
+  <rect x="55" y="56" width="14" height="4" rx="1" fill="#1B3A8F" opacity="0.85"/>
+  <!-- Receipt slot -->
+  <rect x="36" y="65" width="38" height="2.5" rx="1.2" fill="#1B3A8F" opacity="0.3"/>
+  <!-- Base -->
+  <rect x="27" y="76" width="56" height="7" rx="3" fill="white" opacity="0.9"/>
+
+  <!-- KASSAPOS text -->
+  <text x="125" y="66" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="46" fill="url(#textGrad)" letter-spacing="1">KASSAPOS</text>
+
+  <!-- Subtitle -->
+  <text x="127" y="88" font-family="Arial, sans-serif" font-weight="600" font-size="12" fill="url(#subGrad)" letter-spacing="4">SOFTWARE SOLUTIONS PVT LTD</text>
+</svg>
