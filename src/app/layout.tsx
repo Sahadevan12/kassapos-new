@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "@/providers";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SplashScreen } from "@/components/SplashScreen";
 
 const displayFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -81,6 +82,7 @@ export default function RootLayout({
       style={{ backgroundColor: "#FFFFFF" }}
     >
       <body className="min-h-screen text-slate-900 font-sans antialiased overflow-x-hidden" style={{ backgroundColor: "#FFFFFF" }}>
+        <SplashScreen />
         <Providers>
           <Navbar />
           <main>{children}</main>
