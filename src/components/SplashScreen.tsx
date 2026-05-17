@@ -47,7 +47,7 @@ export function SplashScreen() {
           <Image src="/images/loading_page.png" alt="" fill priority className="object-cover" />
 
           {/* Full-height flex column */}
-          <div className="relative z-10 h-full flex flex-col items-center justify-between py-6 px-4">
+          <div className="relative z-10 h-full flex flex-col items-center justify-between pt-6 pb-14 px-4">
 
             {/* ── TOP: logo + taglines + progress ── */}
             <div className="flex-1 flex flex-col items-center justify-center gap-0">
