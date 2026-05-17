@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   motion, AnimatePresence,
   useScroll, useTransform, useSpring,
@@ -439,7 +440,13 @@ export function HeroSection() {
 
             {/* Main preview — mouse parallax */}
             <motion.div style={{ x: sPrevX, y: sPrevY }} className="relative z-10">
-              <POSPreview />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/hero.png"
+                alt="KassaPOS — POS System Dashboard"
+                className="w-full h-auto block"
+                style={{ maxWidth: "100%", objectFit: "contain" }}
+              />
             </motion.div>
 
             {/* Floating badge: Bills Today */}

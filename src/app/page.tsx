@@ -1,5 +1,9 @@
 import { HeroSection } from "@/components/home/HeroSection";
 import { SocialProofBar } from "@/components/home/SocialProofBar";
+import { MarqueeTicker } from "@/components/home/MarqueeTicker";
+import { FounderStrip } from "@/components/home/FounderStrip";
+import { FeaturesCloud } from "@/components/home/FeaturesCloud";
+import { OurJourneySection } from "@/components/home/OurJourneySection";
 import { ScrollStorySection } from "@/components/home/ScrollStorySection";
 import { BentoFeatures } from "@/components/home/BentoFeatures";
 import { IndustrySection } from "@/components/home/IndustrySection";
@@ -13,7 +17,11 @@ export default function HomePage() {
     <>
       <HeroSection />
       <SocialProofBar />
-      <ScrollStorySection />
+      <MarqueeTicker />
+      <FounderStrip />
+      <FeaturesCloud />
+      <OurJourneySection />
+      {/* <ScrollStorySection /> */}
       <BentoFeatures />
       <IndustrySection />
       <DashboardPreview />
