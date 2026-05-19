@@ -12,7 +12,7 @@ import { EASE_EXPO } from "@/lib/animations";
 
 const FEATURES = [
   {
-    icon: <Zap size={20} />,
+    icon: <Zap size={26} />,
     title: "3-Second Billing",
     description: "Scan → price → GST → receipt. Done in under 3 seconds. The fastest POS in India.",
     color: "#F59E0B",
@@ -20,56 +20,56 @@ const FEATURES = [
     demo: "billing",
   },
   {
-    icon: <Cloud size={20} />,
+    icon: <Cloud size={26} />,
     title: "Cloud Sync",
     description: "Real-time AWS sync across all devices and branches. Zero downtime.",
     color: "#2563EB",
     accentBg: "rgba(37,99,235,0.07)",
   },
   {
-    icon: <FileCheck size={20} />,
+    icon: <FileCheck size={26} />,
     title: "GST e-Invoice",
     description: "IRN & QR code compliant. Auto-calculate, one-click generation.",
     color: "#10B981",
     accentBg: "rgba(16,185,129,0.07)",
   },
   {
-    icon: <WifiOff size={20} />,
+    icon: <WifiOff size={26} />,
     title: "Works Offline",
     description: "Full billing & inventory with zero internet. Auto-syncs silently when back online.",
     color: "#8B5CF6",
     accentBg: "rgba(139,92,246,0.07)",
   },
   {
-    icon: <BarChart3 size={20} />,
+    icon: <BarChart3 size={26} />,
     title: "Live Reports",
     description: "Revenue, profit & low-stock alerts on your phone. Check anywhere, 24/7.",
     color: "#06B6D4",
     accentBg: "rgba(6,182,212,0.07)",
   },
   {
-    icon: <MessageCircle size={20} />,
+    icon: <MessageCircle size={26} />,
     title: "WhatsApp Bills",
     description: "Instant digital receipts on customer WhatsApp after every sale.",
     color: "#22C55E",
     accentBg: "rgba(34,197,94,0.07)",
   },
   {
-    icon: <GitBranch size={20} />,
+    icon: <GitBranch size={26} />,
     title: "Multi-Branch",
     description: "1 to 100 branches from one dashboard. Real-time sync.",
     color: "#F59E0B",
     accentBg: "rgba(245,158,11,0.07)",
   },
   {
-    icon: <Barcode size={20} />,
+    icon: <Barcode size={26} />,
     title: "Barcode Printing",
     description: "Custom price labels with MRP, batch & barcode — in seconds.",
     color: "#EC4899",
     accentBg: "rgba(236,72,153,0.07)",
   },
   {
-    icon: <Heart size={20} />,
+    icon: <Heart size={26} />,
     title: "CRM & Loyalty",
     description: "Points, cashback, birthday offers & WhatsApp campaigns built-in.",
     color: "#EF4444",
@@ -79,8 +79,8 @@ const FEATURES = [
 
 function BillingDemo({ color }: { color: string }) {
   return (
-    <div className="mt-1 pt-3 border-t border-slate-100">
-      <div className="space-y-1">
+    <div className="pt-2.5 border-t border-slate-100">
+      <div className="space-y-0.5">
         {[
           { label: "Tata Salt 1kg × 2", amount: "₹44" },
           { label: "Maggi Noodles × 4", amount: "₹56" },
@@ -101,9 +101,9 @@ function BillingDemo({ color }: { color: string }) {
                   <path d="M1 3L3 5L7 1" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <span className={`text-[12px] ${line.muted ? "text-slate-400" : "text-slate-600"}`}>{line.label}</span>
+              <span className={`text-[14px] ${line.muted ? "text-slate-400" : "text-slate-600"}`}>{line.label}</span>
             </div>
-            <span className={`text-[12px] font-semibold ${line.muted ? "text-slate-400" : "text-slate-700"}`}>{line.amount}</span>
+            <span className={`text-[14px] font-semibold ${line.muted ? "text-slate-400" : "text-slate-700"}`}>{line.amount}</span>
           </motion.div>
         ))}
       </div>
@@ -114,8 +114,8 @@ function BillingDemo({ color }: { color: string }) {
         transition={{ delay: 0.6 }}
         className="flex items-center justify-between pt-2.5"
       >
-        <span className="text-xs font-bold text-slate-900">Total</span>
-        <span className="text-sm font-extrabold" style={{ color }}>₹105</span>
+        <span className="text-sm font-bold text-slate-900">Total</span>
+        <span className="text-base font-extrabold" style={{ color }}>₹105</span>
       </motion.div>
     </div>
   );
@@ -125,10 +125,12 @@ function FeatureCard({
   feature,
   index,
   colSpanClass,
+  fill,
 }: {
   feature: (typeof FEATURES)[0];
   index: number;
   colSpanClass?: string;
+  fill?: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
 
@@ -138,9 +140,9 @@ function FeatureCard({
       onHoverEnd={() => setHovered(false)}
       className={`relative rounded-2xl flex flex-col gap-3 overflow-hidden ${colSpanClass || ""}`}
       style={{
-        /* alignSelf: start prevents CSS Grid from stretching this card to match the tallest sibling */
-        alignSelf: "start",
-        padding: "1.5rem",
+        alignSelf: fill ? "stretch" : "start",
+        flex: fill ? 1 : undefined,
+        padding: "1.4rem 1.5rem",
         background: "#FFFFFF",
         border: hovered ? "1px solid rgba(37,99,235,0.2)" : "1px solid #E8EDF5",
         boxShadow: hovered
@@ -164,7 +166,7 @@ function FeatureCard({
       />
 
       <div
-        className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+        className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0"
         style={{
           background: hovered ? `${feature.color}14` : feature.accentBg,
           color: feature.color,
@@ -175,10 +177,10 @@ function FeatureCard({
       </div>
 
       <div>
-        <h3 className="font-semibold text-slate-900 text-[13.5px] leading-snug mb-1.5">
+        <h3 className="font-bold text-slate-900 text-[17px] leading-snug mb-1.5">
           {feature.title}
         </h3>
-        <p className="text-[12.5px] text-slate-500 leading-relaxed">
+        <p className="text-[14px] text-slate-500" style={{ lineHeight: 1.55 }}>
           {feature.description}
         </p>
       </div>
@@ -210,21 +212,23 @@ export function BentoFeatures() {
 
         <div className="flex flex-col gap-4">
 
-          {/* ── ROW 1: billing (col-span-2 on md+) + cloud sync + GST ── */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <FeatureCard feature={FEATURES[0]} index={0} colSpanClass="md:col-span-2" />
-            <FeatureCard feature={FEATURES[1]} index={1} />
-            <FeatureCard feature={FEATURES[2]} index={2} />
+          {/* ── ROW 1: billing (left half) | cloud sync + GST stacked (right half) ── */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <FeatureCard feature={FEATURES[0]} index={0} />
+            <div className="flex flex-col gap-4" style={{ alignSelf: "stretch" }}>
+              <FeatureCard feature={FEATURES[1]} index={1} fill />
+              <FeatureCard feature={FEATURES[2]} index={2} fill />
+            </div>
           </div>
 
           {/* ── ROW 2: offline + reports ── */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <FeatureCard feature={FEATURES[3]} index={3} />
-            <FeatureCard feature={FEATURES[4]} index={4} />
+            <FeatureCard feature={FEATURES[3]} index={3} fill />
+            <FeatureCard feature={FEATURES[4]} index={4} fill />
           </div>
 
           {/* ── ROW 3: whatsapp + multibranch + barcode + crm ── */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-start">
             <FeatureCard feature={FEATURES[5]} index={5} />
             <FeatureCard feature={FEATURES[6]} index={6} />
             <FeatureCard feature={FEATURES[7]} index={7} />

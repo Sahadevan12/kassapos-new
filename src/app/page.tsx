@@ -12,6 +12,7 @@ import { IndustrySection } from "@/components/home/IndustrySection";
 import { DashboardPreview } from "@/components/home/DashboardPreview";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { PricingTeaser } from "@/components/home/PricingTeaser";
+import { FAQSection } from "@/components/home/FAQSection";
 import { FooterCTA } from "@/components/home/FooterCTA";
 // import { ClosingCTA } from "@/components/home/ClosingCTA";
 
@@ -32,6 +33,7 @@ export default function HomePage() {
       <DashboardPreview />
       <TestimonialsSection />
       <PricingTeaser />
+      <FAQSection />
       <FooterCTA />
       {/* <ClosingCTA /> */}
     </>

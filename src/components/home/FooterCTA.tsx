@@ -45,13 +45,13 @@ export function FooterCTA() {
         }}
       />
 
-      {/* Dark overlay so text is readable */}
+      {/* Lighter overlay so background image stays visible */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(135deg, rgba(10,18,50,0.72) 0%, rgba(10,18,50,0.58) 100%)",
+            "linear-gradient(135deg, rgba(10,18,50,0.38) 0%, rgba(10,18,50,0.28) 100%)",
         }}
       />
 
@@ -127,10 +127,9 @@ export function FooterCTA() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-semibold rounded-2xl px-8 py-3.5 transition-all"
               style={{
-                background: "rgba(255,255,255,0.13)",
-                border: "1.5px solid rgba(255,255,255,0.3)",
-                backdropFilter: "blur(12px)",
-                WebkitBackdropFilter: "blur(12px)",
+                background: "linear-gradient(135deg, #22C55E 0%, #16A34A 100%)",
+                border: "1.5px solid rgba(34,197,94,0.4)",
+                boxShadow: "0 6px 20px rgba(34,197,94,0.35)",
                 color: "#FFFFFF",
                 fontSize: "0.97rem",
                 minWidth: 200,

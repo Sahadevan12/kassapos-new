@@ -72,33 +72,33 @@ export function Footer() {
 
       {/* CTA Band */}
       <div style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-        <div className="container-xl py-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="container-xl py-14">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
-              <h3 className="text-2xl font-bold text-white mb-1">
+              <h3 className="text-3xl font-bold text-white mb-2">
                 Ready to modernise your billing?
               </h3>
-              <p className="text-base" style={{ color: "rgba(148,163,184,0.8)" }}>
+              <p className="text-lg" style={{ color: "rgba(148,163,184,0.8)" }}>
                 Join 7,500+ businesses across South India. Start free, upgrade anytime.
               </p>
             </div>
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex items-center gap-4 shrink-0">
               <a
                 href={`https://wa.me/918754031480`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-3 rounded-xl text-base font-medium transition-all"
-                style={{ border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.06)" }}
+                className="flex items-center gap-2 px-6 py-3.5 rounded-xl text-base font-medium transition-all"
+                style={{ border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.85)", background: "rgba(255,255,255,0.06)" }}
               >
-                <MessageCircle size={17} className="text-green-400" />
+                <MessageCircle size={18} className="text-green-400" />
                 WhatsApp Us
               </a>
               <Link
                 href="/register"
-                className="btn-gradient flex items-center gap-2 px-6 py-3 rounded-xl text-white text-base font-semibold"
+                className="btn-gradient flex items-center gap-2 px-7 py-3.5 rounded-xl text-white text-base font-semibold"
               >
                 Start Free Trial
-                <ArrowRight size={17} />
+                <ArrowRight size={18} />
               </Link>
             </div>
           </div>
@@ -106,11 +106,11 @@ export function Footer() {
       </div>
 
       {/* Main Footer Grid */}
-      <div className="container-xl py-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+      <div className="container-xl py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-10">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center mb-5">
+            <Link href="/" className="flex items-center mb-6">
               <div
                 style={{
                   background: "#FFFFFF",
@@ -130,20 +130,24 @@ export function Footer() {
                 />
               </div>
             </Link>
-            <p className="text-base leading-relaxed mb-6 max-w-sm" style={{ color: "rgba(148,163,184,0.75)" }}>
+            <p className="text-base leading-loose mb-7 max-w-xs" style={{ color: "rgba(148,163,184,0.8)", lineHeight: 1.8 }}>
               India&apos;s most trusted POS &amp; billing software. Serving 7,500+ retail businesses across Tamil Nadu since 2008.
             </p>
 
             {/* Offices */}
-            <div className="space-y-4">
+            <div className="space-y-5">
               {OFFICES.slice(0, 2).map((office) => (
-                <div key={office.city} className="flex gap-3">
-                  <MapPin size={15} className="text-blue-400 mt-0.5 shrink-0" />
+                <div key={office.city} className="flex gap-3.5">
+                  <MapPin size={16} className="text-blue-400 mt-1 shrink-0" />
                   <div>
-                    <p className="text-sm font-semibold text-white mb-0.5">{office.city} {office.label !== "Headquarters" ? "" : "HQ"}</p>
-                    <p className="text-sm leading-relaxed" style={{ color: "rgba(148,163,184,0.6)" }}>{office.address}</p>
-                    <a href={`tel:${office.phone}`} className="text-sm text-blue-400 hover:text-blue-300 transition-colors mt-0.5 flex items-center gap-1">
-                      <Phone size={12} /> {office.phone}
+                    <p className="text-base font-semibold text-white mb-1">
+                      {office.city} {office.label !== "Headquarters" ? "" : "HQ"}
+                    </p>
+                    <p className="text-sm leading-relaxed" style={{ color: "rgba(148,163,184,0.6)", lineHeight: 1.7 }}>
+                      {office.address}
+                    </p>
+                    <a href={`tel:${office.phone}`} className="text-sm text-blue-400 hover:text-blue-300 transition-colors mt-1.5 flex items-center gap-1.5">
+                      <Phone size={13} /> {office.phone}
                     </a>
                   </div>
                 </div>
@@ -151,7 +155,7 @@ export function Footer() {
             </div>
 
             {/* Social */}
-            <div className="flex items-center gap-2 mt-6">
+            <div className="flex items-center gap-2.5 mt-8">
               {SOCIAL_LINKS.map((s) => (
                 <a
                   key={s.label}
@@ -159,8 +163,8 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-10 h-10 rounded-xl flex items-center justify-center transition-all"
-                  style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(148,163,184,0.7)" }}
+                  className="w-11 h-11 rounded-xl flex items-center justify-center transition-all hover:scale-110"
+                  style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.11)", color: "rgba(148,163,184,0.75)" }}
                 >
                   {s.icon}
                 </a>
@@ -170,16 +174,18 @@ export function Footer() {
 
           {/* Products */}
           <div>
-            <h4 className="text-base font-semibold text-white mb-4">Products</h4>
-            <ul className="space-y-3">
+            <h4 className="text-xl font-bold text-white mb-6 pb-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.09)", letterSpacing: "-0.01em" }}>
+              Products
+            </h4>
+            <ul style={{ display: "flex", flexDirection: "column", gap: 18 }}>
               {FOOTER_PRODUCTS.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm flex items-center gap-2 transition-colors group"
-                    style={{ color: "rgba(148,163,184,0.7)" }}
+                    className="flex items-center gap-3 transition-colors group"
+                    style={{ color: "rgba(148,163,184,0.75)", fontSize: "1rem", lineHeight: 1.5 }}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 group-hover:bg-blue-400 transition-colors shrink-0" />
+                    <span className="w-2 h-2 rounded-full shrink-0 transition-colors group-hover:bg-blue-300" style={{ background: "rgba(59,130,246,0.7)" }} />
                     <span className="group-hover:text-white transition-colors">{item.label}</span>
                   </Link>
                 </li>
@@ -189,16 +195,18 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-base font-semibold text-white mb-4">Company</h4>
-            <ul className="space-y-3">
+            <h4 className="text-xl font-bold text-white mb-6 pb-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.09)", letterSpacing: "-0.01em" }}>
+              Company
+            </h4>
+            <ul style={{ display: "flex", flexDirection: "column", gap: 18 }}>
               {FOOTER_COMPANY.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm flex items-center gap-2 transition-colors group"
-                    style={{ color: "rgba(148,163,184,0.7)" }}
+                    className="flex items-center gap-3 transition-colors group"
+                    style={{ color: "rgba(148,163,184,0.75)", fontSize: "1rem", lineHeight: 1.5 }}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 group-hover:bg-blue-400 transition-colors shrink-0" />
+                    <span className="w-2 h-2 rounded-full shrink-0 transition-colors group-hover:bg-blue-300" style={{ background: "rgba(59,130,246,0.7)" }} />
                     <span className="group-hover:text-white transition-colors">{item.label}</span>
                   </Link>
                 </li>
@@ -208,25 +216,27 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-base font-semibold text-white mb-4">Get in Touch</h4>
-            <div className="space-y-3">
+            <h4 className="text-xl font-bold text-white mb-6 pb-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.09)", letterSpacing: "-0.01em" }}>
+              Get in Touch
+            </h4>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               <a
                 href={`tel:${SITE.phone}`}
-                className="flex items-center gap-2.5 text-sm transition-colors group"
-                style={{ color: "rgba(148,163,184,0.7)" }}
+                className="flex items-center gap-3.5 transition-colors group"
+                style={{ color: "rgba(148,163,184,0.75)", fontSize: "1rem" }}
               >
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ background: "rgba(37,99,235,0.18)" }}>
-                  <Phone size={15} className="text-blue-400" />
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: "rgba(37,99,235,0.22)" }}>
+                  <Phone size={17} className="text-blue-400" />
                 </div>
                 <span className="group-hover:text-white transition-colors">{SITE.phone}</span>
               </a>
               <a
                 href={`mailto:${SITE.email}`}
-                className="flex items-center gap-2.5 text-sm transition-colors group"
-                style={{ color: "rgba(148,163,184,0.7)" }}
+                className="flex items-center gap-3.5 transition-colors group"
+                style={{ color: "rgba(148,163,184,0.75)", fontSize: "1rem" }}
               >
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ background: "rgba(37,99,235,0.18)" }}>
-                  <Mail size={15} className="text-blue-400" />
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: "rgba(37,99,235,0.22)" }}>
+                  <Mail size={17} className="text-blue-400" />
                 </div>
                 <span className="group-hover:text-white transition-colors">{SITE.email}</span>
               </a>
@@ -234,27 +244,27 @@ export function Footer() {
                 href="https://wa.me/918754031480"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-sm transition-colors group"
-                style={{ color: "rgba(148,163,184,0.7)" }}
+                className="flex items-center gap-3.5 transition-colors group"
+                style={{ color: "rgba(148,163,184,0.75)", fontSize: "1rem" }}
               >
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ background: "rgba(34,197,94,0.15)" }}>
-                  <MessageCircle size={15} className="text-green-400" />
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: "rgba(34,197,94,0.18)" }}>
+                  <MessageCircle size={17} className="text-green-400" />
                 </div>
                 <span className="group-hover:text-green-400 transition-colors">WhatsApp Support</span>
               </a>
             </div>
 
             {/* Trust Badges */}
-            <div className="mt-6 grid grid-cols-2 gap-2">
+            <div className="mt-8 grid grid-cols-2 gap-3">
               {[
                 { value: "4.9★", label: "Google Rating" },
                 { value: "2008", label: "Est. Year" },
                 { value: "7,500+", label: "Customers" },
                 { value: "24/7", label: "Support" },
               ].map((badge) => (
-                <div key={badge.label} className="rounded-xl p-2.5 text-center" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                  <p className="text-sm font-bold text-white">{badge.value}</p>
-                  <p className="text-xs mt-0.5" style={{ color: "rgba(148,163,184,0.55)" }}>{badge.label}</p>
+                <div key={badge.label} className="rounded-xl text-center" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.09)", padding: "14px 10px" }}>
+                  <p className="text-lg font-bold text-white">{badge.value}</p>
+                  <p className="text-sm mt-1 font-medium" style={{ color: "rgba(148,163,184,0.55)" }}>{badge.label}</p>
                 </div>
               ))}
             </div>
@@ -264,11 +274,11 @@ export function Footer() {
 
       {/* Bottom Bar */}
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-        <div className="container-xl py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="container-xl py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-sm" style={{ color: "rgba(148,163,184,0.45)" }}>
             © {new Date().getFullYear()} {SITE.fullName}. All rights reserved.
           </p>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-6">
             {FOOTER_LEGAL.map((item) => (
               <Link
                 key={item.href}
