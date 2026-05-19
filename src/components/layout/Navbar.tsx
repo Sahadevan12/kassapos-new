@@ -28,11 +28,12 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const NAV_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
   { label: "Products", href: "/products", hasDropdown: true },
-  { label: "Pricing", href: "/pricing" },
   { label: "Features", href: "/features" },
-  { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
+  { label: "Blogs", href: "/blog" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 export function Navbar() {
@@ -116,13 +117,21 @@ export function Navbar() {
           )}
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0">
-            <div className="bg-white rounded-xl px-2.5 py-1.5">
+            <div
+              style={{
+                background: "#FFFFFF",
+                borderRadius: 14,
+                padding: "6px 14px",
+                border: "1.5px solid rgba(37,99,235,0.18)",
+                boxShadow: "0 2px 12px rgba(37,99,235,0.12), 0 1px 3px rgba(0,0,0,0.06)",
+              }}
+            >
               <Image
                 src="/images/logo.jpg"
                 alt="Kassapos"
-                width={160}
-                height={40}
-                className="h-9 w-auto object-contain"
+                width={200}
+                height={52}
+                className="h-12 w-auto object-contain"
                 priority
               />
             </div>

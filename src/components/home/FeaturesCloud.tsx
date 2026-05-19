@@ -159,7 +159,7 @@ function GlassButton() {
 function Ticker() {
   const doubled = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
   return (
-    <div style={{ background: TICKER_BG, overflow: "hidden", padding: "12px 0" }}>
+    <div style={{ background: TICKER_BG, overflow: "hidden", padding: "17px 0" }}>
       <motion.div
         style={{ display: "flex", width: "max-content" }}
         animate={{ x: ["0%", "-50%"] }}
@@ -170,11 +170,11 @@ function Ticker() {
             <span
               style={{
                 color: "#FFFFFF",
-                fontWeight: 600,
-                fontSize: "0.87rem",
-                padding: "0 22px",
+                fontWeight: 700,
+                fontSize: "1.05rem",
+                padding: "0 28px",
                 whiteSpace: "nowrap",
-                letterSpacing: "0.01em",
+                letterSpacing: "0.02em",
               }}
             >
               {item}
@@ -182,7 +182,7 @@ function Ticker() {
             <span
               style={{
                 color: "rgba(255,255,255,0.55)",
-                fontSize: "1.15rem",
+                fontSize: "1.35rem",
                 lineHeight: 1,
               }}
             >

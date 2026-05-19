@@ -4,13 +4,16 @@ import { MarqueeTicker } from "@/components/home/MarqueeTicker";
 import { FounderStrip } from "@/components/home/FounderStrip";
 import { FeaturesCloud } from "@/components/home/FeaturesCloud";
 import { OurJourneySection } from "@/components/home/OurJourneySection";
+import { ClientsSection } from "@/components/home/ClientsSection";
+import { SeeInActionSection } from "@/components/home/SeeInActionSection";
 import { ScrollStorySection } from "@/components/home/ScrollStorySection";
 import { BentoFeatures } from "@/components/home/BentoFeatures";
 import { IndustrySection } from "@/components/home/IndustrySection";
 import { DashboardPreview } from "@/components/home/DashboardPreview";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { PricingTeaser } from "@/components/home/PricingTeaser";
-import { ClosingCTA } from "@/components/home/ClosingCTA";
+import { FooterCTA } from "@/components/home/FooterCTA";
+// import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 export default function HomePage() {
   return (
@@ -21,13 +24,16 @@ export default function HomePage() {
       <FounderStrip />
       <FeaturesCloud />
       <OurJourneySection />
+      <ClientsSection />
+      <SeeInActionSection />
       {/* <ScrollStorySection /> */}
       <BentoFeatures />
       <IndustrySection />
       <DashboardPreview />
       <TestimonialsSection />
       <PricingTeaser />
-      <ClosingCTA />
+      <FooterCTA />
+      {/* <ClosingCTA /> */}
     </>
   );
 }

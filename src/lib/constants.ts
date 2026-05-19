@@ -51,23 +51,24 @@ export const WHATSAPP_NUMBERS = [
   { name: "Customer Support", number: "919600676480" },
 ];
 
+const FE = "https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets";
 export const INDUSTRIES = [
-  { id: "supermarket", label: "Supermarket", icon: "🏪", color: "#2563EB" },
-  { id: "retail", label: "Retail Shop", icon: "🛍️", color: "#0891B2" },
-  { id: "restaurant", label: "Restaurant", icon: "🍽️", color: "#7C3AED" },
-  { id: "cloud", label: "Cloud Billing", icon: "☁️", color: "#0D9488" },
-  { id: "textile", label: "Textiles", icon: "👗", color: "#DB2777" },
-  { id: "mobile", label: "Mobile Shop", icon: "📱", color: "#D97706" },
-  { id: "bakery", label: "Bakery", icon: "🥐", color: "#65A30D" },
-  { id: "spa", label: "Spa & Salon", icon: "💆", color: "#9333EA" },
-  { id: "hardware", label: "Hardware", icon: "🔧", color: "#B45309" },
-  { id: "footwear", label: "Footwear", icon: "👟", color: "#0F766E" },
-  { id: "restaurant-bar", label: "Bar & Restaurant", icon: "🍺", color: "#C2410C" },
-  { id: "vegetables", label: "Vegetables & Fruits", icon: "🥬", color: "#16A34A" },
-  { id: "pharmacy", label: "Pharmacy", icon: "💊", color: "#0284C7" },
-  { id: "jewellery", label: "Jewellery", icon: "💍", color: "#CA8A04" },
-  { id: "automobile", label: "Automobile", icon: "🚗", color: "#475569" },
-  { id: "warehouse", label: "Warehouse", icon: "🏭", color: "#6366F1" },
+  { id: "supermarket",    label: "Supermarket",        icon: "🏪", icon3d: `${FE}/Convenience%20store/3D/convenience_store_3d.png`,              color: "#2563EB" },
+  { id: "retail",         label: "Retail Shop",         icon: "🛍️", icon3d: `${FE}/Shopping%20bags/3D/shopping_bags_3d.png`,                     color: "#0891B2" },
+  { id: "restaurant",     label: "Restaurant",          icon: "🍽️", icon3d: `${FE}/Fork%20and%20knife%20with%20plate/3D/fork_and_knife_with_plate_3d.png`, color: "#7C3AED" },
+  { id: "cloud",          label: "Cloud Billing",       icon: "☁️", icon3d: `${FE}/Cloud/3D/cloud_3d.png`,                                       color: "#0D9488" },
+  { id: "textile",        label: "Textiles",            icon: "👗", icon3d: `${FE}/Dress/3D/dress_3d.png`,                                       color: "#DB2777" },
+  { id: "mobile",         label: "Mobile Shop",         icon: "📱", icon3d: `${FE}/Mobile%20phone/3D/mobile_phone_3d.png`,                       color: "#D97706" },
+  { id: "bakery",         label: "Bakery",              icon: "🥐", icon3d: `${FE}/Croissant/3D/croissant_3d.png`,                               color: "#65A30D" },
+  { id: "spa",            label: "Spa & Salon",         icon: "💆", icon3d: `${FE}/Mirror/3D/mirror_3d.png`,                                    color: "#9333EA" },
+  { id: "hardware",       label: "Hardware",            icon: "🔧", icon3d: `${FE}/Wrench/3D/wrench_3d.png`,                                     color: "#B45309" },
+  { id: "footwear",       label: "Footwear",            icon: "👟", icon3d: `${FE}/Running%20shoe/3D/running_shoe_3d.png`,                       color: "#0F766E" },
+  { id: "restaurant-bar", label: "Bar & Restaurant",    icon: "🍺", icon3d: `${FE}/Beer%20mug/3D/beer_mug_3d.png`,                               color: "#C2410C" },
+  { id: "vegetables",     label: "Vegetables & Fruits", icon: "🥬", icon3d: `${FE}/Leafy%20green/3D/leafy_green_3d.png`,                         color: "#16A34A" },
+  { id: "pharmacy",       label: "Pharmacy",            icon: "💊", icon3d: `${FE}/Pill/3D/pill_3d.png`,                                         color: "#0284C7" },
+  { id: "jewellery",      label: "Jewellery",           icon: "💍", icon3d: `${FE}/Ring/3D/ring_3d.png`,                                         color: "#CA8A04" },
+  { id: "automobile",     label: "Automobile",          icon: "🚗", icon3d: `${FE}/Automobile/3D/automobile_3d.png`,                             color: "#475569" },
+  { id: "warehouse",      label: "Warehouse",           icon: "🏭", icon3d: `${FE}/Factory/3D/factory_3d.png`,                                   color: "#6366F1" },
 ];
 
 export const FEATURES = [

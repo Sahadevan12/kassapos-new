@@ -12,7 +12,7 @@ export function MarqueeTicker() {
   const doubled = [...ITEMS, ...ITEMS];
 
   return (
-    <div style={{ background: "#0D1B6E", overflow: "hidden", padding: "13px 0" }}>
+    <div style={{ background: "#0D1B6E", overflow: "hidden", padding: "17px 0" }}>
       <motion.div
         style={{ display: "flex", width: "max-content" }}
         animate={{ x: ["0%", "-50%"] }}
@@ -24,19 +24,18 @@ export function MarqueeTicker() {
               style={{
                 color: "#FFFFFF",
                 fontWeight: 700,
-                fontSize: "0.9rem",
-                padding: "0 22px",
+                fontSize: "1.05rem",
+                padding: "0 28px",
                 whiteSpace: "nowrap",
-                letterSpacing: "0.01em",
+                letterSpacing: "0.02em",
               }}
             >
               {item}
             </span>
-            {/* bigger star separator */}
             <span
               style={{
                 color: "rgba(255,255,255,0.55)",
-                fontSize: "1.15rem",
+                fontSize: "1.35rem",
                 lineHeight: 1,
               }}
             >

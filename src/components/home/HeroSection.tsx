@@ -9,23 +9,15 @@ import {
   useMotionValue,
 } from "framer-motion";
 import {
-  ArrowRight, Play, Star, TrendingUp, Zap, Shield,
+  ArrowRight, Play, Star,
   ChevronDown, Check, Wifi, ReceiptText, Package,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { EASE_EXPO } from "@/lib/animations";
 import { SITE } from "@/lib/constants";
-import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 /* ─── Constants ─────────────────────────────────── */
 const HERO_WORDS = ["Supermarkets", "Restaurants", "Retail Shops", "Textile Stores", "Cloud Billing"];
-
-const STATS = [
-  { value: 5000,  suffix: "+",    label: "Supermarkets",  icon: <TrendingUp size={13} /> },
-  { value: 2500,  suffix: "+",    label: "Cloud Users",   icon: <Zap size={13} /> },
-  { value: 4.9,   suffix: "★",   label: "Google Rating", icon: <Star size={13} />, decimals: 1 },
-  { value: 15,    suffix: " yrs", label: "Since 2008",    icon: <Shield size={13} /> },
-];
 
 const MINI_BILLS = [
   { name: "Arjun S.", amount: 845, items: 7, time: "2m ago" },
@@ -357,7 +349,7 @@ export function HeroSection() {
             </motion.p>
 
             {/* CTA buttons */}
-            <motion.div variants={item} className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-12">
+            <motion.div variants={item} className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-0">
               <Link href="/register">
                 <Button
                   variant="primary"
@@ -391,35 +383,6 @@ export function HeroSection() {
               </Link>
             </motion.div>
 
-            {/* Stats */}
-            <motion.div variants={item}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-lg"
-            >
-              {STATS.map((stat) => (
-                <div key={stat.label}
-                  className="flex flex-col gap-1 p-3.5 rounded-2xl"
-                  style={{
-                    background: "#F8FAFF",
-                    border: "1px solid #E2E8F0",
-                  }}
-                >
-                  <div className="flex items-center gap-1.5 text-brand-500 mb-0.5">
-                    {stat.icon}
-                    <span className="text-[10px] uppercase tracking-wider font-semibold text-slate-400">
-                      {stat.label}
-                    </span>
-                  </div>
-                  <span className="text-xl font-extrabold font-display text-slate-900 leading-none">
-                    <AnimatedCounter
-                      end={stat.value}
-                      suffix={stat.suffix}
-                      decimals={stat.decimals ?? 0}
-                      duration={2200}
-                    />
-                  </span>
-                </div>
-              ))}
-            </motion.div>
           </motion.div>
 
           {/* Right — floating POS preview */}

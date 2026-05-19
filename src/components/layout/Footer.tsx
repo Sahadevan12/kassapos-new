@@ -66,16 +66,19 @@ const SOCIAL_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="relative bg-white border-t border-slate-200 overflow-hidden">
+    <footer className="relative overflow-hidden" style={{ background: "#0D1B2E" }}>
+      {/* Subtle top glow */}
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(37,99,235,0.5), transparent)" }} />
+
       {/* CTA Band */}
-      <div className="border-b border-slate-100">
+      <div style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
         <div className="container-xl py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h3 className="text-xl font-bold text-slate-900 mb-1">
+              <h3 className="text-2xl font-bold text-white mb-1">
                 Ready to modernise your billing?
               </h3>
-              <p className="text-sm text-slate-500">
+              <p className="text-base" style={{ color: "rgba(148,163,184,0.8)" }}>
                 Join 7,500+ businesses across South India. Start free, upgrade anytime.
               </p>
             </div>
@@ -84,17 +87,18 @@ export function Footer() {
                 href={`https://wa.me/918754031480`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:text-slate-900 hover:border-brand-400/40 transition-all text-sm font-medium"
+                className="flex items-center gap-2 px-5 py-3 rounded-xl text-base font-medium transition-all"
+                style={{ border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.8)", background: "rgba(255,255,255,0.06)" }}
               >
-                <MessageCircle size={16} className="text-green-500" />
+                <MessageCircle size={17} className="text-green-400" />
                 WhatsApp Us
               </a>
               <Link
                 href="/register"
-                className="btn-gradient flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-sm font-semibold"
+                className="btn-gradient flex items-center gap-2 px-6 py-3 rounded-xl text-white text-base font-semibold"
               >
                 Start Free Trial
-                <ArrowRight size={16} />
+                <ArrowRight size={17} />
               </Link>
             </div>
           </div>
@@ -107,17 +111,26 @@ export function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center mb-5">
-              <div className="bg-white rounded-xl px-2.5 py-1.5 inline-flex border border-slate-100">
+              <div
+                style={{
+                  background: "#FFFFFF",
+                  borderRadius: 16,
+                  padding: "8px 18px",
+                  display: "inline-flex",
+                  border: "1.5px solid rgba(37,99,235,0.35)",
+                  boxShadow: "0 4px 18px rgba(37,99,235,0.25), 0 1px 4px rgba(0,0,0,0.2)",
+                }}
+              >
                 <Image
                   src="/images/logo.jpg"
                   alt="Kassapos"
-                  width={180}
-                  height={44}
-                  className="h-11 w-auto object-contain"
+                  width={220}
+                  height={56}
+                  className="h-14 w-auto object-contain"
                 />
               </div>
             </Link>
-            <p className="text-sm text-slate-500 leading-relaxed mb-6 max-w-sm">
+            <p className="text-base leading-relaxed mb-6 max-w-sm" style={{ color: "rgba(148,163,184,0.75)" }}>
               India&apos;s most trusted POS &amp; billing software. Serving 7,500+ retail businesses across Tamil Nadu since 2008.
             </p>
 
@@ -125,12 +138,12 @@ export function Footer() {
             <div className="space-y-4">
               {OFFICES.slice(0, 2).map((office) => (
                 <div key={office.city} className="flex gap-3">
-                  <MapPin size={14} className="text-brand-400 mt-0.5 shrink-0" />
+                  <MapPin size={15} className="text-blue-400 mt-0.5 shrink-0" />
                   <div>
-                    <p className="text-xs font-semibold text-slate-800 mb-0.5">{office.city} {office.label !== "Headquarters" ? "" : "HQ"}</p>
-                    <p className="text-xs text-slate-400 leading-relaxed">{office.address}</p>
-                    <a href={`tel:${office.phone}`} className="text-xs text-brand-500 hover:text-brand-600 transition-colors mt-0.5 flex items-center gap-1">
-                      <Phone size={11} /> {office.phone}
+                    <p className="text-sm font-semibold text-white mb-0.5">{office.city} {office.label !== "Headquarters" ? "" : "HQ"}</p>
+                    <p className="text-sm leading-relaxed" style={{ color: "rgba(148,163,184,0.6)" }}>{office.address}</p>
+                    <a href={`tel:${office.phone}`} className="text-sm text-blue-400 hover:text-blue-300 transition-colors mt-0.5 flex items-center gap-1">
+                      <Phone size={12} /> {office.phone}
                     </a>
                   </div>
                 </div>
@@ -146,7 +159,8 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 hover:text-brand-500 hover:bg-blue-50 hover:border-brand-200 transition-all"
+                  className="w-10 h-10 rounded-xl flex items-center justify-center transition-all"
+                  style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(148,163,184,0.7)" }}
                 >
                   {s.icon}
                 </a>
@@ -156,16 +170,17 @@ export function Footer() {
 
           {/* Products */}
           <div>
-            <h4 className="text-sm font-semibold text-slate-800 mb-4">Products</h4>
-            <ul className="space-y-2.5">
+            <h4 className="text-base font-semibold text-white mb-4">Products</h4>
+            <ul className="space-y-3">
               {FOOTER_PRODUCTS.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-slate-500 hover:text-slate-900 transition-colors flex items-center gap-1.5 group"
+                    className="text-sm flex items-center gap-2 transition-colors group"
+                    style={{ color: "rgba(148,163,184,0.7)" }}
                   >
-                    <span className="w-1 h-1 rounded-full bg-brand-300 group-hover:bg-brand-500 transition-colors" />
-                    {item.label}
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 group-hover:bg-blue-400 transition-colors shrink-0" />
+                    <span className="group-hover:text-white transition-colors">{item.label}</span>
                   </Link>
                 </li>
               ))}
@@ -174,16 +189,17 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-sm font-semibold text-slate-800 mb-4">Company</h4>
-            <ul className="space-y-2.5">
+            <h4 className="text-base font-semibold text-white mb-4">Company</h4>
+            <ul className="space-y-3">
               {FOOTER_COMPANY.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-slate-500 hover:text-slate-900 transition-colors flex items-center gap-1.5 group"
+                    className="text-sm flex items-center gap-2 transition-colors group"
+                    style={{ color: "rgba(148,163,184,0.7)" }}
                   >
-                    <span className="w-1 h-1 rounded-full bg-brand-300 group-hover:bg-brand-500 transition-colors" />
-                    {item.label}
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 group-hover:bg-blue-400 transition-colors shrink-0" />
+                    <span className="group-hover:text-white transition-colors">{item.label}</span>
                   </Link>
                 </li>
               ))}
@@ -192,36 +208,39 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-sm font-semibold text-slate-800 mb-4">Get in Touch</h4>
+            <h4 className="text-base font-semibold text-white mb-4">Get in Touch</h4>
             <div className="space-y-3">
               <a
                 href={`tel:${SITE.phone}`}
-                className="flex items-center gap-2.5 text-sm text-slate-500 hover:text-slate-900 transition-colors"
+                className="flex items-center gap-2.5 text-sm transition-colors group"
+                style={{ color: "rgba(148,163,184,0.7)" }}
               >
-                <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
-                  <Phone size={14} className="text-brand-500" />
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ background: "rgba(37,99,235,0.18)" }}>
+                  <Phone size={15} className="text-blue-400" />
                 </div>
-                {SITE.phone}
+                <span className="group-hover:text-white transition-colors">{SITE.phone}</span>
               </a>
               <a
                 href={`mailto:${SITE.email}`}
-                className="flex items-center gap-2.5 text-sm text-slate-500 hover:text-slate-900 transition-colors"
+                className="flex items-center gap-2.5 text-sm transition-colors group"
+                style={{ color: "rgba(148,163,184,0.7)" }}
               >
-                <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
-                  <Mail size={14} className="text-brand-500" />
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ background: "rgba(37,99,235,0.18)" }}>
+                  <Mail size={15} className="text-blue-400" />
                 </div>
-                {SITE.email}
+                <span className="group-hover:text-white transition-colors">{SITE.email}</span>
               </a>
               <a
                 href="https://wa.me/918754031480"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-sm text-slate-500 hover:text-green-600 transition-colors"
+                className="flex items-center gap-2.5 text-sm transition-colors group"
+                style={{ color: "rgba(148,163,184,0.7)" }}
               >
-                <div className="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center">
-                  <MessageCircle size={14} className="text-green-500" />
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ background: "rgba(34,197,94,0.15)" }}>
+                  <MessageCircle size={15} className="text-green-400" />
                 </div>
-                WhatsApp Support
+                <span className="group-hover:text-green-400 transition-colors">WhatsApp Support</span>
               </a>
             </div>
 
@@ -233,9 +252,9 @@ export function Footer() {
                 { value: "7,500+", label: "Customers" },
                 { value: "24/7", label: "Support" },
               ].map((badge) => (
-                <div key={badge.label} className="bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-center">
-                  <p className="text-sm font-bold text-slate-900">{badge.value}</p>
-                  <p className="text-[10px] text-slate-400">{badge.label}</p>
+                <div key={badge.label} className="rounded-xl p-2.5 text-center" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                  <p className="text-sm font-bold text-white">{badge.value}</p>
+                  <p className="text-xs mt-0.5" style={{ color: "rgba(148,163,184,0.55)" }}>{badge.label}</p>
                 </div>
               ))}
             </div>
@@ -244,17 +263,18 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-slate-100">
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
         <div className="container-xl py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-slate-400">
+          <p className="text-sm" style={{ color: "rgba(148,163,184,0.45)" }}>
             © {new Date().getFullYear()} {SITE.fullName}. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             {FOOTER_LEGAL.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-xs text-slate-400 hover:text-slate-700 transition-colors"
+                className="text-sm transition-colors hover:text-white"
+                style={{ color: "rgba(148,163,184,0.45)" }}
               >
                 {item.label}
               </Link>

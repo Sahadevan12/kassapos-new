@@ -1,347 +1,277 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const SPRING = [0.22, 1, 0.36, 1] as const;
+
+/* ── animated counter ── */
+function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
+  const [val, setVal] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const duration = 1600;
+    const step = 16;
+    const increments = Math.ceil(duration / step);
+    let i = 0;
+    const timer = setInterval(() => {
+      i++;
+      const progress = i / increments;
+      const ease = 1 - Math.pow(1 - progress, 3); // cubic ease-out
+      setVal(Math.floor(ease * to));
+      if (i >= increments) { setVal(to); clearInterval(timer); }
+    }, step);
+    return () => clearInterval(timer);
+  }, [inView, to]);
+
+  return <span ref={ref}>{val.toLocaleString()}{suffix}</span>;
+}
+
+const STATS = [
+  { value: 15,   suffix: "+", label: "Years of Excellence",   icon: "🏆" },
+  { value: 7500, suffix: "+", label: "Businesses Trust Us",   icon: "🏪" },
+  { value: 50,   suffix: "+", label: "Cities Pan-India",      icon: "📍" },
+  { value: 4,    suffix: ".9★", label: "Google Rating",       icon: "⭐" },
+];
 
 const MILESTONES = [
   {
     year: "2008",
     title: "Founded in Chennai",
-    desc: "Started with a single goal — digitise India's retail stores.",
+    desc: "Started with a single vision — make every Indian retail store faster, smarter, and paperless.",
+    color: "#2563EB",
   },
   {
     year: "2012",
-    title: "500+ Businesses",
-    desc: "Reached our first major milestone of 500 active retailers.",
+    title: "500+ Businesses Onboard",
+    desc: "Word spread quickly. 500+ retailers across Tamil Nadu trusted KassaPOS for their daily billing.",
+    color: "#0891B2",
   },
   {
     year: "2016",
-    title: "Cloud Platform Launch",
-    desc: "Rolled out cloud billing & real-time inventory management.",
+    title: "Cloud Platform Launched",
+    desc: "Introduced real-time cloud sync, multi-device access, and automated GST reports.",
+    color: "#7C3AED",
   },
   {
     year: "2020",
-    title: "5,000+ Stores",
-    desc: "Expanded across Tamil Nadu and major cities pan-India.",
+    title: "5,000+ Stores Nationwide",
+    desc: "Scaled across India — supermarkets, pharmacies, textiles, restaurants, and more.",
+    color: "#059669",
   },
   {
     year: "2024",
-    title: "7,500+ Businesses Trust Us",
-    desc: "Every single day, thousands of businesses run on KassaPOS.",
+    title: "7,500+ Businesses Daily",
+    desc: "Every morning, over 7,500 businesses start their day with KassaPOS. We're just getting started.",
+    color: "#DC2626",
   },
 ];
 
 export function OurJourneySection() {
   return (
-    <section
-      style={{
-        background: "#FFFFFF",
-        borderTop: "1px solid #F1F5F9",
-      }}
-    >
-      <div
-        className="container-xl"
-        style={{ padding: "72px 24px" }}
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section style={{ background: "#F8FAFF", overflow: "hidden" }}>
+      <div className="container-xl" style={{ padding: "80px 24px" }}>
 
-          {/* ── LEFT — Our Journey ── */}
-          <motion.div
-            initial={{ opacity: 0, x: -32 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.65, ease: SPRING }}
+        {/* ── header ── */}
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: SPRING }}
+          style={{ marginBottom: 64 }}
+        >
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              background: "#EFF6FF",
+              color: "#2563EB",
+              borderRadius: 999,
+              padding: "5px 14px",
+              fontSize: "0.72rem",
+              fontWeight: 700,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              marginBottom: 16,
+            }}
           >
-            {/* section badge */}
-            <span
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#2563EB", display: "inline-block" }} />
+            Our Story
+          </span>
+          <h2
+            style={{
+              fontSize: "clamp(2rem, 3.5vw, 3rem)",
+              fontWeight: 900,
+              color: "#0F172A",
+              lineHeight: 1.15,
+              letterSpacing: "-0.03em",
+            }}
+          >
+            Our Journey{" "}
+            <span style={{ color: "#2563EB" }}>So Far</span>
+          </h2>
+          <p style={{ color: "#64748B", fontSize: "1rem", marginTop: 12, lineHeight: 1.65 }}>
+            15 years of building, growing, and serving India&apos;s retail backbone.
+          </p>
+        </motion.div>
+
+        {/* ── stat counters ── */}
+        <div
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4"
+          style={{ marginBottom: 80 }}
+        >
+          {STATS.map((s, i) => (
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, duration: 0.55, ease: SPRING }}
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 6,
-                background: "#EFF6FF",
-                color: "#2563EB",
-                borderRadius: 999,
-                padding: "5px 14px",
-                fontSize: "0.72rem",
-                fontWeight: 700,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                marginBottom: 18,
+                background: "#FFFFFF",
+                borderRadius: 20,
+                padding: "28px 20px",
+                textAlign: "center",
+                boxShadow: "0 4px 20px rgba(37,99,235,0.08), 0 1px 4px rgba(0,0,0,0.04)",
+                border: "1px solid #EFF6FF",
               }}
             >
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: "50%",
-                  background: "#2563EB",
-                  display: "inline-block",
-                }}
-              />
-              Our Story
-            </span>
-
-            <h2
-              style={{
-                fontSize: "clamp(2rem, 3.2vw, 2.75rem)",
-                fontWeight: 900,
-                color: "#0F172A",
-                lineHeight: 1.15,
-                letterSpacing: "-0.03em",
-                marginBottom: 40,
-              }}
-            >
-              Our Journey{" "}
-              <span style={{ color: "#2563EB" }}>So Far</span>
-            </h2>
-
-            {/* timeline */}
-            <div style={{ position: "relative", paddingLeft: 28 }}>
-              {/* vertical line */}
+              <div style={{ fontSize: "1.8rem", marginBottom: 8 }}>{s.icon}</div>
               <div
                 style={{
-                  position: "absolute",
-                  left: 7,
-                  top: 6,
-                  bottom: 6,
-                  width: 2,
-                  background:
-                    "linear-gradient(to bottom, #2563EB 0%, #06B6D4 100%)",
-                  borderRadius: 2,
+                  fontSize: "clamp(1.8rem, 3vw, 2.4rem)",
+                  fontWeight: 900,
+                  color: "#0F172A",
+                  letterSpacing: "-0.04em",
+                  lineHeight: 1,
                 }}
-              />
+              >
+                <Counter to={s.value} suffix={s.suffix} />
+              </div>
+              <div style={{ fontSize: "0.82rem", color: "#64748B", marginTop: 6, fontWeight: 500 }}>
+                {s.label}
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
-              {MILESTONES.map((m, i) => (
-                <motion.div
-                  key={m.year}
-                  initial={{ opacity: 0, x: -16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    delay: 0.1 * i,
-                    duration: 0.48,
-                    ease: SPRING,
-                  }}
+        {/* ── timeline ── */}
+        <div style={{ position: "relative", maxWidth: 800, margin: "0 auto" }}>
+          {/* centre vertical line */}
+          <motion.div
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            style={{
+              position: "absolute",
+              left: "50%",
+              transform: "translateX(-50%)",
+              top: 0, bottom: 0,
+              width: 3,
+              background: "linear-gradient(to bottom, #2563EB, #06B6D4, #7C3AED)",
+              borderRadius: 2,
+              transformOrigin: "top",
+            }}
+            className="hidden md:block"
+          />
+
+          {MILESTONES.map((m, i) => {
+            const isLeft = i % 2 === 0;
+            return (
+              <motion.div
+                key={m.year}
+                initial={{ opacity: 0, x: isLeft ? -48 : 48 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ delay: 0.1 * i, duration: 0.6, ease: SPRING }}
+                className="relative flex md:items-center mb-10 last:mb-0"
+                style={{
+                  justifyContent: isLeft ? "flex-start" : "flex-end",
+                  paddingLeft: isLeft ? 0 : "50%",
+                  paddingRight: isLeft ? "50%" : 0,
+                }}
+              >
+                {/* card */}
+                <div
+                  className="relative w-full md:w-[90%]"
                   style={{
-                    position: "relative",
-                    paddingBottom: i < MILESTONES.length - 1 ? 28 : 0,
+                    marginLeft: isLeft ? 0 : "auto",
+                    marginRight: isLeft ? "auto" : 0,
+                    paddingLeft: isLeft ? 0 : 28,
+                    paddingRight: isLeft ? 28 : 0,
                   }}
                 >
-                  {/* dot */}
                   <div
                     style={{
-                      position: "absolute",
-                      left: -28,
-                      top: 4,
-                      width: 14,
-                      height: 14,
-                      borderRadius: "50%",
-                      background:
-                        "linear-gradient(135deg, #2563EB 0%, #06B6D4 100%)",
-                      border: "2.5px solid #FFFFFF",
-                      boxShadow: "0 0 0 2px #BFDBFE",
+                      background: "#FFFFFF",
+                      borderRadius: 18,
+                      padding: "24px 26px",
+                      boxShadow: "0 4px 24px rgba(37,99,235,0.08), 0 1px 4px rgba(0,0,0,0.04)",
+                      border: `1px solid ${m.color}20`,
+                      position: "relative",
                     }}
-                  />
-
-                  {/* year + content */}
-                  <div>
+                  >
+                    {/* year badge */}
                     <span
                       style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        background: `${m.color}15`,
+                        color: m.color,
+                        borderRadius: 999,
+                        padding: "3px 12px",
                         fontSize: "0.72rem",
                         fontWeight: 800,
-                        color: "#2563EB",
                         letterSpacing: "0.06em",
-                        textTransform: "uppercase",
+                        marginBottom: 10,
                       }}
                     >
                       {m.year}
                     </span>
-                    <p
+                    <h3
                       style={{
-                        fontSize: "0.97rem",
-                        fontWeight: 700,
+                        fontSize: "1.05rem",
+                        fontWeight: 800,
                         color: "#0F172A",
-                        marginTop: 2,
-                        marginBottom: 3,
-                        letterSpacing: "-0.01em",
+                        letterSpacing: "-0.02em",
+                        marginBottom: 6,
                       }}
                     >
                       {m.title}
-                    </p>
-                    <p
-                      style={{
-                        fontSize: "0.84rem",
-                        color: "#64748B",
-                        lineHeight: 1.6,
-                      }}
-                    >
+                    </h3>
+                    <p style={{ fontSize: "0.87rem", color: "#64748B", lineHeight: 1.65 }}>
                       {m.desc}
                     </p>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
 
-          {/* ── RIGHT — Team Photo ── */}
-          <motion.div
-            initial={{ opacity: 0, x: 32 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.65, ease: SPRING, delay: 0.1 }}
-            style={{ position: "relative" }}
-          >
-            {/* decorative blob behind image */}
-            <div
-              aria-hidden
-              style={{
-                position: "absolute",
-                inset: "-16px -16px -16px -16px",
-                background:
-                  "linear-gradient(135deg, #EFF6FF 0%, #E0F2FE 100%)",
-                borderRadius: 28,
-                zIndex: 0,
-              }}
-            />
-
-            {/* team photo */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/our%20team.png"
-              alt="KassaPOS Team"
-              style={{
-                position: "relative",
-                zIndex: 1,
-                width: "100%",
-                height: "auto",
-                borderRadius: 20,
-                display: "block",
-                boxShadow:
-                  "0 20px 60px rgba(37,99,235,0.14), 0 4px 16px rgba(0,0,0,0.08)",
-                objectFit: "cover",
-              }}
-            />
-
-            {/* floating badge */}
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              style={{
-                position: "absolute",
-                bottom: 24,
-                left: -20,
-                zIndex: 2,
-                background: "#FFFFFF",
-                borderRadius: 14,
-                padding: "10px 18px",
-                boxShadow: "0 8px 28px rgba(37,99,235,0.18)",
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-              }}
-            >
-              <div
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: 10,
-                  background:
-                    "linear-gradient(135deg, #1D4ED8 0%, #06B6D4 100%)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "1rem",
-                  flexShrink: 0,
-                }}
-              >
-                🏆
-              </div>
-              <div>
-                <p
-                  style={{
-                    fontSize: "0.82rem",
-                    fontWeight: 800,
-                    color: "#0F172A",
-                    lineHeight: 1.2,
-                  }}
-                >
-                  15+ Years
-                </p>
-                <p
-                  style={{
-                    fontSize: "0.72rem",
-                    color: "#64748B",
-                    lineHeight: 1.2,
-                  }}
-                >
-                  Serving Indian Retail
-                </p>
-              </div>
-            </motion.div>
-
-            {/* top-right badge */}
-            <motion.div
-              animate={{ y: [0, -5, 0] }}
-              transition={{
-                duration: 2.8,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.8,
-              }}
-              style={{
-                position: "absolute",
-                top: 20,
-                right: -18,
-                zIndex: 2,
-                background: "#FFFFFF",
-                borderRadius: 14,
-                padding: "10px 18px",
-                boxShadow: "0 8px 28px rgba(37,99,235,0.18)",
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-              }}
-            >
-              <div
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: 10,
-                  background:
-                    "linear-gradient(135deg, #2563EB 0%, #06B6D4 100%)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "1rem",
-                  flexShrink: 0,
-                }}
-              >
-                🏪
-              </div>
-              <div>
-                <p
-                  style={{
-                    fontSize: "0.82rem",
-                    fontWeight: 800,
-                    color: "#0F172A",
-                    lineHeight: 1.2,
-                  }}
-                >
-                  7,500+ Businesses
-                </p>
-                <p
-                  style={{
-                    fontSize: "0.72rem",
-                    color: "#64748B",
-                    lineHeight: 1.2,
-                  }}
-                >
-                  Trust KassaPOS Daily
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
+                  {/* connector dot */}
+                  <div
+                    className="hidden md:block absolute top-1/2"
+                    style={{
+                      width: 14,
+                      height: 14,
+                      borderRadius: "50%",
+                      background: m.color,
+                      border: "3px solid #FFFFFF",
+                      boxShadow: `0 0 0 3px ${m.color}40`,
+                      transform: "translateY(-50%)",
+                      right: isLeft ? -7 : "auto",
+                      left: isLeft ? "auto" : -7,
+                      zIndex: 2,
+                    }}
+                  />
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

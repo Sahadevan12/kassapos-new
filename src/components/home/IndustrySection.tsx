@@ -99,7 +99,12 @@ export function IndustrySection() {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.035, ease: EASE_EXPO }}
                   >
-                    <span className="text-base leading-none shrink-0">{industry.icon}</span>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    {industry.icon3d ? (
+                      <img src={industry.icon3d} alt={industry.label} width={22} height={22} style={{ width: 22, height: 22, objectFit: "contain", flexShrink: 0 }} />
+                    ) : (
+                      <span className="text-base leading-none shrink-0">{industry.icon}</span>
+                    )}
                     <span className="truncate text-xs">{industry.label}</span>
                     {isActive && (
                       <motion.div
@@ -139,14 +144,19 @@ export function IndustrySection() {
                 {/* Header */}
                 <div className="flex items-start gap-4 mb-6">
                   <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0"
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
                     style={{
                       background: `${active.color}10`,
                       boxShadow: `0 0 16px ${active.color}12`,
                       border: `1px solid ${active.color}20`,
                     }}
                   >
-                    {active.icon}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    {(active as any).icon3d ? (
+                      <img src={(active as any).icon3d} alt={active.label} width={40} height={40} style={{ width: 40, height: 40, objectFit: "contain" }} />
+                    ) : (
+                      <span className="text-2xl">{active.icon}</span>
+                    )}
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-slate-900">{active.label} POS Software</h3>
