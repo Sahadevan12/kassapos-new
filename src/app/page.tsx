@@ -12,6 +12,7 @@ import { BentoFeatures } from "@/components/home/BentoFeatures";
 import { IndustrySection } from "@/components/home/IndustrySection";
 import { DashboardPreview } from "@/components/home/DashboardPreview";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { VideoTestimonialsSection } from "@/components/home/VideoTestimonialsSection";
 import { PricingTeaser } from "@/components/home/PricingTeaser";
 import { FAQSection } from "@/components/home/FAQSection";
 import { FooterCTA } from "@/components/home/FooterCTA";
@@ -34,6 +35,7 @@ export default function HomePage() {
       <IndustrySection />
       <DashboardPreview />
       <TestimonialsSection />
+      <VideoTestimonialsSection />
       <PricingTeaser />
       <FAQSection />
       <FooterCTA />
