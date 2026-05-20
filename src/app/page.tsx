@@ -6,6 +6,7 @@ import { FeaturesCloud } from "@/components/home/FeaturesCloud";
 import { OurJourneySection } from "@/components/home/OurJourneySection";
 import { ClientsSection } from "@/components/home/ClientsSection";
 import { SeeInActionSection } from "@/components/home/SeeInActionSection";
+import { GifShowcaseSection } from "@/components/home/GifShowcaseSection";
 import { ScrollStorySection } from "@/components/home/ScrollStorySection";
 import { BentoFeatures } from "@/components/home/BentoFeatures";
 import { IndustrySection } from "@/components/home/IndustrySection";
@@ -27,6 +28,7 @@ export default function HomePage() {
       <OurJourneySection />
       <ClientsSection />
       <SeeInActionSection />
+      <GifShowcaseSection />
       {/* <ScrollStorySection /> */}
       <BentoFeatures />
       <IndustrySection />
