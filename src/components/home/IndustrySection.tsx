@@ -3,11 +3,65 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import {
+  ArrowRight, CheckCircle2,
+  ShoppingCart, ShoppingBag, Utensils, Cloud, Scissors,
+  Smartphone, Cookie, Sparkles, Wrench, Footprints,
+  Wine, Leaf, Pill, Gem, Car, Warehouse,
+} from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { INDUSTRIES } from "@/lib/constants";
 import { EASE_EXPO } from "@/lib/animations";
+
+/* ── Icon resolver ── */
+function getIcon(id: string, sz: number) {
+  const p = { size: sz, strokeWidth: 1.75 };
+  const map: Record<string, React.ReactNode> = {
+    supermarket:      <ShoppingCart {...p} />,
+    retail:           <ShoppingBag {...p} />,
+    restaurant:       <Utensils {...p} />,
+    cloud:            <Cloud {...p} />,
+    textile:          <Scissors {...p} />,
+    mobile:           <Smartphone {...p} />,
+    bakery:           <Cookie {...p} />,
+    spa:              <Sparkles {...p} />,
+    hardware:         <Wrench {...p} />,
+    footwear:         <Footprints {...p} />,
+    "restaurant-bar": <Wine {...p} />,
+    vegetables:       <Leaf {...p} />,
+    pharmacy:         <Pill {...p} />,
+    jewellery:        <Gem {...p} />,
+    automobile:       <Car {...p} />,
+    warehouse:        <Warehouse {...p} />,
+  };
+  return map[id] ?? <ShoppingCart {...p} />;
+}
+
+function IndustryIconCircle({
+  id, color, size = "md",
+}: { id: string; color: string; size?: "sm" | "md" | "lg" }) {
+  const dims   = size === "lg" ? 68 : size === "md" ? 48 : 38;
+  const stroke = size === "lg" ? 30 : size === "md" ? 22 : 18;
+  const radius = size === "lg" ? 20 : size === "md" ? 14 : 12;
+
+  return (
+    <div
+      style={{
+        width: dims, height: dims,
+        borderRadius: radius,
+        background: `${color}14`,
+        border: `1.5px solid ${color}30`,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        color,
+        flexShrink: 0,
+        boxShadow: `0 4px 14px ${color}18`,
+      }}
+    >
+      {getIcon(id, stroke)}
+    </div>
+  );
+}
 
 const INDUSTRY_FEATURES: Record<string, string[]> = {
   supermarket:    ["Barcode billing", "Weighing scale integration", "Multi-MRP products", "Expiry date tracking", "Scheme management"],
@@ -99,12 +153,7 @@ export function IndustrySection() {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.035, ease: EASE_EXPO }}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    {industry.icon3d ? (
-                      <img src={industry.icon3d} alt={industry.label} width={22} height={22} style={{ width: 22, height: 22, objectFit: "contain", flexShrink: 0 }} />
-                    ) : (
-                      <span className="text-base leading-none shrink-0">{industry.icon}</span>
-                    )}
+                    <IndustryIconCircle id={industry.id} color={industry.color} size="sm" />
                     <span className="truncate text-xs">{industry.label}</span>
                     {isActive && (
                       <motion.div
@@ -143,21 +192,7 @@ export function IndustrySection() {
 
                 {/* Header */}
                 <div className="flex items-start gap-4 mb-6">
-                  <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
-                    style={{
-                      background: `${active.color}10`,
-                      boxShadow: `0 0 16px ${active.color}12`,
-                      border: `1px solid ${active.color}20`,
-                    }}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    {(active as any).icon3d ? (
-                      <img src={(active as any).icon3d} alt={active.label} width={40} height={40} style={{ width: 40, height: 40, objectFit: "contain" }} />
-                    ) : (
-                      <span className="text-2xl">{active.icon}</span>
-                    )}
-                  </div>
+                  <IndustryIconCircle id={active.id} color={active.color} size="lg" />
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-slate-900">{active.label} POS Software</h3>
                     <p className="text-sm text-slate-400 mt-0.5">Specialized billing &amp; inventory management</p>
