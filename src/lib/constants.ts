@@ -135,6 +135,7 @@ export const TESTIMONIALS = [
     business: "Deepak Grocery Shop",
     city: "Chennai",
     rating: 5,
+    photo: "/review/1.webp",
     quote:
       "Very good support by Ram Kumar. Ideal software for small and medium scale businesses. Switched from manual billing 2 years ago and never looked back.",
     industry: "Supermarket",
@@ -145,6 +146,7 @@ export const TESTIMONIALS = [
     business: "RK Mobile Store",
     city: "Madurai",
     rating: 5,
+    photo: "/review/3.avif",
     quote:
       "Bought the software in 2019 and it's still working perfectly. Support team is always available. 5 years strong!",
     industry: "Mobile Shop",
@@ -155,6 +157,7 @@ export const TESTIMONIALS = [
     business: "Sriram Associates",
     city: "Pondicherry",
     rating: 5,
+    photo: "/review/2.webp",
     quote:
       "Very user-friendly software that covers all my requirements. Quick response from the company whenever I needed help. Highly recommended.",
     industry: "Wholesale",
@@ -165,6 +168,7 @@ export const TESTIMONIALS = [
     business: "Fresh Mart Supermarket",
     city: "Coimbatore",
     rating: 5,
+    photo: "/review/4.avif",
     quote:
       "The WhatsApp billing feature is a game-changer. My customers love getting instant digital receipts. Revenue is up 25% since switching.",
     industry: "Supermarket",
@@ -175,6 +179,7 @@ export const TESTIMONIALS = [
     business: "Priya Textile House",
     city: "Sivakasi",
     rating: 5,
+    photo: "/review/2.webp",
     quote:
       "Handles our complex textile billing — sizes, colors, batches — perfectly. Cloud sync means I can check sales from home at midnight.",
     industry: "Textile",
@@ -185,6 +190,7 @@ export const TESTIMONIALS = [
     business: "Selvan Restaurant",
     city: "Trichy",
     rating: 5,
+    photo: "/review/1.webp",
     quote:
       "KOT management and table billing made our service 3x faster during peak hours. The Swiggy integration saves hours of manual entry daily.",
     industry: "Restaurant",
