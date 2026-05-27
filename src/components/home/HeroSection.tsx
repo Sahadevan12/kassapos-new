@@ -76,12 +76,6 @@ const TRUST = [
   { icon: <MessageSquare size={18} />, label: "Tamil & English Support" },
 ];
 
-const slideVariants = {
-  enter:  { opacity: 0, x: 40  },
-  center: { opacity: 1, x: 0   },
-  exit:   { opacity: 0, x: -40 },
-};
-
 const contentVariants = {
   enter:  { opacity: 0, y: 20 },
   center: { opacity: 1, y: 0  },
@@ -127,11 +121,11 @@ export function HeroSection() {
 
       <div
         className="container-xl relative"
-        style={{ zIndex: 1, padding: "40px 24px" }}
+        style={{ zIndex: 1, padding: "32px 16px" }}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-10 items-center">
 
           {/* ── LEFT CONTENT ── */}
           <div>
@@ -290,15 +284,13 @@ export function HeroSection() {
           {/* ── RIGHT IMAGE ── */}
           <div className="relative flex flex-col items-center">
             {/* Stacked images — first img is relative (sets height), rest absolute */}
-            <div className="relative w-full" style={{ maxWidth: 560 }}>
+            <div className="relative w-full" style={{ maxWidth: 520 }}>
               {SLIDES.map((s, i) => (
                 // eslint-disable-next-line @next/next/no-img-element
-                <motion.img
+                <img
                   key={s.image}
                   src={s.image}
                   alt={s.h1}
-                  animate={{ opacity: i === current ? 1 : 0 }}
-                  transition={{ duration: 0.6, ease: EASE_EXPO }}
                   style={{
                     width: "100%",
                     height: "auto",
@@ -307,6 +299,9 @@ export function HeroSection() {
                     top: 0,
                     left: 0,
                     objectFit: "contain",
+                    opacity: i === current ? 1 : 0,
+                    transition: "opacity 0.6s ease",
+                    pointerEvents: i === current ? "auto" : "none",
                   }}
                 />
               ))}
