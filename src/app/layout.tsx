@@ -5,6 +5,7 @@ import { Providers } from "@/providers";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SplashScreen } from "@/components/SplashScreen";
+import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 
 const displayFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -87,6 +88,7 @@ export default function RootLayout({
           <Navbar />
           <main>{children}</main>
           <Footer />
+          <WhatsAppFloat />
         </Providers>
       </body>
     </html>

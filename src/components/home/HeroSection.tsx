@@ -99,7 +99,7 @@ export function HeroSection() {
       style={{
         background: "#FFFFFF",
         minHeight: "100svh",
-        paddingTop: 80,
+        paddingTop: 140,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
