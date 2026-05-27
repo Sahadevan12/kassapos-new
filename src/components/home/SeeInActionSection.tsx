@@ -1,10 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { CheckCircle2, Play, ArrowRight } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { EASE_EXPO } from "@/lib/animations";
+
+const YOUTUBE_ID = "NrlQ7Z1sK-0";
 
 const HIGHLIGHTS = [
   "Live Dashboard Walkthrough",
@@ -14,6 +17,8 @@ const HIGHLIGHTS = [
 ];
 
 export function SeeInActionSection() {
+  const [playing, setPlaying] = useState(false);
+
   return (
     <section
       style={{
@@ -42,7 +47,7 @@ export function SeeInActionSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          {/* Left: Video embed */}
+          {/* Left: YouTube video (click-to-play) */}
           <motion.div
             initial={{ opacity: 0, x: -32 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -54,29 +59,58 @@ export function SeeInActionSection() {
               boxShadow: "0 16px 48px rgba(37,99,235,0.14), 0 4px 16px rgba(0,0,0,0.08)",
               border: "1px solid rgba(37,99,235,0.12)",
               position: "relative",
+              aspectRatio: "16/9",
+              background: "#000",
+              cursor: playing ? "default" : "pointer",
             }}
+            onClick={() => !playing && setPlaying(true)}
           >
-            {/* 16:9 aspect ratio wrapper */}
-            <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+            {!playing ? (
+              <>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`https://img.youtube.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`}
+                  alt="Play Kassapos Demo Video"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "rgba(0,0,0,0.28)",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 68,
+                      height: 68,
+                      borderRadius: "50%",
+                      background: "rgba(255,255,255,0.95)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "0 4px 24px rgba(0,0,0,0.28)",
+                    }}
+                  >
+                    <Play size={28} fill="#2563EB" style={{ color: "#2563EB", marginLeft: 4 }} />
+                  </div>
+                </div>
+              </>
+            ) : (
               <iframe
-                src="https://www.youtube.com/embed/NrlQ7Z1sK-0?rel=0&modestbranding=1&color=white"
-                title="Kassapos POS Software Demo"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                src={`https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1`}
+                title="Kassapos Demo Video"
+                allow="autoplay; encrypted-media"
                 allowFullScreen
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  border: "none",
-                  display: "block",
-                }}
+                style={{ width: "100%", height: "100%", border: "none", display: "block" }}
               />
-            </div>
+            )}
           </motion.div>
 
-          {/* Right: Content */}
+          {/* Right: Content card */}
           <motion.div
             initial={{ opacity: 0, x: 32 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -84,7 +118,6 @@ export function SeeInActionSection() {
             transition={{ duration: 0.6, delay: 0.1, ease: EASE_EXPO }}
             className="flex flex-col"
           >
-            {/* Content card */}
             <div
               style={{
                 background: "#FFFFFF",

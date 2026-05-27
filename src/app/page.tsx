@@ -3,6 +3,7 @@ import { SocialProofBar } from "@/components/home/SocialProofBar";
 import { IndustryCardsStrip } from "@/components/home/IndustryCardsStrip";
 import { MarqueeTicker } from "@/components/home/MarqueeTicker";
 import { FeaturesCloud } from "@/components/home/FeaturesCloud";
+import { WhyKassapos } from "@/components/home/WhyKassapos";
 import { ClientsSection } from "@/components/home/ClientsSection";
 import { SeeInActionSection } from "@/components/home/SeeInActionSection";
 import { GifShowcaseSection } from "@/components/home/GifShowcaseSection";
@@ -27,6 +28,7 @@ export default function HomePage() {
       <BentoFeatures />
       <MarqueeTicker />
       <FeaturesCloud />
+      <WhyKassapos />
       <ClientsSection />
       <SeeInActionSection />
       <GifShowcaseSection />
