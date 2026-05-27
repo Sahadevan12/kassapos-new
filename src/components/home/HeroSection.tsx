@@ -1,552 +1,339 @@
 "use client";
 
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import {
-  motion, AnimatePresence,
-  useScroll, useTransform, useSpring,
-  useMotionValue,
-} from "framer-motion";
-import {
-  ArrowRight, Play, Star,
-  ChevronDown, Check, Wifi, ReceiptText, Package,
-} from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
+import { motion, AnimatePresence } from "framer-motion";
+import { Calendar, Shield, Lock, MessageSquare } from "lucide-react";
 import { EASE_EXPO } from "@/lib/animations";
-import { SITE } from "@/lib/constants";
-/* ─── Constants ─────────────────────────────────── */
-const HERO_WORDS = ["Supermarkets", "Restaurants", "Retail Shops", "Textile Stores", "Cloud Billing"];
 
-const MINI_BILLS = [
-  { name: "Arjun S.", amount: 845, items: 7, time: "2m ago" },
-  { name: "Priya R.", amount: 1240, items: 12, time: "5m ago" },
-  { name: "Kumar V.", amount: 340, items: 3, time: "8m ago" },
+/* ── WhatsApp SVG ── */
+const WaSvg = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+  </svg>
+);
+
+/* ── Slide data ── */
+const SLIDES = [
+  {
+    image: "/images/hero.png",
+    tag: "India's #1 POS Software",
+    h1: "Smart GST",
+    h2: "Billing Software",
+    h3: "for Modern Businesses",
+    sub: "Retail  •  Restaurant  •  Supermarket  •  Pharmacy\nMobile Shop Billing Solution",
+    features: [
+      "Easy Billing",          "WhatsApp Invoice",
+      "Barcode Support",       "Multi User Access",
+      "Inventory Management",  "Tamil & English Support",
+    ],
+  },
+  {
+    image: "/images/hero1.png",
+    tag: "Complete POS Hardware Support",
+    h1: "All-in-One POS",
+    h2: "Hardware Setup",
+    h3: "for Every Retail Store",
+    sub: "Barcode Scanner  •  Receipt Printer  •  Cash Drawer\nWeighing Scale  •  Touch Screen",
+    features: [
+      "Barcode Scanner",   "Receipt Printer",
+      "Cash Drawer",       "Weighing Scale",
+      "Touch Monitor",     "Offline Mode",
+    ],
+  },
+  {
+    image: "/images/hero2.png",
+    tag: "Instant WhatsApp Bills",
+    h1: "Send Receipts",
+    h2: "on WhatsApp",
+    h3: "After Every Sale",
+    sub: "Auto-send GST receipts to customers instantly\nNo paper needed — go fully digital",
+    features: [
+      "WhatsApp Receipts",  "Digital Invoices",
+      "GST Compliant",      "Customer History",
+      "Instant Delivery",   "Tamil & English",
+    ],
+  },
+  {
+    image: "/images/hero3.png",
+    tag: "Cloud Billing — Anywhere, Anytime",
+    h1: "Cloud Billing",
+    h2: "Anywhere, Anytime",
+    h3: "for Smart Retailers",
+    sub: "Real-time sync across all your devices\nManage from mobile, tablet, or desktop",
+    features: [
+      "Real-time Sync",  "Multi-Device",
+      "Offline Mode",    "Live Reports",
+      "Multi-Branch",    "Cloud Backup",
+    ],
+  },
 ];
 
-const CHART_BARS = [45, 62, 38, 80, 55, 90, 68, 100, 74, 85, 60, 95];
+const TRUST = [
+  { icon: <Shield size={18} />, label: "GST Ready" },
+  { icon: <Lock size={18} />, label: "100% Secure" },
+  { icon: <MessageSquare size={18} />, label: "Tamil & English Support" },
+];
 
-/* ─── Pre-seeded particles (avoids hydration mismatch) ── */
-const PARTICLES = Array.from({ length: 24 }, (_, i) => ({
-  w:    ((i * 7919 + 13) % 100) / 100 * 3 + 1,
-  h:    ((i * 6271 + 37) % 100) / 100 * 3 + 1,
-  left: ((i * 4999 + 71) % 100),
-  top:  ((i * 3571 + 97) % 100),
-  dur:  ((i * 2311 + 53) % 100) / 100 * 5 + 4,
-  del:  ((i * 1847 + 29) % 100) / 100 * 6,
-}));
+const slideVariants = {
+  enter:  { opacity: 0, x: 40  },
+  center: { opacity: 1, x: 0   },
+  exit:   { opacity: 0, x: -40 },
+};
 
-/* ─── Floating POS Preview ──────────────────────── */
-function POSPreview() {
-  const [revenue, setRevenue] = useState(124500);
-  const [billCount, setBillCount] = useState(1247);
-  const [mounted, setMounted] = useState(false);
+const contentVariants = {
+  enter:  { opacity: 0, y: 20 },
+  center: { opacity: 1, y: 0  },
+  exit:   { opacity: 0, y: -20 },
+};
 
-  useEffect(() => {
-    setMounted(true);
-    const t = setInterval(() => {
-      setRevenue((r) => r + Math.floor(Math.random() * 300 + 80));
-      setBillCount((c) => c + 1);
-    }, 3200);
-    return () => clearInterval(t);
-  }, []);
-
-  return (
-    <div
-      className="rounded-3xl overflow-hidden w-full"
-      style={{
-        background: "linear-gradient(160deg, #0D1629 0%, #070C1B 100%)",
-        border: "1px solid rgba(37,99,235,0.3)",
-        boxShadow: "0 32px 80px rgba(0,0,0,0.45), 0 8px 24px rgba(37,99,235,0.15), inset 0 1px 0 rgba(255,255,255,0.06)",
-      }}
-    >
-      {/* Window chrome */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.06]" style={{ background: "rgba(255,255,255,0.04)" }}>
-        <div className="flex items-center gap-2">
-          <div className="flex gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
-            <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/70" />
-          </div>
-          <span className="text-[11px] text-brand-100/30 font-medium ml-1">Kassapos · Live Terminal</span>
-        </div>
-        <div className="flex items-center gap-1.5 text-emerald-400">
-          <span className="live-dot" />
-          <span className="text-[10px] font-semibold">LIVE</span>
-        </div>
-      </div>
-
-      <div className="p-5 space-y-4">
-        {/* Revenue */}
-        <div>
-          <p className="text-[11px] text-brand-100/40 mb-1 uppercase tracking-wider font-medium">Today&apos;s Revenue</p>
-          <div className="flex items-end gap-3">
-            <p className="text-3xl font-extrabold font-display text-white leading-none">
-              ₹{mounted ? revenue.toLocaleString("en-IN") : "1,24,500"}
-            </p>
-            <span className="text-xs text-emerald-400 font-semibold mb-0.5">↑ 23%</span>
-          </div>
-        </div>
-
-        {/* Chart */}
-        <div className="flex items-end gap-1 h-10">
-          {CHART_BARS.map((h, i) => (
-            <div key={i} className="flex-1 rounded-t-sm overflow-hidden" style={{ height: `${h}%` }}>
-              <div
-                className="w-full h-full transition-all duration-700"
-                style={{
-                  background: i === CHART_BARS.length - 1
-                    ? "linear-gradient(180deg, #06B6D4, #2563EB)"
-                    : "rgba(37,99,235,0.35)",
-                  borderRadius: "2px 2px 0 0",
-                }}
-              />
-            </div>
-          ))}
-        </div>
-
-        {/* Stats row */}
-        <div className="grid grid-cols-3 gap-2">
-          {[
-            { label: "Bills", value: mounted ? billCount.toLocaleString() : "1,247" },
-            { label: "Avg ₹", value: "₹99.8" },
-            { label: "GST", value: "✓ Filed" },
-          ].map((s) => (
-            <div key={s.label} className="rounded-xl px-2 py-2 text-center" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
-              <p className="text-[10px] text-brand-100/35">{s.label}</p>
-              <p className="text-xs font-bold text-white mt-0.5">{s.value}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Recent bills */}
-        <div className="space-y-2">
-          {MINI_BILLS.map((bill) => (
-            <div key={bill.name} className="flex items-center gap-2.5 py-1.5 border-b border-white/[0.04] last:border-0">
-              <div className="w-7 h-7 rounded-full bg-brand-400/20 flex items-center justify-center text-[11px] font-bold text-brand-300 shrink-0">
-                {bill.name[0]}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium text-white/90 leading-none">{bill.name}</p>
-                <p className="text-[10px] text-brand-100/30 mt-0.5">{bill.items} items · {bill.time}</p>
-              </div>
-              <span className="text-xs font-bold text-white shrink-0">₹{bill.amount}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom badges */}
-        <div className="flex items-center gap-2 pt-1">
-          <span className="flex items-center gap-1 text-[10px] text-brand-100/40 bg-white/[0.03] rounded-full px-2.5 py-1 border border-white/[0.05]">
-            <Wifi size={9} className="text-brand-400" /> Offline mode ready
-          </span>
-          <span className="flex items-center gap-1 text-[10px] text-emerald-400 bg-emerald-500/[0.07] rounded-full px-2.5 py-1 border border-emerald-500/[0.15]">
-            <Check size={9} /> GST Compliant
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ─── Main Component ────────────────────────────── */
 export function HeroSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [wordIndex, setWordIndex] = useState(0);
-  const [mounted, setMounted] = useState(false);
-
-  /* Scroll parallax */
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const scrollY = useTransform(scrollYProgress, [0, 1], [0, 160]);
-  const scrollOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const scrollScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.96]);
-  const smoothY = useSpring(scrollY, { damping: 22, stiffness: 90 });
-
-  /* Mouse parallax */
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const bg1X  = useTransform(mouseX, [-600, 600], [25, -25]);
-  const bg1Y  = useTransform(mouseY, [-400, 400], [18, -18]);
-  const bg2X  = useTransform(mouseX, [-600, 600], [-20, 20]);
-  const bg2Y  = useTransform(mouseY, [-400, 400], [-14, 14]);
-  const prevX = useTransform(mouseX, [-600, 600], [35, -35]);
-  const prevY = useTransform(mouseY, [-400, 400], [22, -22]);
-  const b1X   = useTransform(mouseX, [-600, 600], [-18, 18]);
-  const b1Y   = useTransform(mouseY, [-400, 400], [-14, 14]);
-  const b2X   = useTransform(mouseX, [-600, 600], [22, -22]);
-  const b2Y   = useTransform(mouseY, [-400, 400], [16, -16]);
-  const b3X   = useTransform(mouseX, [-600, 600], [-14, 14]);
-  const b3Y   = useTransform(mouseY, [-400, 400], [10, -10]);
-
-  const sPrevX = useSpring(prevX, { damping: 30, stiffness: 120 });
-  const sPrevY = useSpring(prevY, { damping: 30, stiffness: 120 });
-  const sB1X   = useSpring(b1X, { damping: 25, stiffness: 100 });
-  const sB1Y   = useSpring(b1Y, { damping: 25, stiffness: 100 });
-  const sB2X   = useSpring(b2X, { damping: 28, stiffness: 110 });
-  const sB2Y   = useSpring(b2Y, { damping: 28, stiffness: 110 });
-  const sB3X   = useSpring(b3X, { damping: 22, stiffness: 90 });
-  const sB3Y   = useSpring(b3Y, { damping: 22, stiffness: 90 });
-  const sBg1X  = useSpring(bg1X, { damping: 40, stiffness: 80 });
-  const sBg1Y  = useSpring(bg1Y, { damping: 40, stiffness: 80 });
-  const sBg2X  = useSpring(bg2X, { damping: 45, stiffness: 70 });
-  const sBg2Y  = useSpring(bg2Y, { damping: 45, stiffness: 70 });
-
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    const rect = sectionRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    mouseX.set(e.clientX - rect.left - rect.width / 2);
-    mouseY.set(e.clientY - rect.top - rect.height / 2);
-  }, [mouseX, mouseY]);
-
-  const handleMouseLeave = useCallback(() => {
-    mouseX.set(0);
-    mouseY.set(0);
-  }, [mouseX, mouseY]);
+  const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    const interval = setInterval(() => {
-      setWordIndex((i) => (i + 1) % HERO_WORDS.length);
-    }, 2800);
-    return () => clearInterval(interval);
-  }, []);
+    if (paused) return;
+    const t = setInterval(() => setCurrent(c => (c + 1) % SLIDES.length), 4500);
+    return () => clearInterval(t);
+  }, [paused]);
 
-  const container = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.1, delayChildren: 0.25 } },
-  };
-  const item = {
-    hidden:  { opacity: 0, y: 28 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: EASE_EXPO } },
-  };
+  const slide = SLIDES[current];
 
   return (
     <section
-      ref={sectionRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #EFF6FF 0%, #FFFFFF 60%)" }}
+      style={{
+        background: "#FFFFFF",
+        minHeight: "100svh",
+        paddingTop: 80,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        overflow: "hidden",
+        position: "relative",
+      }}
     >
-      {/* ── Background layers ───────────────────── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Grid lines */}
-        <div className="absolute inset-0 grid-lines opacity-60" />
+      {/* Subtle blue bg blob top-right */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: 0, right: 0,
+          width: "50%", height: "100%",
+          background: "linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%)",
+          clipPath: "ellipse(80% 90% at 80% 50%)",
+          zIndex: 0,
+        }}
+      />
 
-        {/* Orb 1 — very subtle blue */}
-        <motion.div
-          style={{ x: sBg1X, y: sBg1Y }}
-          className="absolute top-[-5%] left-[10%] w-[700px] h-[700px] rounded-full pointer-events-none"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <div className="w-full h-full rounded-full"
-            style={{ background: "radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%)", filter: "blur(80px)" }}
-          />
-        </motion.div>
-
-        {/* Orb 2 — cyan accent */}
-        <motion.div
-          style={{ x: sBg2X, y: sBg2Y }}
-          className="absolute bottom-[5%] right-[5%] w-[500px] h-[500px] rounded-full pointer-events-none"
-          animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.6, 0.4] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-        >
-          <div className="w-full h-full rounded-full"
-            style={{ background: "radial-gradient(circle, rgba(6,182,212,0.05) 0%, transparent 70%)", filter: "blur(70px)" }}
-          />
-        </motion.div>
-
-        {/* Floating particles — client only */}
-        {mounted && PARTICLES.map((p, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: p.w, height: p.h,
-              left: `${p.left}%`, top: `${p.top}%`,
-              background: i % 3 === 0
-                ? "rgba(37,99,235,0.3)"
-                : i % 3 === 1
-                ? "rgba(6,182,212,0.2)"
-                : "rgba(37,99,235,0.15)",
-            }}
-            animate={{ y: [0, -28, 0], opacity: [0, 0.9, 0] }}
-            transition={{ duration: p.dur, repeat: Infinity, delay: p.del, ease: "easeInOut" }}
-          />
-        ))}
-      </div>
-
-      {/* ── Main content ────────────────────────── */}
-      <motion.div
-        className="container-xl relative z-10 py-28 lg:py-0 lg:h-[100svh] flex items-center"
-        style={{ y: smoothY, opacity: scrollOpacity, scale: scrollScale }}
+      <div
+        className="container-xl relative"
+        style={{ zIndex: 1, padding: "40px 24px" }}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
       >
-        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-16 items-center">
 
-          {/* Left — copy */}
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate="visible"
-            className="max-w-xl"
-          >
-            {/* Badge */}
-            <motion.div variants={item} className="mb-6">
-              <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-brand-600"
-                style={{
-                  background: "rgba(37,99,235,0.06)",
-                  border: "1px solid rgba(37,99,235,0.15)",
-                }}
+          {/* ── LEFT CONTENT ── */}
+          <div>
+            {/* Tag badge */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`tag-${current}`}
+                variants={contentVariants}
+                initial="enter" animate="center" exit="exit"
+                transition={{ duration: 0.35, ease: EASE_EXPO }}
               >
-                <span className="live-dot" />
-                <span>India&apos;s #1 POS Platform &nbsp;·&nbsp; 7,500+ businesses</span>
-              </div>
-            </motion.div>
+                <div
+                  className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full text-xs font-semibold"
+                  style={{
+                    background: "rgba(37,99,235,0.08)",
+                    color: "#2563EB",
+                    border: "1px solid rgba(37,99,235,0.15)",
+                  }}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                  {slide.tag}
+                </div>
+              </motion.div>
+            </AnimatePresence>
 
             {/* Headline */}
-            <motion.div variants={item} className="mb-5">
-              <h1 className="font-display font-extrabold leading-[1.03] tracking-tight"
-                style={{ fontSize: "clamp(2.6rem, 5.5vw, 4.5rem)" }}>
-                <span className="text-slate-900">Built for </span>
-                <span className="gradient-text-hero">Speed.</span>
-                <br />
-                <span className="text-slate-900">Made for </span>
-                <span className="gradient-text">India.</span>
-                <br />
-                <span className="text-slate-400 text-[0.6em]">for </span>
-                <div className="inline-flex overflow-hidden align-bottom" style={{ minWidth: "clamp(8ch, 14vw, 12ch)" }}>
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={wordIndex}
-                      initial={{ y: 38, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: -38, opacity: 0 }}
-                      transition={{ duration: 0.38, ease: EASE_EXPO }}
-                      className="gradient-text font-extrabold block"
-                      style={{ fontSize: "clamp(2.6rem, 5.5vw, 4.5rem)" }}
-                    >
-                      {HERO_WORDS[wordIndex]}
-                    </motion.span>
-                  </AnimatePresence>
-                </div>
-              </h1>
-            </motion.div>
-
-            {/* Subheadline */}
-            <motion.p variants={item}
-              className="text-base md:text-lg text-slate-500 leading-relaxed mb-8 max-w-lg"
-            >
-              From corner shops to supermarket chains — Kassapos handles every bill,
-              every product, every report.{" "}
-              <span className="text-brand-600 font-semibold">Cloud-ready. GST compliant. Offline-first.</span>
-            </motion.p>
-
-            {/* CTA buttons */}
-            <motion.div variants={item} className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-0">
-              <Link href="/register">
-                <Button
-                  variant="primary"
-                  size="lg"
-                  rightIcon={<ArrowRight size={17} />}
-                  className="px-8 h-14 text-[15px] rounded-2xl"
-                >
-                  Start Free Trial
-                </Button>
-              </Link>
-              <Link href="/demo">
-                <button
-                  className="flex items-center gap-2.5 px-6 h-14 rounded-2xl text-[15px] font-semibold transition-all duration-300"
+            <AnimatePresence mode="wait">
+              <motion.h1
+                key={`h-${current}`}
+                variants={contentVariants}
+                initial="enter" animate="center" exit="exit"
+                transition={{ duration: 0.4, ease: EASE_EXPO }}
+                className="font-display font-extrabold mb-4"
+                style={{ lineHeight: 1.15, letterSpacing: "-0.02em" }}
+              >
+                <span
                   style={{
-                    background: "rgba(255,255,255,0.9)",
-                    border: "1px solid #E2E8F0",
-                    color: "#1E293B",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(37,99,235,0.3)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.borderColor = "#E2E8F0";
+                    display: "block",
+                    fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
+                    color: "#0F172A",
                   }}
                 >
-                  <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-                    <Play size={14} className="text-brand-500 ml-0.5" />
+                  {slide.h1}
+                </span>
+                <span
+                  style={{
+                    display: "block",
+                    fontSize: "clamp(2rem, 4vw, 3.2rem)",
+                    color: "#2563EB",
+                  }}
+                >
+                  {slide.h2}
+                </span>
+                <span
+                  style={{
+                    display: "block",
+                    fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
+                    color: "#0F172A",
+                  }}
+                >
+                  {slide.h3}
+                </span>
+              </motion.h1>
+            </AnimatePresence>
+
+            {/* Subtitle */}
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={`sub-${current}`}
+                variants={contentVariants}
+                initial="enter" animate="center" exit="exit"
+                transition={{ duration: 0.4, delay: 0.05, ease: EASE_EXPO }}
+                className="text-slate-500 mb-6"
+                style={{ fontSize: "0.92rem", lineHeight: 1.7, whiteSpace: "pre-line" }}
+              >
+                {slide.sub}
+              </motion.p>
+            </AnimatePresence>
+
+            {/* Feature grid */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`features-${current}`}
+                variants={contentVariants}
+                initial="enter" animate="center" exit="exit"
+                transition={{ duration: 0.4, delay: 0.08, ease: EASE_EXPO }}
+                className="grid grid-cols-2 gap-y-2.5 gap-x-4 mb-8"
+              >
+                {slide.features.map((f) => (
+                  <div key={f} className="flex items-center gap-2">
+                    <div
+                      className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+                      style={{ background: "rgba(245,158,11,0.12)" }}
+                    >
+                      <svg width="10" height="10" viewBox="0 0 10 8" fill="none">
+                        <path d="M1 4L3.5 6.5L9 1" stroke="#F59E0B" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                    <span className="text-slate-700 text-sm font-medium">{f}</span>
                   </div>
-                  Watch Demo
-                </button>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 mb-8">
+              <Link
+                href="/demo"
+                className="inline-flex items-center justify-center gap-2 font-bold rounded-xl px-6 py-3.5 text-white text-sm transition-all"
+                style={{
+                  background: "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
+                  boxShadow: "0 6px 20px rgba(245,158,11,0.35)",
+                  minWidth: 190,
+                }}
+              >
+                <Calendar size={16} />
+                BOOK FREE DEMO
               </Link>
-            </motion.div>
 
-          </motion.div>
+              <a
+                href="https://wa.me/918754031480"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 font-bold rounded-xl px-6 py-3.5 text-white text-sm transition-all"
+                style={{
+                  background: "linear-gradient(135deg, #22C55E 0%, #16A34A 100%)",
+                  boxShadow: "0 6px 20px rgba(34,197,94,0.35)",
+                  minWidth: 190,
+                }}
+              >
+                <WaSvg />
+                WHATSAPP NOW
+              </a>
+            </div>
 
-          {/* Right — floating POS preview */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.5, ease: EASE_EXPO }}
-            className="hidden lg:block relative"
-          >
-            {/* Glow behind preview */}
+            {/* Trust badges */}
+            <div className="flex flex-wrap items-center gap-4">
+              {TRUST.map((t) => (
+                <div
+                  key={t.label}
+                  className="flex items-center gap-1.5"
+                  style={{ fontSize: "0.78rem", color: "#475569" }}
+                >
+                  <div
+                    className="w-7 h-7 rounded-lg flex items-center justify-center"
+                    style={{ background: "#F1F5F9", color: "#2563EB" }}
+                  >
+                    {t.icon}
+                  </div>
+                  <span className="font-semibold">{t.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── RIGHT IMAGE ── */}
+          <div className="relative flex flex-col items-center">
+            {/* Image */}
             <div
-              className="absolute inset-0 -m-10 rounded-full pointer-events-none"
-              style={{
-                background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(37,99,235,0.08) 0%, transparent 70%)",
-                filter: "blur(40px)",
-              }}
-            />
-
-            {/* Main preview — mouse parallax */}
-            <motion.div style={{ x: sPrevX, y: sPrevY }} className="relative z-10">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/hero.png"
-                alt="KassaPOS — POS System Dashboard"
-                className="w-full h-auto block"
-                style={{ maxWidth: "100%", objectFit: "contain" }}
-              />
-            </motion.div>
-
-            {/* Floating badge: Bills Today */}
-            <motion.div
-              style={{ x: sB1X, y: sB1Y }}
-              className="absolute -top-10 -left-6 z-20"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.9, duration: 0.5, ease: EASE_EXPO }}
+              className="relative w-full"
+              style={{ maxWidth: 560, minHeight: 380 }}
             >
-              <div
-                className="rounded-2xl px-4 py-3 min-w-[130px]"
-                style={{
-                  background: "rgba(255,255,255,0.95)",
-                  border: "1px solid rgba(37,99,235,0.1)",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05)",
-                  backdropFilter: "blur(12px)",
-                  borderRadius: "1rem",
-                }}
-              >
-                <div className="flex items-center gap-2 mb-1">
-                  <ReceiptText size={12} className="text-brand-500" />
-                  <p className="text-[10px] text-slate-400 font-medium">Bills Today</p>
-                </div>
-                <p className="text-xl font-extrabold text-slate-900">1,247</p>
-                <p className="text-[10px] text-emerald-600 mt-0.5">↑ 18 vs yesterday</p>
-              </div>
-            </motion.div>
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={`img-${current}`}
+                  src={slide.image}
+                  alt={`${slide.h1} ${slide.h2}`}
+                  variants={slideVariants}
+                  initial="enter" animate="center" exit="exit"
+                  transition={{ duration: 0.5, ease: EASE_EXPO }}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    display: "block",
+                    objectFit: "contain",
+                  }}
+                />
+              </AnimatePresence>
+            </div>
 
-            {/* Floating badge: Offline Ready */}
-            <motion.div
-              style={{ x: sB2X, y: sB2Y }}
-              className="absolute -bottom-8 -right-4 z-20"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.1, duration: 0.5, ease: EASE_EXPO }}
-            >
-              <div
-                className="rounded-2xl px-4 py-3"
-                style={{
-                  background: "rgba(255,255,255,0.95)",
-                  border: "1px solid rgba(37,99,235,0.1)",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05)",
-                  backdropFilter: "blur(12px)",
-                  borderRadius: "1rem",
-                }}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-xl bg-emerald-50 flex items-center justify-center">
-                    <Wifi size={14} className="text-emerald-600" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-slate-900">Offline Mode</p>
-                    <p className="text-[10px] text-emerald-500">Always works</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            {/* Dot indicators */}
+            <div className="flex items-center gap-2 mt-6">
+              {SLIDES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => { setCurrent(i); setPaused(true); setTimeout(() => setPaused(false), 6000); }}
+                  style={{
+                    width: i === current ? 28 : 8,
+                    height: 8,
+                    borderRadius: 99,
+                    background: i === current ? "#2563EB" : "#CBD5E1",
+                    border: "none",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    padding: 0,
+                  }}
+                />
+              ))}
+            </div>
+          </div>
 
-            {/* Floating badge: 4.9 ★ */}
-            <motion.div
-              style={{ x: sB3X, y: sB3Y }}
-              className="absolute top-1/2 -right-6 z-20"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.3, duration: 0.5, ease: EASE_EXPO }}
-            >
-              <div
-                className="rounded-2xl px-4 py-3"
-                style={{
-                  background: "rgba(255,255,255,0.95)",
-                  border: "1px solid rgba(37,99,235,0.1)",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05)",
-                  backdropFilter: "blur(12px)",
-                  borderRadius: "1rem",
-                }}
-              >
-                <div className="flex items-center gap-1.5 mb-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={10} className="text-amber-400 fill-amber-400" />
-                  ))}
-                </div>
-                <p className="text-sm font-bold text-slate-900">4.9 / 5.0</p>
-                <p className="text-[10px] text-slate-400">Google Rating</p>
-              </div>
-            </motion.div>
-
-            {/* Floating badge: Inventory */}
-            <motion.div
-              style={{ x: sB1X, y: sB2Y }}
-              className="absolute -top-6 right-10 z-20"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.0, duration: 0.5, ease: EASE_EXPO }}
-            >
-              <div
-                className="rounded-2xl px-3 py-2.5"
-                style={{
-                  background: "rgba(255,255,255,0.95)",
-                  border: "1px solid rgba(37,99,235,0.1)",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05)",
-                  backdropFilter: "blur(12px)",
-                  borderRadius: "1rem",
-                }}
-              >
-                <div className="flex items-center gap-2">
-                  <Package size={12} className="text-cyan-500" />
-                  <p className="text-[11px] font-semibold text-slate-900">Stock Alert</p>
-                </div>
-                <p className="text-[10px] text-amber-500 mt-0.5">2 items critically low</p>
-              </div>
-            </motion.div>
-          </motion.div>
         </div>
-      </motion.div>
-
-      {/* ── Scroll indicator ────────────────────── */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.8, duration: 0.6 }}
-      >
-        <span className="text-[11px] text-slate-400 font-medium uppercase tracking-widest">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ChevronDown size={18} className="text-slate-300" />
-        </motion.div>
-      </motion.div>
-
-      {/* ── Bottom fade ─────────────────────────── */}
-      <div
-        className="absolute bottom-0 inset-x-0 h-32 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, transparent, #FFFFFF)" }}
-      />
+      </div>
     </section>
   );
 }
