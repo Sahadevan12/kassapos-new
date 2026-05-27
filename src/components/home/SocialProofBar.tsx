@@ -56,6 +56,8 @@ export function SocialProofBar() {
               className="flex items-center justify-center gap-3"
               style={{
                 padding: "22px 20px",
+                paddingLeft:  i === 0 ? 32 : 20,
+                paddingRight: i === ITEMS.length - 1 ? 32 : 20,
                 borderRight: i < ITEMS.length - 1
                   ? "1px solid rgba(255,255,255,0.12)"
                   : "none",

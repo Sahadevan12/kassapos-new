@@ -283,8 +283,17 @@ export function HeroSection() {
 
           {/* ── RIGHT IMAGE ── */}
           <div className="relative flex flex-col items-center">
-            {/* Stacked images — first img is relative (sets height), rest absolute */}
+            {/* Stacked images — spacer sets container height, all slides centered */}
             <div className="relative w-full" style={{ maxWidth: 520 }}>
+              {/* Hidden spacer: uses first slide to define natural height */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={SLIDES[0].image}
+                alt=""
+                aria-hidden="true"
+                style={{ width: "100%", height: "auto", display: "block", visibility: "hidden" }}
+              />
+              {/* All slides absolutely positioned + centered */}
               {SLIDES.map((s, i) => (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
@@ -292,13 +301,14 @@ export function HeroSection() {
                   src={s.image}
                   alt={s.h1}
                   style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
                     width: "100%",
-                    height: "auto",
-                    display: "block",
-                    position: i === 0 ? "relative" : "absolute",
-                    top: 0,
-                    left: 0,
+                    height: "100%",
                     objectFit: "contain",
+                    objectPosition: "center",
                     opacity: i === current ? 1 : 0,
                     transition: "opacity 0.6s ease",
                     pointerEvents: i === current ? "auto" : "none",
