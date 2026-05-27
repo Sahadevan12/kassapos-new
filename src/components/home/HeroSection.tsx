@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+// AnimatePresence used for left-side content transitions
 import { Calendar, Shield, Lock, MessageSquare } from "lucide-react";
 import { EASE_EXPO } from "@/lib/animations";
 
@@ -288,27 +289,29 @@ export function HeroSection() {
 
           {/* ── RIGHT IMAGE ── */}
           <div className="relative flex flex-col items-center">
-            {/* Image */}
+            {/* Stacked images — fade opacity per slide (reliable cross-browser) */}
             <div
               className="relative w-full"
-              style={{ maxWidth: 560, minHeight: 380 }}
+              style={{ maxWidth: 560, aspectRatio: "4 / 3" }}
             >
-              <AnimatePresence mode="wait">
+              {SLIDES.map((s, i) => (
                 <motion.img
-                  key={`img-${current}`}
-                  src={slide.image}
-                  alt={`${slide.h1} ${slide.h2}`}
-                  variants={slideVariants}
-                  initial="enter" animate="center" exit="exit"
-                  transition={{ duration: 0.5, ease: EASE_EXPO }}
+                  key={s.image}
+                  src={s.image}
+                  alt={s.h1}
+                  animate={{ opacity: i === current ? 1 : 0 }}
+                  transition={{ duration: 0.55, ease: EASE_EXPO }}
                   style={{
+                    position: "absolute",
+                    inset: 0,
                     width: "100%",
-                    height: "auto",
-                    display: "block",
+                    height: "100%",
                     objectFit: "contain",
+                    objectPosition: "center",
+                    display: "block",
                   }}
                 />
-              </AnimatePresence>
+              ))}
             </div>
 
             {/* Dot indicators */}
