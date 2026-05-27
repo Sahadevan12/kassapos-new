@@ -289,26 +289,24 @@ export function HeroSection() {
 
           {/* ── RIGHT IMAGE ── */}
           <div className="relative flex flex-col items-center">
-            {/* Stacked images — fade opacity per slide (reliable cross-browser) */}
-            <div
-              className="relative w-full"
-              style={{ maxWidth: 560, aspectRatio: "4 / 3" }}
-            >
+            {/* Stacked images — first img is relative (sets height), rest absolute */}
+            <div className="relative w-full" style={{ maxWidth: 560 }}>
               {SLIDES.map((s, i) => (
+                // eslint-disable-next-line @next/next/no-img-element
                 <motion.img
                   key={s.image}
                   src={s.image}
                   alt={s.h1}
                   animate={{ opacity: i === current ? 1 : 0 }}
-                  transition={{ duration: 0.55, ease: EASE_EXPO }}
+                  transition={{ duration: 0.6, ease: EASE_EXPO }}
                   style={{
-                    position: "absolute",
-                    inset: 0,
                     width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                    objectPosition: "center",
+                    height: "auto",
                     display: "block",
+                    position: i === 0 ? "relative" : "absolute",
+                    top: 0,
+                    left: 0,
+                    objectFit: "contain",
                   }}
                 />
               ))}

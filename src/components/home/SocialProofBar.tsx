@@ -2,26 +2,27 @@
 
 import { motion } from "framer-motion";
 import { Users, Headphones, ShieldCheck, Zap } from "lucide-react";
+
 import { EASE_EXPO } from "@/lib/animations";
 
 const ITEMS = [
   {
-    icon: <Users size={28} />,
+    icon: <Users size={34} />,
     value: "7,500+",
     label: "Happy Businesses",
   },
   {
-    icon: <Headphones size={28} />,
+    icon: <Headphones size={34} />,
     value: "Chennai Based",
     label: "Local Support",
   },
   {
-    icon: <ShieldCheck size={28} />,
+    icon: <ShieldCheck size={34} />,
     value: "GST",
     label: "Compliant",
   },
   {
-    icon: <Zap size={28} />,
+    icon: <Zap size={34} />,
     value: "Fast",
     label: "Installation",
   },
@@ -29,7 +30,7 @@ const ITEMS = [
 
 export function SocialProofBar() {
   return (
-    <section style={{ background: "#FFFFFF", padding: "0 20px 20px" }}>
+    <section style={{ background: "#FFFFFF", padding: "16px 24px 24px" }}>
       <div className="container-xl">
         {/* Dark navy bar with border-radius */}
         <motion.div
@@ -54,9 +55,9 @@ export function SocialProofBar() {
               transition={{ duration: 0.4, delay: i * 0.08, ease: EASE_EXPO }}
               className="flex items-center justify-center gap-3"
               style={{
-                padding: "18px 16px",
+                padding: "22px 20px",
                 borderRight: i < ITEMS.length - 1
-                  ? "1px solid rgba(255,255,255,0.1)"
+                  ? "1px solid rgba(255,255,255,0.12)"
                   : "none",
               }}
             >
@@ -69,13 +70,13 @@ export function SocialProofBar() {
               <div>
                 <p
                   className="font-extrabold leading-tight"
-                  style={{ color: "#FBBF24", fontSize: "0.97rem" }}
+                  style={{ color: "#FBBF24", fontSize: "1.1rem" }}
                 >
                   {item.value}
                 </p>
                 <p
                   className="font-medium"
-                  style={{ color: "rgba(255,255,255,0.72)", fontSize: "0.75rem" }}
+                  style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.82rem" }}
                 >
                   {item.label}
                 </p>
