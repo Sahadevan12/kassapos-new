@@ -1,9 +1,7 @@
 import { HeroSection } from "@/components/home/HeroSection";
 import { SocialProofBar } from "@/components/home/SocialProofBar";
 import { MarqueeTicker } from "@/components/home/MarqueeTicker";
-import { FounderStrip } from "@/components/home/FounderStrip";
 import { FeaturesCloud } from "@/components/home/FeaturesCloud";
-import { OurJourneySection } from "@/components/home/OurJourneySection";
 import { ClientsSection } from "@/components/home/ClientsSection";
 import { SeeInActionSection } from "@/components/home/SeeInActionSection";
 import { GifShowcaseSection } from "@/components/home/GifShowcaseSection";
@@ -24,9 +22,7 @@ export default function HomePage() {
       <HeroSection />
       <SocialProofBar />
       <MarqueeTicker />
-      <FounderStrip />
       <FeaturesCloud />
-      <OurJourneySection />
       <ClientsSection />
       <SeeInActionSection />
       <GifShowcaseSection />

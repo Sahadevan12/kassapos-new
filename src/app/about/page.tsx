@@ -1,9 +1,11 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { MapPin, Phone, Mail, Star, Users, Calendar, Award, ArrowRight } from "lucide-react";
+import { MapPin, Phone, Star, Users, Calendar, Award, ArrowRight } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { ScrollReveal, StaggerReveal, StaggerItem } from "@/components/ui/ScrollReveal";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
+import { FounderStrip } from "@/components/home/FounderStrip";
+import { OurJourneySection } from "@/components/home/OurJourneySection";
 import { OFFICES, SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -12,16 +14,6 @@ export const metadata: Metadata = {
     "Learn about Kassapos Software Solutions — 15+ years of serving Indian retailers with world-class billing and POS software. 7,500+ customers, 4.9★ Google rating.",
 };
 
-const TIMELINE = [
-  { year: 2008, event: "Kassapos founded in Chennai by T. Saravana Kumar", icon: "🚀" },
-  { year: 2012, event: "Expanded to Pondicherry — first branch outside Chennai", icon: "📍" },
-  { year: 2015, event: "Launched cloud billing — ahead of market curve", icon: "☁️" },
-  { year: 2018, event: "Crossed 2,000 customers. Opened Madurai and Sivakasi offices", icon: "🏆" },
-  { year: 2020, event: "WhatsApp billing integration — industry first in Tamil Nadu", icon: "💬" },
-  { year: 2022, event: "GST e-invoice integration. 5,000+ supermarket customers", icon: "📋" },
-  { year: 2024, event: "Launched web-based & cloud POS. Now serving 7,500+ businesses", icon: "⚡" },
-  { year: 2026, event: "Continuing to build the future of Indian retail technology", icon: "🔮" },
-];
 
 const VALUES = [
   {
@@ -96,92 +88,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Story */}
-      <section className="section-padding">
-        <div className="container-xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-            <ScrollReveal direction="left">
-              <SectionLabel className="mb-5">Our Story</SectionLabel>
-              <h2 className="text-display-md font-bold font-display text-slate-900 mb-5">
-                From a single shop in Chennai to South India&apos;s most trusted POS
-              </h2>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
-                <p>
-                  In 2008, our founder T. Saravana Kumar noticed that small retailers in Chennai were
-                  struggling with paper-based billing — slow, error-prone, and impossible to scale.
-                </p>
-                <p>
-                  He built the first version of Kassapos for a local supermarket. Within a year, word
-                  spread to other shops. By 2012, we had opened our first branch in Pondicherry.
-                </p>
-                <p>
-                  Today, Kassapos is the most trusted billing software across Tamil Nadu — not because
-                  of marketing, but because our software genuinely helps businesses grow.
-                </p>
-              </div>
-            </ScrollReveal>
+      {/* Founder */}
+      <FounderStrip />
 
-            <ScrollReveal direction="right" delay={0.1}>
-              <div className="glass-card rounded-2xl p-6">
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-5">
-                  Managing Director
-                </p>
-                <div className="flex items-start gap-4 mb-5">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-600 to-brand-400 flex items-center justify-center text-white font-extrabold text-2xl shrink-0">
-                    S
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-900">T. Saravana Kumar</h3>
-                    <p className="text-sm text-slate-500">Managing Director & Founder</p>
-                    <p className="text-sm text-slate-400">Kassapos Software Solutions Pvt Ltd</p>
-                  </div>
-                </div>
-                <blockquote className="text-sm text-slate-600 italic leading-relaxed border-l-2 border-brand-400/30 pl-4">
-                  &ldquo;Our mission is simple: help every Indian retailer — from a corner store to a supermarket chain — run their business with the confidence that comes from having the right tools.&rdquo;
-                </blockquote>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className="section-padding pt-0">
-        <div className="container-xl max-w-4xl">
-          <ScrollReveal className="text-center mb-12">
-            <SectionLabel className="mx-auto mb-5">Our Journey</SectionLabel>
-            <h2 className="text-display-md font-bold font-display text-slate-900">
-              15 years of milestones
-            </h2>
-          </ScrollReveal>
-
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-brand-400/50 via-brand-600/30 to-transparent hidden sm:block" />
-
-            <div className="space-y-6">
-              {TIMELINE.map((item, i) => (
-                <ScrollReveal key={item.year} delay={i * 0.07} direction="left">
-                  <div className="flex gap-6 items-start">
-                    <div className="relative shrink-0">
-                      <div className="w-12 h-12 rounded-xl bg-surface-2 border border-surface-border flex items-center justify-center text-lg">
-                        {item.icon}
-                      </div>
-                    </div>
-                    <div className="flex-1 pt-1 pb-2">
-                      <div className="flex items-center gap-3 mb-1">
-                        <span className="text-sm font-bold text-brand-600 font-mono">{item.year}</span>
-                        <div className="h-px flex-1 bg-surface-border" />
-                      </div>
-                      <p className="text-sm text-slate-600">{item.event}</p>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Journey */}
+      <OurJourneySection />
 
       {/* Values */}
       <section className="section-padding bg-surface-1/30">
