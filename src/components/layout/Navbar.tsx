@@ -137,12 +137,66 @@ export function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 w-full"
         style={{ background: BG, boxShadow: "0 2px 16px rgba(0,0,0,0.08)" }}
       >
-        {/* ══ GRID: badge spans both rows ══ */}
+        {/* ══ MOBILE HEADER (< lg) ══ */}
+        <div className="lg:hidden flex items-center justify-between px-4 py-3">
+          {/* Logo */}
+          <Link href="/">
+            <div style={{
+              background: "#fff",
+              borderRadius: 10,
+              padding: "4px 12px",
+              border: "1.5px solid rgba(37,99,235,0.15)",
+              boxShadow: "0 2px 8px rgba(37,99,235,0.1)",
+            }}>
+              <Image
+                src="/images/logo.jpg"
+                alt="Kassapos"
+                width={150}
+                height={38}
+                style={{ height: 38, width: "auto", display: "block" }}
+                priority
+              />
+            </div>
+          </Link>
+          {/* Right side: phone + hamburger */}
+          <div className="flex items-center gap-2">
+            <a href="tel:+918754031480">
+              <button style={{
+                background: PINK, color: "#fff", borderRadius: 8,
+                padding: "7px 13px", fontSize: "0.78rem", fontWeight: 700,
+                border: "none", cursor: "pointer",
+                display: "flex", alignItems: "center", gap: 5,
+              }}>
+                <Phone size={13} />
+                8754031480
+              </button>
+            </a>
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
+              style={{ background: "rgba(37,99,235,0.08)", color: "#0F1E4A" }}
+            >
+              <AnimatePresence mode="wait">
+                {mobileOpen ? (
+                  <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
+                    <X size={20} />
+                  </motion.span>
+                ) : (
+                  <motion.span key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
+                    <Menu size={20} />
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </button>
+          </div>
+        </div>
+
+        {/* ══ DESKTOP GRID: badge spans both rows (lg+) ══ */}
         <div
+          className="hidden lg:grid"
           style={{
             maxWidth: 1400,
             margin: "0 auto",
-            display: "grid",
             gridTemplateColumns: "auto 1fr",
             gridTemplateRows: "auto auto",
           }}
@@ -487,25 +541,6 @@ export function Navbar() {
               ))}
             </div>
 
-            {/* Mobile hamburger */}
-            <div className="lg:hidden ml-auto">
-              <button
-                onClick={() => setMobileOpen(!mobileOpen)}
-                className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-700 hover:bg-white/50 transition-all"
-              >
-                <AnimatePresence mode="wait">
-                  {mobileOpen ? (
-                    <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                      <X size={22} />
-                    </motion.span>
-                  ) : (
-                    <motion.span key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                      <Menu size={22} />
-                    </motion.span>
-                  )}
-                </AnimatePresence>
-              </button>
-            </div>
           </div>
         </div>
       </header>

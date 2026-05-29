@@ -105,19 +105,13 @@ export function HeroSection() {
 
   return (
     <section
-      style={{
-        background: "#FFFFFF",
-        height: "100svh",
-        minHeight: 620,
-        display: "flex",
-        flexDirection: "column",
-        overflow: "hidden",
-        position: "relative",
-      }}
+      className="flex flex-col relative overflow-x-hidden min-h-screen lg:h-screen lg:overflow-hidden"
+      style={{ background: "#FFFFFF" }}
     >
-      {/* ── Subtle white bg — card handles right side visually ── */}
+      {/* ── Subtle bg blob (desktop only) ── */}
       <div
         aria-hidden="true"
+        className="hidden lg:block"
         style={{
           position: "absolute",
           top: 0, right: 0,
@@ -131,8 +125,8 @@ export function HeroSection() {
 
       {/* ── Hero grid ── */}
       <div
-        className="container-xl relative"
-        style={{ zIndex: 1, flex: 1, display: "flex", alignItems: "center", padding: "0 16px", paddingTop: 168, paddingBottom: 4 }}
+        className="container-xl relative pt-20 lg:pt-[168px] pb-1"
+        style={{ zIndex: 1, flex: 1, display: "flex", alignItems: "center", paddingLeft: 16, paddingRight: 16 }}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
@@ -423,15 +417,15 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* ── Social Proof Bar — anchored to bottom ── */}
-      <div style={{ position: "relative", zIndex: 1, padding: "0 16px 10px" }}>
+      {/* ── Social Proof Bar ── */}
+      <div style={{ position: "relative", zIndex: 1, padding: "12px 16px 12px" }}>
         <div className="container-xl">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: EASE_EXPO }}
-            className="grid grid-cols-2 lg:grid-cols-4"
+            className="grid grid-cols-2 lg:grid-cols-4 rounded-2xl"
             style={{
               background: "linear-gradient(135deg, #0F1E4A 0%, #162454 50%, #1B2B5E 100%)",
               borderRadius: 14,
