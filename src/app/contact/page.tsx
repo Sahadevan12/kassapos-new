@@ -82,9 +82,8 @@ export default function ContactPage() {
         style={{
           background: "linear-gradient(135deg, #1E3A8A 0%, #2563EB 60%, #3B82F6 100%)",
           paddingTop: 140,
-          paddingBottom: 64,
+          paddingBottom: 72,
           position: "relative",
-          overflow: "hidden",
         }}
       >
         <div style={{ position: "absolute", top: -80, right: -80, width: 340, height: 340, borderRadius: "50%", background: "rgba(255,255,255,0.05)", pointerEvents: "none" }} />
@@ -128,7 +127,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── Info Cards (overlap hero) ── */}
-      <section style={{ marginTop: -36, paddingBottom: 8 }}>
+      <section style={{ marginTop: -44, paddingBottom: 8, position: "relative", zIndex: 10 }}>
         <div className="container-xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 18 }}>
             {CONTACT_INFO.map((item, i) => (
@@ -293,7 +292,7 @@ export default function ContactPage() {
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5148930348173!2d80.1786947!3d12.9388703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525e8425eaaeaf%3A0x45a560fa15f5555c!2sTop%20No.1%20Billing%20Software%20in%20Chennai%20-%20Kassapos%20Software%20Solutions%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1780048890584!5m2!1sen!2sin"
                   width="100%"
-                  height="390"
+                  height="480"
                   style={{ border: 0, display: "block" }}
                   allowFullScreen
                   loading="lazy"
@@ -352,9 +351,9 @@ function InfoCard({ item }: { item: typeof CONTACT_INFO[number] }) {
       style={{
         background: "#fff",
         borderRadius: 18,
-        padding: "22px 20px",
+        padding: "24px 22px",
         border: "1px solid rgba(37,99,235,0.09)",
-        boxShadow: "0 4px 20px rgba(37,99,235,0.07)",
+        boxShadow: "0 8px 28px rgba(37,99,235,0.1), 0 2px 8px rgba(0,0,0,0.05)",
         display: "flex",
         flexDirection: "column",
         gap: 8,

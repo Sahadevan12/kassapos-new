@@ -79,10 +79,10 @@ const TRUST = [
 ];
 
 const PROOF = [
-  { icon: <Users size={30} />,       value: "7,500+",        label: "Happy Businesses" },
-  { icon: <Headphones size={30} />,  value: "Chennai Based", label: "Local Support"     },
-  { icon: <ShieldCheck size={30} />, value: "GST",           label: "Compliant"         },
-  { icon: <Zap size={30} />,         value: "Fast",          label: "Installation"      },
+  { icon: <Users size={24} />,       value: "7,500+",        label: "Happy Businesses" },
+  { icon: <Headphones size={24} />,  value: "Chennai Based", label: "Local Support"     },
+  { icon: <ShieldCheck size={24} />, value: "GST",           label: "Compliant"         },
+  { icon: <Zap size={24} />,         value: "Fast",          label: "Installation"      },
 ];
 
 const contentVariants = {
@@ -107,39 +107,38 @@ export function HeroSection() {
     <section
       style={{
         background: "#FFFFFF",
-        minHeight: "100svh",
+        height: "100svh",
+        minHeight: 620,
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
         position: "relative",
       }}
     >
-      {/* ── Right blue curved background ── */}
+      {/* ── Subtle white bg — card handles right side visually ── */}
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
-          top: 0,
-          right: 0,
-          width: "52%",
-          height: "100%",
-          background: "linear-gradient(150deg, #E8F0FE 0%, #DBEAFE 50%, #EFF6FF 100%)",
-          clipPath: "ellipse(88% 95% at 88% 50%)",
-          zIndex: 0,
-          pointerEvents: "none",
+          top: 0, right: 0,
+          width: "55%", height: "100%",
+          background: "linear-gradient(150deg, #F0F6FF 0%, #EBF3FF 100%)",
+          clipPath: "ellipse(90% 95% at 90% 50%)",
+          zIndex: 0, pointerEvents: "none",
+          opacity: 0.5,
         }}
       />
 
       {/* ── Hero grid ── */}
       <div
         className="container-xl relative"
-        style={{ zIndex: 1, flex: 1, display: "flex", alignItems: "center", padding: "0 16px" }}
+        style={{ zIndex: 1, flex: 1, display: "flex", alignItems: "center", padding: "0 16px", paddingTop: 168, paddingBottom: 4 }}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
         <div
           className="grid grid-cols-1 lg:grid-cols-2 items-center w-full"
-          style={{ gap: "24px 40px", paddingTop: 140, paddingBottom: 20 }}
+          style={{ gap: "16px 48px" }}
         >
 
           {/* ── LEFT CONTENT ── */}
@@ -153,7 +152,7 @@ export function HeroSection() {
                 transition={{ duration: 0.3, ease: EASE_EXPO }}
               >
                 <div
-                  className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full text-xs font-semibold"
+                  className="inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full text-xs font-semibold"
                   style={{
                     background: "rgba(37,99,235,0.08)",
                     color: "#2563EB",
@@ -173,7 +172,7 @@ export function HeroSection() {
                 variants={contentVariants}
                 initial="enter" animate="center" exit="exit"
                 transition={{ duration: 0.35, ease: EASE_EXPO }}
-                className="font-display font-extrabold mb-4"
+                className="font-display font-extrabold mb-3"
                 style={{ lineHeight: 1.13, letterSpacing: "-0.02em" }}
               >
                 <span style={{ display: "block", fontSize: "clamp(1.75rem, 3.2vw, 2.65rem)", color: "#0F172A" }}>
@@ -195,7 +194,7 @@ export function HeroSection() {
                 variants={contentVariants}
                 initial="enter" animate="center" exit="exit"
                 transition={{ duration: 0.35, delay: 0.05, ease: EASE_EXPO }}
-                style={{ color: "#64748B", fontSize: "0.9rem", lineHeight: 1.7, whiteSpace: "pre-line", marginBottom: 20 }}
+                style={{ color: "#64748B", fontSize: "0.88rem", lineHeight: 1.6, whiteSpace: "pre-line", marginBottom: 14 }}
               >
                 {slide.sub}
               </motion.p>
@@ -208,8 +207,8 @@ export function HeroSection() {
                 variants={contentVariants}
                 initial="enter" animate="center" exit="exit"
                 transition={{ duration: 0.35, delay: 0.08, ease: EASE_EXPO }}
-                className="grid grid-cols-2 mb-7"
-                style={{ gap: "10px 16px" }}
+                className="grid grid-cols-2 mb-5"
+                style={{ gap: "8px 16px" }}
               >
                 {slide.features.map((f) => (
                   <div key={f} className="flex items-center gap-2">
@@ -231,15 +230,15 @@ export function HeroSection() {
             </AnimatePresence>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 mb-7">
+            <div className="flex flex-col sm:flex-row gap-3 mb-5">
               <Link
                 href="/demo"
                 className="inline-flex items-center justify-center gap-2 font-bold rounded-xl text-white text-sm"
                 style={{
                   background: "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
                   boxShadow: "0 6px 20px rgba(245,158,11,0.38)",
-                  padding: "13px 28px",
-                  minWidth: 185,
+                  padding: "11px 26px",
+                  minWidth: 175,
                 }}
               >
                 <Calendar size={16} />
@@ -254,8 +253,8 @@ export function HeroSection() {
                 style={{
                   background: "linear-gradient(135deg, #22C55E 0%, #16A34A 100%)",
                   boxShadow: "0 6px 20px rgba(34,197,94,0.38)",
-                  padding: "13px 28px",
-                  minWidth: 185,
+                  padding: "11px 26px",
+                  minWidth: 175,
                 }}
               >
                 <WaSvg />
@@ -286,22 +285,26 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* ── RIGHT IMAGE ── */}
+          {/* ── RIGHT IMAGE — styled card ── */}
           <div
-            className="relative flex flex-col items-center"
+            className="flex flex-col items-center"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >
-            <div className="relative w-full" style={{ maxWidth: 520 }}>
-              {/* Hidden spacer */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={SLIDES[0].image}
-                alt=""
-                aria-hidden="true"
-                style={{ width: "100%", height: "auto", display: "block", visibility: "hidden" }}
-              />
-              {/* Slides */}
+            {/* Card */}
+            <div
+              style={{
+                position: "relative",
+                width: "100%",
+                borderRadius: 28,
+                background: "linear-gradient(145deg, #EBF3FF 0%, #DBEAFE 60%, #EEF6FF 100%)",
+                boxShadow: "0 24px 64px rgba(37,99,235,0.14), 0 4px 20px rgba(37,99,235,0.08)",
+                border: "1px solid rgba(37,99,235,0.12)",
+                aspectRatio: "4/3",
+                overflow: "visible",
+              }}
+            >
+              {/* Slide images */}
               {SLIDES.map((s, i) => (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
@@ -310,20 +313,94 @@ export function HeroSection() {
                   alt={s.h1}
                   style={{
                     position: "absolute",
-                    top: "50%", left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    width: "100%", height: "100%",
-                    objectFit: "contain", objectPosition: "center",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                    objectPosition: "center",
                     opacity: i === current ? 1 : 0,
                     transition: "opacity 0.6s ease",
                     pointerEvents: i === current ? "auto" : "none",
+                    borderRadius: 28,
                   }}
                 />
               ))}
+
+              {/* Floating badge — top right: Google Rating */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: 14,
+                  right: 16,
+                  background: "#fff",
+                  borderRadius: 14,
+                  padding: "8px 14px",
+                  boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  zIndex: 3,
+                  border: "1px solid rgba(251,191,36,0.25)",
+                }}
+              >
+                <span style={{ fontSize: "1.1rem" }}>⭐</span>
+                <div>
+                  <p style={{ fontSize: "0.78rem", fontWeight: 800, color: "#1E293B", lineHeight: 1.2, margin: 0 }}>4.9 Rated</p>
+                  <p style={{ fontSize: "0.65rem", color: "#64748B", margin: 0 }}>Google Reviews</p>
+                </div>
+              </div>
+
+              {/* Floating badge — bottom left: Happy Businesses */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 14,
+                  left: 16,
+                  background: "#fff",
+                  borderRadius: 14,
+                  padding: "8px 14px",
+                  boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  zIndex: 3,
+                  border: "1px solid rgba(37,99,235,0.12)",
+                }}
+              >
+                <span style={{ fontSize: "1.1rem" }}>🏪</span>
+                <div>
+                  <p style={{ fontSize: "0.78rem", fontWeight: 800, color: "#2563EB", lineHeight: 1.2, margin: 0 }}>7,500+</p>
+                  <p style={{ fontSize: "0.65rem", color: "#64748B", margin: 0 }}>Happy Businesses</p>
+                </div>
+              </div>
+
+              {/* Floating badge — bottom right: Chennai Support */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 14,
+                  right: 16,
+                  background: "#fff",
+                  borderRadius: 14,
+                  padding: "8px 14px",
+                  boxShadow: "0 6px 20px rgba(0,0,0,0.12)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  zIndex: 3,
+                  border: "1px solid rgba(34,197,94,0.2)",
+                }}
+              >
+                <span style={{ fontSize: "1.1rem" }}>📍</span>
+                <div>
+                  <p style={{ fontSize: "0.78rem", fontWeight: 800, color: "#16A34A", lineHeight: 1.2, margin: 0 }}>Chennai</p>
+                  <p style={{ fontSize: "0.65rem", color: "#64748B", margin: 0 }}>Local Support</p>
+                </div>
+              </div>
             </div>
 
             {/* Dot indicators */}
-            <div className="flex items-center gap-2 mt-4">
+            <div className="flex items-center gap-2" style={{ marginTop: 12 }}>
               {SLIDES.map((_, i) => (
                 <button
                   key={i}
@@ -347,7 +424,7 @@ export function HeroSection() {
       </div>
 
       {/* ── Social Proof Bar — anchored to bottom ── */}
-      <div style={{ position: "relative", zIndex: 1, padding: "0 16px 28px" }}>
+      <div style={{ position: "relative", zIndex: 1, padding: "0 16px 10px" }}>
         <div className="container-xl">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -367,9 +444,9 @@ export function HeroSection() {
                 key={item.label}
                 className="flex items-center justify-center gap-3"
                 style={{
-                  padding: "20px 20px",
-                  paddingLeft:  i === 0 ? 32 : 20,
-                  paddingRight: i === PROOF.length - 1 ? 32 : 20,
+                  padding: "14px 20px",
+                  paddingLeft:  i === 0 ? 28 : 16,
+                  paddingRight: i === PROOF.length - 1 ? 28 : 16,
                   borderRight: i < PROOF.length - 1 ? "1px solid rgba(255,255,255,0.1)" : "none",
                 }}
               >
@@ -377,10 +454,10 @@ export function HeroSection() {
                   {item.icon}
                 </div>
                 <div>
-                  <p style={{ color: "#FBBF24", fontWeight: 800, fontSize: "1.05rem", lineHeight: 1.2 }}>
+                  <p style={{ color: "#FBBF24", fontWeight: 800, fontSize: "1rem", lineHeight: 1.2 }}>
                     {item.value}
                   </p>
-                  <p style={{ color: "rgba(255,255,255,0.72)", fontSize: "0.8rem", fontWeight: 500 }}>
+                  <p style={{ color: "rgba(255,255,255,0.72)", fontSize: "0.78rem", fontWeight: 500 }}>
                     {item.label}
                   </p>
                 </div>

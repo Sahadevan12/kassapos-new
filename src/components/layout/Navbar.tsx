@@ -6,7 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Menu, X, ChevronDown, Phone, ArrowRight,
+  Menu, X, ChevronDown, ChevronRight, Phone, ArrowRight,
   ShoppingCart, Utensils, Cloud, Package, Shirt,
   Smartphone, Croissant, Coffee, Beer, Store, Building2,
 } from "lucide-react";
@@ -38,9 +38,74 @@ const NAV_LINKS = [
 const PINK = "#E91E63";
 const BG   = "#DDE8F8";
 
+/* ── Mega-menu 2-panel data ── */
+const MEGA_MENU = [
+  {
+    id: "retail",
+    label: "Retail Software",
+    items: [
+      { label: "Supermarket & Grocery Shop", href: "/products/supermarket", icon: "🏪" },
+      { label: "Retail Shop",                href: "/products/retail",       icon: "🛍️" },
+      { label: "Vegetable & Fruits Shop",    href: "/products/vegetables",   icon: "🥬" },
+      { label: "Footwear Shop",              href: "/products/footwear",     icon: "👟" },
+      { label: "Home Appliances Shop",       href: "/products/home-appliances", icon: "🏠" },
+      { label: "Spa & Salon Shop",           href: "/products/spa",          icon: "💆" },
+    ],
+  },
+  {
+    id: "restaurant",
+    label: "Restaurant Software",
+    items: [
+      { label: "Restaurant POS",       href: "/products/restaurant", icon: "🍽️" },
+      { label: "Bakery & Sweets Shop", href: "/products/bakery",     icon: "🥐"  },
+      { label: "Cafe Billing",         href: "/products/cafe",       icon: "☕"  },
+      { label: "Bar & Liquor",         href: "/products/bar",        icon: "🍺"  },
+      { label: "Food Court",           href: "/products/food-court", icon: "🍜"  },
+      { label: "Ice Cream Shop",       href: "/products/ice-cream",  icon: "🍦"  },
+    ],
+  },
+  {
+    id: "cloud",
+    label: "Cloud Billing Software",
+    items: [
+      { label: "Cloud Billing",        href: "/products/cloud",        icon: "☁️" },
+      { label: "Web-Based Billing",    href: "/products/web-billing",  icon: "🌐" },
+      { label: "Warehouse Management", href: "/products/warehouse",    icon: "🏭" },
+      { label: "Multi-Branch Billing", href: "/products/multi-branch", icon: "🏢" },
+    ],
+  },
+  {
+    id: "mobile",
+    label: "Mobile Billing Software",
+    items: [
+      { label: "Mobile & Computer Shop",         href: "/products/mobile",      icon: "📱" },
+      { label: "Electrical & Electronics Shop",  href: "/products/electronics", icon: "⚡" },
+    ],
+  },
+  {
+    id: "meat",
+    label: "Chicken & Meat Shop Software",
+    items: [
+      { label: "Chicken & Meat Shop",    href: "/products/chicken-meat", icon: "🍗" },
+      { label: "WholeSale & Agencies",   href: "/products/wholesale",    icon: "📦" },
+    ],
+  },
+  {
+    id: "gst",
+    label: "GST Invoicing Software",
+    items: [
+      { label: "Garments & Textiles Shop",  href: "/products/textile",    icon: "👗" },
+      { label: "Hardware & Plywood Shop",   href: "/products/hardware",   icon: "🔧" },
+      { label: "Automobile & Spares Shop",  href: "/products/automobile", icon: "🚗" },
+      { label: "GST Billing",               href: "/products/gst-billing",icon: "📋" },
+    ],
+  },
+];
+
 export function Navbar() {
   const [mobileOpen, setMobileOpen]         = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeMegaCat, setActiveMegaCat]   = useState(MEGA_MENU[0].id);
   const pathname    = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const timeoutRef  = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -271,7 +336,7 @@ export function Navbar() {
                     )}
                   </Link>
 
-                  {/* Mega Dropdown */}
+                  {/* ── 2-Panel Mega Dropdown ── */}
                   <AnimatePresence>
                     {link.hasDropdown && activeDropdown === link.label && (
                       <motion.div
@@ -284,106 +349,120 @@ export function Navbar() {
                           top: "calc(100% + 10px)",
                           left: "50%",
                           transform: "translateX(-50%)",
-                          width: 780,
+                          width: 680,
                           background: "#fff",
-                          borderRadius: 20,
-                          border: "1px solid #E8EEFB",
-                          boxShadow: "0 24px 64px rgba(37,99,235,0.10), 0 4px 16px rgba(0,0,0,0.06)",
+                          borderRadius: 16,
+                          border: "1px solid #E2EAF8",
+                          boxShadow: "0 20px 60px rgba(37,99,235,0.12), 0 4px 16px rgba(0,0,0,0.07)",
                           zIndex: 100,
-                          padding: "24px 24px 16px",
                           overflow: "hidden",
+                          display: "flex",
+                          flexDirection: "column",
                         }}
                         onMouseEnter={() => handleMouseEnter(link.label)}
                         onMouseLeave={handleMouseLeave}
                       >
-                        {/* 3-column grid */}
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0 8px" }}>
-                          {NAV_PRODUCTS.map((category, catIdx) => {
-                            const catColor = (["#2563EB","#7C3AED","#0D9488"] as const)[catIdx];
-                            return (
-                              <div key={category.category}>
-                                {/* Category header */}
-                                <p
+                        {/* Top: left sidebar + right panel */}
+                        <div style={{ display: "flex", flex: 1 }}>
+
+                          {/* LEFT: category list */}
+                          <div
+                            style={{
+                              width: 252,
+                              flexShrink: 0,
+                              borderRight: "1px solid #F1F5F9",
+                              padding: "10px 8px",
+                              background: "#FAFBFF",
+                            }}
+                          >
+                            {MEGA_MENU.map((cat) => {
+                              const isActive = activeMegaCat === cat.id;
+                              return (
+                                <div
+                                  key={cat.id}
+                                  onMouseEnter={() => setActiveMegaCat(cat.id)}
                                   style={{
-                                    fontSize: "0.68rem",
-                                    fontWeight: 700,
-                                    color: catColor,
-                                    textTransform: "uppercase",
-                                    letterSpacing: "0.09em",
-                                    marginBottom: 10,
-                                    paddingLeft: 10,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "space-between",
+                                    padding: "11px 14px",
+                                    borderRadius: 10,
+                                    cursor: "pointer",
+                                    background: isActive ? "#EEF4FF" : "transparent",
+                                    borderLeft: isActive ? "3px solid #2563EB" : "3px solid transparent",
+                                    transition: "all 0.15s",
+                                    marginBottom: 2,
                                   }}
                                 >
-                                  {category.category}
-                                </p>
-
-                                {/* Items */}
-                                <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                                  {category.items.map((item) => (
-                                    <Link
-                                      key={item.href}
-                                      href={item.href}
-                                      style={{ textDecoration: "none" }}
-                                    >
-                                      <div
-                                        style={{
-                                          display: "flex",
-                                          alignItems: "center",
-                                          gap: 12,
-                                          padding: "9px 10px",
-                                          borderRadius: 12,
-                                          cursor: "pointer",
-                                          transition: "background 0.15s",
-                                        }}
-                                        onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.background = "#EFF6FF"}
-                                        onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.background = "transparent"}
-                                      >
-                                        <span
-                                          style={{
-                                            width: 34,
-                                            height: 34,
-                                            borderRadius: 10,
-                                            background: "#F1F5F9",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                            fontSize: "1.15rem",
-                                            flexShrink: 0,
-                                          }}
-                                        >
-                                          {item.icon}
-                                        </span>
-                                        <span
-                                          style={{
-                                            color: "#1E293B",
-                                            fontSize: "0.87rem",
-                                            fontWeight: 500,
-                                            lineHeight: 1.3,
-                                          }}
-                                        >
-                                          {item.label}
-                                        </span>
-                                      </div>
-                                    </Link>
-                                  ))}
+                                  <span
+                                    style={{
+                                      fontSize: "0.875rem",
+                                      fontWeight: isActive ? 700 : 500,
+                                      color: isActive ? "#1E40AF" : "#374151",
+                                      lineHeight: 1.3,
+                                    }}
+                                  >
+                                    {cat.label}
+                                  </span>
+                                  <ChevronRight
+                                    size={14}
+                                    style={{ color: isActive ? "#2563EB" : "#CBD5E1", flexShrink: 0 }}
+                                  />
                                 </div>
-                              </div>
-                            );
-                          })}
+                              );
+                            })}
+                          </div>
+
+                          {/* RIGHT: items for active category */}
+                          <div style={{ flex: 1, padding: "10px 8px" }}>
+                            {(() => {
+                              const cat = MEGA_MENU.find(c => c.id === activeMegaCat);
+                              if (!cat) return null;
+                              return cat.items.map((item) => (
+                                <Link
+                                  key={item.href}
+                                  href={item.href}
+                                  style={{ textDecoration: "none", display: "block" }}
+                                >
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                      gap: 12,
+                                      padding: "10px 14px",
+                                      borderRadius: 10,
+                                      cursor: "pointer",
+                                      transition: "background 0.15s",
+                                      marginBottom: 2,
+                                    }}
+                                    onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.background = "#EEF4FF"}
+                                    onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.background = "transparent"}
+                                  >
+                                    <span style={{ fontSize: "1.2rem", lineHeight: 1, width: 28, textAlign: "center" }}>
+                                      {item.icon}
+                                    </span>
+                                    <span style={{ fontSize: "0.875rem", fontWeight: 500, color: "#1E293B" }}>
+                                      {item.label}
+                                    </span>
+                                  </div>
+                                </Link>
+                              ));
+                            })()}
+                          </div>
                         </div>
 
                         {/* Footer */}
                         <div
                           style={{
-                            marginTop: 14,
-                            paddingTop: 12,
+                            padding: "10px 20px",
                             borderTop: "1px solid #F1F5F9",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "space-between",
+                            background: "#FAFBFF",
                           }}
                         >
-                          <p style={{ fontSize: "0.78rem", color: "#94A3B8" }}>
+                          <p style={{ fontSize: "0.77rem", color: "#94A3B8" }}>
                             20+ industry-specific solutions
                           </p>
                           <Link
@@ -392,13 +471,13 @@ export function Navbar() {
                               display: "flex",
                               alignItems: "center",
                               gap: 5,
-                              fontSize: "0.82rem",
+                              fontSize: "0.8rem",
                               color: "#2563EB",
                               fontWeight: 600,
                               textDecoration: "none",
                             }}
                           >
-                            View all products <ArrowRight size={13} />
+                            View all products <ArrowRight size={12} />
                           </Link>
                         </div>
                       </motion.div>
