@@ -275,47 +275,130 @@ export function Navbar() {
                   <AnimatePresence>
                     {link.hasDropdown && activeDropdown === link.label && (
                       <motion.div
-                        initial={{ opacity: 0, y: 10, scale: 0.97 }}
+                        initial={{ opacity: 0, y: 8, scale: 0.98 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 8, scale: 0.97 }}
-                        transition={{ duration: 0.2, ease: EASE_EXPO }}
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[720px] rounded-2xl p-6"
+                        exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                        transition={{ duration: 0.18, ease: EASE_EXPO }}
                         style={{
+                          position: "absolute",
+                          top: "calc(100% + 10px)",
+                          left: "50%",
+                          transform: "translateX(-50%)",
+                          width: 780,
                           background: "#fff",
-                          border: "1px solid #E2E8F0",
-                          boxShadow: "0 20px 60px rgba(0,0,0,0.08)",
+                          borderRadius: 20,
+                          border: "1px solid #E8EEFB",
+                          boxShadow: "0 24px 64px rgba(37,99,235,0.10), 0 4px 16px rgba(0,0,0,0.06)",
                           zIndex: 100,
+                          padding: "24px 24px 16px",
+                          overflow: "hidden",
                         }}
                         onMouseEnter={() => handleMouseEnter(link.label)}
                         onMouseLeave={handleMouseLeave}
                       >
-                        <div className="grid grid-cols-3 gap-6">
-                          {NAV_PRODUCTS.map((category) => (
-                            <div key={category.category}>
-                              <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">
-                                {category.category}
-                              </p>
-                              <div className="flex flex-col gap-0.5">
-                                {category.items.map((item) => (
-                                  <Link
-                                    key={item.href}
-                                    href={item.href}
-                                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm text-slate-600 hover:text-slate-900 hover:bg-blue-50 transition-all duration-150 group"
-                                  >
-                                    <span className="w-6 h-6 rounded-lg bg-blue-50 flex items-center justify-center text-blue-500 group-hover:bg-blue-100 transition-colors">
-                                      {item.icon}
-                                    </span>
-                                    {item.label}
-                                  </Link>
-                                ))}
+                        {/* 3-column grid */}
+                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0 8px" }}>
+                          {NAV_PRODUCTS.map((category, catIdx) => {
+                            const catColor = (["#2563EB","#7C3AED","#0D9488"] as const)[catIdx];
+                            return (
+                              <div key={category.category}>
+                                {/* Category header */}
+                                <p
+                                  style={{
+                                    fontSize: "0.68rem",
+                                    fontWeight: 700,
+                                    color: catColor,
+                                    textTransform: "uppercase",
+                                    letterSpacing: "0.09em",
+                                    marginBottom: 10,
+                                    paddingLeft: 10,
+                                  }}
+                                >
+                                  {category.category}
+                                </p>
+
+                                {/* Items */}
+                                <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                                  {category.items.map((item) => (
+                                    <Link
+                                      key={item.href}
+                                      href={item.href}
+                                      style={{ textDecoration: "none" }}
+                                    >
+                                      <div
+                                        style={{
+                                          display: "flex",
+                                          alignItems: "center",
+                                          gap: 12,
+                                          padding: "9px 10px",
+                                          borderRadius: 12,
+                                          cursor: "pointer",
+                                          transition: "background 0.15s",
+                                        }}
+                                        onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.background = "#EFF6FF"}
+                                        onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.background = "transparent"}
+                                      >
+                                        <span
+                                          style={{
+                                            width: 34,
+                                            height: 34,
+                                            borderRadius: 10,
+                                            background: "#F1F5F9",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            fontSize: "1.15rem",
+                                            flexShrink: 0,
+                                          }}
+                                        >
+                                          {item.icon}
+                                        </span>
+                                        <span
+                                          style={{
+                                            color: "#1E293B",
+                                            fontSize: "0.87rem",
+                                            fontWeight: 500,
+                                            lineHeight: 1.3,
+                                          }}
+                                        >
+                                          {item.label}
+                                        </span>
+                                      </div>
+                                    </Link>
+                                  ))}
+                                </div>
                               </div>
-                            </div>
-                          ))}
+                            );
+                          })}
                         </div>
-                        <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-                          <p className="text-xs text-slate-400">20+ industry-specific solutions</p>
-                          <Link href="/products" className="flex items-center gap-1 text-xs text-blue-500 hover:text-blue-600">
-                            View all products <ArrowRight size={12} />
+
+                        {/* Footer */}
+                        <div
+                          style={{
+                            marginTop: 14,
+                            paddingTop: 12,
+                            borderTop: "1px solid #F1F5F9",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <p style={{ fontSize: "0.78rem", color: "#94A3B8" }}>
+                            20+ industry-specific solutions
+                          </p>
+                          <Link
+                            href="/products"
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: 5,
+                              fontSize: "0.82rem",
+                              color: "#2563EB",
+                              fontWeight: 600,
+                              textDecoration: "none",
+                            }}
+                          >
+                            View all products <ArrowRight size={13} />
                           </Link>
                         </div>
                       </motion.div>

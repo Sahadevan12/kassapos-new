@@ -106,7 +106,6 @@ const ADDITIONAL = [
 ];
 
 export default function SupermarketPage() {
-  const [activeTab, setActiveTab] = useState("billing");
   const [videoPlaying, setVideoPlaying] = useState(false);
 
   return (
@@ -271,11 +270,11 @@ export default function SupermarketPage() {
         </div>
       </section>
 
-      {/* ── DETAILED FEATURES TABS ── */}
-      <section style={{ background: "#fff", padding: "64px 0" }}>
+      {/* ── COMPLETE FEATURE SET — all visible ── */}
+      <section style={{ background: "#F4F7FF", padding: "64px 0" }}>
         <div className="container-xl" style={{ paddingLeft: 24, paddingRight: 24 }}>
 
-          <div className="text-center mb-10">
+          <div className="text-center mb-12">
             <h2
               className="font-display font-bold text-slate-900 mb-2"
               style={{ fontSize: "clamp(1.5rem, 3vw, 2.1rem)" }}
@@ -285,50 +284,102 @@ export default function SupermarketPage() {
             <p className="text-slate-500 text-sm">Everything you need to run your supermarket efficiently</p>
           </div>
 
-          {/* Tab buttons */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {TABS.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all"
-                style={{
-                  background: activeTab === tab.id ? "#0F1E4A" : "#F1F5F9",
-                  color: activeTab === tab.id ? "#fff" : "#475569",
-                  border: "none",
-                  cursor: "pointer",
-                  boxShadow: activeTab === tab.id ? "0 4px 16px rgba(15,30,74,0.25)" : "none",
-                }}
-              >
-                {tab.icon}
-                {tab.label}
-              </button>
-            ))}
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+            {TABS.map((tab, colIdx) => {
+              const colors = [
+                { header: "linear-gradient(135deg,#1E3A8A,#2563EB)", icon: "#DBEAFE", check: "#60A5FA" },
+                { header: "linear-gradient(135deg,#0F1E4A,#1B3A6B)",  icon: "#FBBF24",  check: "#FBBF24"  },
+                { header: "linear-gradient(135deg,#065F46,#059669)",  icon: "#D1FAE5", check: "#34D399"  },
+              ][colIdx];
 
-          {/* Tab content */}
-          {TABS.map((tab) =>
-            tab.id === activeTab ? (
-              <motion.div
-                key={tab.id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, ease: EASE_EXPO }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
-              >
-                {tab.items.map((item) => (
+              return (
+                <motion.div
+                  key={tab.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: colIdx * 0.1, ease: EASE_EXPO }}
+                  style={{
+                    background: "#fff",
+                    borderRadius: 20,
+                    overflow: "hidden",
+                    border: "1px solid rgba(37,99,235,0.1)",
+                    boxShadow: "0 4px 24px rgba(37,99,235,0.08)",
+                  }}
+                >
+                  {/* Column header */}
                   <div
-                    key={item}
-                    className="flex items-start gap-3 px-4 py-3 rounded-xl border"
-                    style={{ background: "#F8FAFF", borderColor: "#E8EEFB" }}
+                    style={{
+                      background: colors.header,
+                      padding: "18px 22px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 12,
+                    }}
                   >
-                    <CheckCircle2 size={16} style={{ color: "#2563EB", flexShrink: 0, marginTop: 2 }} />
-                    <span className="text-slate-700 text-sm">{item}</span>
+                    <div
+                      style={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: 10,
+                        background: "rgba(255,255,255,0.15)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#fff",
+                        flexShrink: 0,
+                      }}
+                    >
+                      {tab.icon}
+                    </div>
+                    <div>
+                      <p style={{ color: "#fff", fontWeight: 700, fontSize: "0.97rem", lineHeight: 1.2 }}>
+                        {tab.label}
+                      </p>
+                      <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.75rem", marginTop: 2 }}>
+                        {tab.items.length} features
+                      </p>
+                    </div>
                   </div>
-                ))}
-              </motion.div>
-            ) : null
-          )}
+
+                  {/* Items list */}
+                  <div style={{ padding: "16px 18px", display: "flex", flexDirection: "column", gap: 0 }}>
+                    {tab.items.map((item, idx) => (
+                      <div
+                        key={item}
+                        style={{
+                          display: "flex",
+                          alignItems: "flex-start",
+                          gap: 10,
+                          padding: "10px 8px",
+                          borderBottom: idx < tab.items.length - 1 ? "1px solid #F1F5F9" : "none",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: 20,
+                            height: 20,
+                            borderRadius: "50%",
+                            background: `${colors.check}1A`,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexShrink: 0,
+                            marginTop: 1,
+                          }}
+                        >
+                          <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                            <path d="M1 4L3.5 6.5L9 1" stroke={colors.check} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </div>
+                        <span style={{ color: "#334155", fontSize: "0.84rem", lineHeight: 1.5 }}>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
 

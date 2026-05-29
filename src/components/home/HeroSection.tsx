@@ -3,8 +3,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-// AnimatePresence used for left-side content transitions
-import { Calendar, Shield, Lock, MessageSquare } from "lucide-react";
+import {
+  Calendar, Shield, Lock, MessageSquare,
+  Users, Headphones, ShieldCheck, Zap,
+} from "lucide-react";
 import { EASE_EXPO } from "@/lib/animations";
 
 /* ── WhatsApp SVG ── */
@@ -71,20 +73,27 @@ const SLIDES = [
 ];
 
 const TRUST = [
-  { icon: <Shield size={18} />, label: "GST Ready" },
-  { icon: <Lock size={18} />, label: "100% Secure" },
-  { icon: <MessageSquare size={18} />, label: "Tamil & English Support" },
+  { icon: <Shield size={16} />, label: "GST Ready" },
+  { icon: <Lock size={16} />, label: "100% Secure" },
+  { icon: <MessageSquare size={16} />, label: "Tamil & English Support" },
+];
+
+const PROOF = [
+  { icon: <Users size={30} />,       value: "7,500+",        label: "Happy Businesses" },
+  { icon: <Headphones size={30} />,  value: "Chennai Based", label: "Local Support"     },
+  { icon: <ShieldCheck size={30} />, value: "GST",           label: "Compliant"         },
+  { icon: <Zap size={30} />,         value: "Fast",          label: "Installation"      },
 ];
 
 const contentVariants = {
-  enter:  { opacity: 0, y: 20 },
+  enter:  { opacity: 0, y: 16 },
   center: { opacity: 1, y: 0  },
-  exit:   { opacity: 0, y: -20 },
+  exit:   { opacity: 0, y: -16 },
 };
 
 export function HeroSection() {
   const [current, setCurrent] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [paused,  setPaused]  = useState(false);
 
   useEffect(() => {
     if (paused) return;
@@ -99,50 +108,56 @@ export function HeroSection() {
       style={{
         background: "#FFFFFF",
         minHeight: "100svh",
-        paddingTop: 140,
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
         overflow: "hidden",
         position: "relative",
       }}
     >
-      {/* Subtle blue bg blob top-right */}
+      {/* ── Right blue curved background ── */}
       <div
-        className="absolute pointer-events-none"
+        aria-hidden="true"
         style={{
-          top: 0, right: 0,
-          width: "50%", height: "100%",
-          background: "linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%)",
-          clipPath: "ellipse(80% 90% at 80% 50%)",
+          position: "absolute",
+          top: 0,
+          right: 0,
+          width: "52%",
+          height: "100%",
+          background: "linear-gradient(150deg, #E8F0FE 0%, #DBEAFE 50%, #EFF6FF 100%)",
+          clipPath: "ellipse(88% 95% at 88% 50%)",
           zIndex: 0,
+          pointerEvents: "none",
         }}
       />
 
+      {/* ── Hero grid ── */}
       <div
         className="container-xl relative"
-        style={{ zIndex: 1, padding: "32px 16px" }}
+        style={{ zIndex: 1, flex: 1, display: "flex", alignItems: "center", padding: "0 16px" }}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-10 items-center">
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2 items-center w-full"
+          style={{ gap: "24px 40px", paddingTop: 140, paddingBottom: 20 }}
+        >
 
           {/* ── LEFT CONTENT ── */}
           <div>
-            {/* Tag badge */}
+            {/* Badge */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={`tag-${current}`}
                 variants={contentVariants}
                 initial="enter" animate="center" exit="exit"
-                transition={{ duration: 0.35, ease: EASE_EXPO }}
+                transition={{ duration: 0.3, ease: EASE_EXPO }}
               >
                 <div
-                  className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-full text-xs font-semibold"
+                  className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full text-xs font-semibold"
                   style={{
                     background: "rgba(37,99,235,0.08)",
                     color: "#2563EB",
-                    border: "1px solid rgba(37,99,235,0.15)",
+                    border: "1px solid rgba(37,99,235,0.18)",
                   }}
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
@@ -157,35 +172,17 @@ export function HeroSection() {
                 key={`h-${current}`}
                 variants={contentVariants}
                 initial="enter" animate="center" exit="exit"
-                transition={{ duration: 0.4, ease: EASE_EXPO }}
+                transition={{ duration: 0.35, ease: EASE_EXPO }}
                 className="font-display font-extrabold mb-4"
-                style={{ lineHeight: 1.15, letterSpacing: "-0.02em" }}
+                style={{ lineHeight: 1.13, letterSpacing: "-0.02em" }}
               >
-                <span
-                  style={{
-                    display: "block",
-                    fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-                    color: "#0F172A",
-                  }}
-                >
+                <span style={{ display: "block", fontSize: "clamp(1.75rem, 3.2vw, 2.65rem)", color: "#0F172A" }}>
                   {slide.h1}
                 </span>
-                <span
-                  style={{
-                    display: "block",
-                    fontSize: "clamp(2rem, 4vw, 3.2rem)",
-                    color: "#2563EB",
-                  }}
-                >
+                <span style={{ display: "block", fontSize: "clamp(2rem, 3.8vw, 3rem)", color: "#2563EB" }}>
                   {slide.h2}
                 </span>
-                <span
-                  style={{
-                    display: "block",
-                    fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-                    color: "#0F172A",
-                  }}
-                >
+                <span style={{ display: "block", fontSize: "clamp(1.75rem, 3.2vw, 2.65rem)", color: "#0F172A" }}>
                   {slide.h3}
                 </span>
               </motion.h1>
@@ -197,9 +194,8 @@ export function HeroSection() {
                 key={`sub-${current}`}
                 variants={contentVariants}
                 initial="enter" animate="center" exit="exit"
-                transition={{ duration: 0.4, delay: 0.05, ease: EASE_EXPO }}
-                className="text-slate-500 mb-6"
-                style={{ fontSize: "0.92rem", lineHeight: 1.7, whiteSpace: "pre-line" }}
+                transition={{ duration: 0.35, delay: 0.05, ease: EASE_EXPO }}
+                style={{ color: "#64748B", fontSize: "0.9rem", lineHeight: 1.7, whiteSpace: "pre-line", marginBottom: 20 }}
               >
                 {slide.sub}
               </motion.p>
@@ -211,34 +207,39 @@ export function HeroSection() {
                 key={`features-${current}`}
                 variants={contentVariants}
                 initial="enter" animate="center" exit="exit"
-                transition={{ duration: 0.4, delay: 0.08, ease: EASE_EXPO }}
-                className="grid grid-cols-2 gap-y-2.5 gap-x-4 mb-8"
+                transition={{ duration: 0.35, delay: 0.08, ease: EASE_EXPO }}
+                className="grid grid-cols-2 mb-7"
+                style={{ gap: "10px 16px" }}
               >
                 {slide.features.map((f) => (
                   <div key={f} className="flex items-center gap-2">
                     <div
-                      className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
-                      style={{ background: "rgba(245,158,11,0.12)" }}
+                      className="flex items-center justify-center shrink-0"
+                      style={{
+                        width: 20, height: 20, borderRadius: "50%",
+                        background: "rgba(245,158,11,0.13)",
+                      }}
                     >
-                      <svg width="10" height="10" viewBox="0 0 10 8" fill="none">
+                      <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
                         <path d="M1 4L3.5 6.5L9 1" stroke="#F59E0B" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
-                    <span className="text-slate-700 text-sm font-medium">{f}</span>
+                    <span style={{ color: "#334155", fontSize: "0.87rem", fontWeight: 500 }}>{f}</span>
                   </div>
                 ))}
               </motion.div>
             </AnimatePresence>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 mb-7">
               <Link
                 href="/demo"
-                className="inline-flex items-center justify-center gap-2 font-bold rounded-xl px-6 py-3.5 text-white text-sm transition-all"
+                className="inline-flex items-center justify-center gap-2 font-bold rounded-xl text-white text-sm"
                 style={{
                   background: "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
-                  boxShadow: "0 6px 20px rgba(245,158,11,0.35)",
-                  minWidth: 190,
+                  boxShadow: "0 6px 20px rgba(245,158,11,0.38)",
+                  padding: "13px 28px",
+                  minWidth: 185,
                 }}
               >
                 <Calendar size={16} />
@@ -249,11 +250,12 @@ export function HeroSection() {
                 href="https://wa.me/918754031480"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 font-bold rounded-xl px-6 py-3.5 text-white text-sm transition-all"
+                className="inline-flex items-center justify-center gap-2 font-bold rounded-xl text-white text-sm"
                 style={{
                   background: "linear-gradient(135deg, #22C55E 0%, #16A34A 100%)",
-                  boxShadow: "0 6px 20px rgba(34,197,94,0.35)",
-                  minWidth: 190,
+                  boxShadow: "0 6px 20px rgba(34,197,94,0.38)",
+                  padding: "13px 28px",
+                  minWidth: 185,
                 }}
               >
                 <WaSvg />
@@ -270,22 +272,28 @@ export function HeroSection() {
                   style={{ fontSize: "0.78rem", color: "#475569" }}
                 >
                   <div
-                    className="w-7 h-7 rounded-lg flex items-center justify-center"
-                    style={{ background: "#F1F5F9", color: "#2563EB" }}
+                    className="flex items-center justify-center"
+                    style={{
+                      width: 28, height: 28, borderRadius: 8,
+                      background: "#F1F5F9", color: "#2563EB",
+                    }}
                   >
                     {t.icon}
                   </div>
-                  <span className="font-semibold">{t.label}</span>
+                  <span style={{ fontWeight: 600 }}>{t.label}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* ── RIGHT IMAGE ── */}
-          <div className="relative flex flex-col items-center">
-            {/* Stacked images — spacer sets container height, all slides centered */}
+          <div
+            className="relative flex flex-col items-center"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
             <div className="relative w-full" style={{ maxWidth: 520 }}>
-              {/* Hidden spacer: uses first slide to define natural height */}
+              {/* Hidden spacer */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={SLIDES[0].image}
@@ -293,7 +301,7 @@ export function HeroSection() {
                 aria-hidden="true"
                 style={{ width: "100%", height: "auto", display: "block", visibility: "hidden" }}
               />
-              {/* All slides absolutely positioned + centered */}
+              {/* Slides */}
               {SLIDES.map((s, i) => (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
@@ -302,13 +310,10 @@ export function HeroSection() {
                   alt={s.h1}
                   style={{
                     position: "absolute",
-                    top: "50%",
-                    left: "50%",
+                    top: "50%", left: "50%",
                     transform: "translate(-50%, -50%)",
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                    objectPosition: "center",
+                    width: "100%", height: "100%",
+                    objectFit: "contain", objectPosition: "center",
                     opacity: i === current ? 1 : 0,
                     transition: "opacity 0.6s ease",
                     pointerEvents: i === current ? "auto" : "none",
@@ -318,7 +323,7 @@ export function HeroSection() {
             </div>
 
             {/* Dot indicators */}
-            <div className="flex items-center gap-2 mt-6">
+            <div className="flex items-center gap-2 mt-4">
               {SLIDES.map((_, i) => (
                 <button
                   key={i}
@@ -340,6 +345,51 @@ export function HeroSection() {
 
         </div>
       </div>
+
+      {/* ── Social Proof Bar — anchored to bottom ── */}
+      <div style={{ position: "relative", zIndex: 1, padding: "0 16px 28px" }}>
+        <div className="container-xl">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: EASE_EXPO }}
+            className="grid grid-cols-2 lg:grid-cols-4"
+            style={{
+              background: "linear-gradient(135deg, #0F1E4A 0%, #162454 50%, #1B2B5E 100%)",
+              borderRadius: 14,
+              overflow: "hidden",
+              boxShadow: "0 8px 32px rgba(15,30,74,0.25)",
+            }}
+          >
+            {PROOF.map((item, i) => (
+              <div
+                key={item.label}
+                className="flex items-center justify-center gap-3"
+                style={{
+                  padding: "20px 20px",
+                  paddingLeft:  i === 0 ? 32 : 20,
+                  paddingRight: i === PROOF.length - 1 ? 32 : 20,
+                  borderRight: i < PROOF.length - 1 ? "1px solid rgba(255,255,255,0.1)" : "none",
+                }}
+              >
+                <div style={{ color: "#FBBF24", flexShrink: 0, display: "flex" }}>
+                  {item.icon}
+                </div>
+                <div>
+                  <p style={{ color: "#FBBF24", fontWeight: 800, fontSize: "1.05rem", lineHeight: 1.2 }}>
+                    {item.value}
+                  </p>
+                  <p style={{ color: "rgba(255,255,255,0.72)", fontSize: "0.8rem", fontWeight: 500 }}>
+                    {item.label}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+
     </section>
   );
 }

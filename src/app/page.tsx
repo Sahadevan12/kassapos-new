@@ -1,5 +1,4 @@
 import { HeroSection } from "@/components/home/HeroSection";
-import { SocialProofBar } from "@/components/home/SocialProofBar";
 import { IndustryCardsStrip } from "@/components/home/IndustryCardsStrip";
 import { MarqueeTicker } from "@/components/home/MarqueeTicker";
 import { FeaturesCloud } from "@/components/home/FeaturesCloud";
@@ -23,7 +22,6 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <SocialProofBar />
       <IndustryCardsStrip />
       <BentoFeatures />
       <MarqueeTicker />
