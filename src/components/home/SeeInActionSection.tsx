@@ -25,9 +25,10 @@ export function SeeInActionSection() {
         background: "linear-gradient(135deg, #F0F4FF 0%, #F8FAFF 50%, #EEF4FF 100%)",
         borderTop: "1px solid #DBEAFE",
         borderBottom: "1px solid #DBEAFE",
+        padding: "52px 0 56px",
       }}
     >
-      <div className="container-xl py-16">
+      <div className="container-xl">
         {/* Heading */}
         <motion.div
           className="text-center mb-12"

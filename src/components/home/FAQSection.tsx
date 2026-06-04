@@ -148,7 +148,7 @@ export function FAQSection() {
   const rightFaqs = FAQS.slice(half);
 
   return (
-    <section className="section-padding" style={{ background: "#F8FAFF" }}>
+    <section className="section-padding" style={{ background: "#F8FAFF", padding: "52px 0 56px" }}>
       <div className="container-xl">
         <ScrollReveal className="text-center mb-12">
           <SectionLabel className="mx-auto mb-4">FAQ</SectionLabel>

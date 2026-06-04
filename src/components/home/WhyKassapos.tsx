@@ -19,7 +19,7 @@ export function WhyKassapos() {
     <section
       style={{
         background: "linear-gradient(135deg, #EEF4FF 0%, #F8FAFF 60%, #EEF4FF 100%)",
-        padding: "60px 0",
+        padding: "52px 0 56px",
         overflow: "hidden",
       }}
     >

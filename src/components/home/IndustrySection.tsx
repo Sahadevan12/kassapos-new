@@ -110,7 +110,7 @@ export function IndustrySection() {
   const stats = INDUSTRY_STATS[activeIndustry] || [];
 
   return (
-    <section className="section-padding relative" style={{ background: "#FFFFFF" }}>
+    <section className="section-padding relative" style={{ background: "#FFFFFF", padding: "52px 0 56px" }}>
       {/* Subtle background mesh */}
       <div className="absolute inset-0 pointer-events-none opacity-40"
         style={{ background: "radial-gradient(ellipse 70% 50% at 50% 100%, rgba(37,99,235,0.04) 0%, transparent 70%)" }}

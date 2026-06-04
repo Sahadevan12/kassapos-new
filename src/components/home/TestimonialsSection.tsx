@@ -70,7 +70,7 @@ function TestimonialCard({ item }: { item: (typeof TESTIMONIALS)[0] }) {
 
 export function TestimonialsSection() {
   return (
-    <section className="section-padding" style={{ background: "#FFFFFF" }}>
+    <section className="section-padding" style={{ background: "#FFFFFF", padding: "52px 0 56px" }}>
       {/* Keyframes injected inline */}
       <style>{`
         @keyframes kassaScrollLeft {

@@ -81,7 +81,7 @@ const DEVICES = [
 
 export function POSDevicesSection() {
   return (
-    <section style={{ background: "#F8FAFF", padding: "64px 0 72px" }}>
+    <section style={{ background: "#F8FAFF", padding: "52px 0 56px" }}>
       <div className="container-xl" style={{ paddingLeft: 24, paddingRight: 24 }}>
 
         {/* Heading */}

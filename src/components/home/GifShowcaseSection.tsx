@@ -44,9 +44,10 @@ export function GifShowcaseSection() {
       style={{
         background: "linear-gradient(180deg, #F0F4FF 0%, #FFFFFF 100%)",
         borderTop: "1px solid #E2E8F0",
+        padding: "52px 0 56px",
       }}
     >
-      <div className="container-xl py-16">
+      <div className="container-xl">
         {/* Heading */}
         <ScrollReveal className="text-center mb-10">
           <SectionLabel className="mx-auto mb-4">Live Demo</SectionLabel>

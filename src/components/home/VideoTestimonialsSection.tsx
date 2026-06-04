@@ -244,7 +244,7 @@ export function VideoTestimonialsSection() {
   return (
     <section
       className="section-padding"
-      style={{ background: "linear-gradient(180deg, #F0F6FF 0%, #FFFFFF 100%)" }}
+      style={{ background: "linear-gradient(180deg, #F0F6FF 0%, #FFFFFF 100%)", padding: "52px 0 56px" }}
     >
       <div className="container-xl">
         {/* Heading */}

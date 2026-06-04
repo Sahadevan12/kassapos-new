@@ -200,7 +200,7 @@ function Ticker() {
 ───────────────────────────────────────── */
 export function FeaturesCloud() {
   return (
-    <section style={{ background: SECTION_BG, overflow: "hidden" }}>
+    <section style={{ background: SECTION_BG, overflow: "hidden", padding: "52px 0 56px" }}>
 
       {/* ══════════ DESKTOP ══════════ */}
       <div className="hidden md:block">

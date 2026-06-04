@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Calendar, Shield, Lock, MessageSquare,
-  Users, Headphones, ShieldCheck, Zap,
 } from "lucide-react";
 import { EASE_EXPO } from "@/lib/animations";
 
@@ -78,12 +77,6 @@ const TRUST = [
   { icon: <MessageSquare size={16} />, label: "Tamil & English Support" },
 ];
 
-const PROOF = [
-  { icon: <Users size={24} />,       value: "7,500+",        label: "Happy Businesses" },
-  { icon: <Headphones size={24} />,  value: "Chennai Based", label: "Local Support"     },
-  { icon: <ShieldCheck size={24} />, value: "GST",           label: "Compliant"         },
-  { icon: <Zap size={24} />,         value: "Fast",          label: "Installation"      },
-];
 
 const contentVariants = {
   enter:  { opacity: 0, y: 16 },
@@ -105,7 +98,7 @@ export function HeroSection() {
 
   return (
     <section
-      className="flex flex-col relative overflow-x-hidden min-h-screen lg:h-screen lg:overflow-hidden"
+      className="flex flex-col relative overflow-x-hidden min-h-screen"
       style={{ background: "#FFFFFF" }}
     >
       {/* ── Subtle bg blob (desktop only) ── */}
@@ -125,8 +118,8 @@ export function HeroSection() {
 
       {/* ── Hero grid ── */}
       <div
-        className="container-xl relative pt-20 lg:pt-[168px] pb-1"
-        style={{ zIndex: 1, flex: 1, display: "flex", alignItems: "center", paddingLeft: 16, paddingRight: 16 }}
+        className="container-xl relative pt-20 lg:pt-[168px] pb-2"
+        style={{ zIndex: 1, flex: 1, display: "flex", alignItems: "center" }}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
@@ -414,50 +407,6 @@ export function HeroSection() {
             </div>
           </div>
 
-        </div>
-      </div>
-
-      {/* ── Social Proof Bar ── */}
-      <div style={{ position: "relative", zIndex: 1, padding: "12px 16px 12px" }}>
-        <div className="container-xl">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: EASE_EXPO }}
-            className="grid grid-cols-2 lg:grid-cols-4 rounded-2xl"
-            style={{
-              background: "linear-gradient(135deg, #0F1E4A 0%, #162454 50%, #1B2B5E 100%)",
-              borderRadius: 14,
-              overflow: "hidden",
-              boxShadow: "0 8px 32px rgba(15,30,74,0.25)",
-            }}
-          >
-            {PROOF.map((item, i) => (
-              <div
-                key={item.label}
-                className="flex items-center justify-center gap-3"
-                style={{
-                  padding: "14px 20px",
-                  paddingLeft:  i === 0 ? 28 : 16,
-                  paddingRight: i === PROOF.length - 1 ? 28 : 16,
-                  borderRight: i < PROOF.length - 1 ? "1px solid rgba(255,255,255,0.1)" : "none",
-                }}
-              >
-                <div style={{ color: "#FBBF24", flexShrink: 0, display: "flex" }}>
-                  {item.icon}
-                </div>
-                <div>
-                  <p style={{ color: "#FBBF24", fontWeight: 800, fontSize: "1rem", lineHeight: 1.2 }}>
-                    {item.value}
-                  </p>
-                  <p style={{ color: "rgba(255,255,255,0.72)", fontSize: "0.78rem", fontWeight: 500 }}>
-                    {item.label}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </div>
 

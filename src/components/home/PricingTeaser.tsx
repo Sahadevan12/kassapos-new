@@ -16,7 +16,7 @@ export function PricingTeaser() {
   const displayedPlans = PRICING_PLANS.filter((p) => p.id !== "enterprise");
 
   return (
-    <section className="section-padding relative" style={{ background: "#FFFFFF" }}>
+    <section className="section-padding relative" style={{ background: "#FFFFFF", padding: "52px 0 56px" }}>
       {/* Subtle blue gradient overlay */}
       <div className="absolute inset-0 pointer-events-none">
         <div

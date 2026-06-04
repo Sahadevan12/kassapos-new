@@ -27,6 +27,7 @@ export function FooterCTA() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        padding: "52px 0 56px",
       }}
     >
       {/* Background image */}

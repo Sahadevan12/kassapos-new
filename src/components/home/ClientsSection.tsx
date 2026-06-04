@@ -14,8 +14,8 @@ const DOUBLED = [...CLIENTS, ...CLIENTS, ...CLIENTS, ...CLIENTS];
 
 export function ClientsSection() {
   return (
-    <section style={{ background: "linear-gradient(135deg, #EEF4FF 0%, #F0F9FF 50%, #E8F0FE 100%)", borderTop: "1px solid #DBEAFE", borderBottom: "1px solid #DBEAFE", overflow: "hidden" }}>
-      <div style={{ padding: "52px 0 48px" }}>
+    <section style={{ background: "linear-gradient(135deg, #EEF4FF 0%, #F0F9FF 50%, #E8F0FE 100%)", borderTop: "1px solid #DBEAFE", borderBottom: "1px solid #DBEAFE", overflow: "hidden", padding: "52px 0 56px" }}>
+      <div>
 
         {/* header */}
         <motion.div
