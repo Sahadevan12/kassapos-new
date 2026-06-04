@@ -227,39 +227,43 @@ export function DashboardPreview() {
             <SectionLabel className="mb-5">Live Product Demo</SectionLabel>
             <h2
               className="font-display font-bold text-slate-900 mb-5"
-              style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.9rem)", lineHeight: 1.15 }}
+              style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1.13 }}
             >
               See it before you{" "}
               <span className="gradient-text">sign up.</span>
             </h2>
-            <p className="text-lg text-slate-500 leading-relaxed mb-8">
+            <p className="text-slate-500 leading-relaxed mb-8" style={{ fontSize: "1.1rem" }}>
               This is the actual Kassapos dashboard — not a demo video or screenshot.
               Explore billing, inventory, and real-time reports live.
             </p>
             <div className="space-y-4 mb-10">
               {[
-                { icon: <Zap size={16} className="text-amber-500" />, text: "Switch tabs to explore billing, inventory, and reports" },
-                { icon: <BarChart3 size={16} className="text-brand-500" />, text: "Revenue counter updates every 3 seconds — live simulation" },
-                { icon: <Wifi size={16} className="text-emerald-500" />, text: "Works fully offline — never lose a sale" },
+                { icon: <Zap size={18} className="text-amber-500" />, text: "Switch tabs to explore billing, inventory, and reports" },
+                { icon: <BarChart3 size={18} className="text-brand-500" />, text: "Revenue counter updates every 3 seconds — live simulation" },
+                { icon: <Wifi size={18} className="text-emerald-500" />, text: "Works fully offline — never lose a sale" },
               ].map((point, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                    className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
                     style={{ background: "#EFF6FF", border: "1px solid rgba(37,99,235,0.1)" }}
                   >
                     {point.icon}
                   </div>
-                  <p className="text-sm text-slate-500 pt-1.5">{point.text}</p>
+                  <p className="text-slate-500 pt-1.5" style={{ fontSize: "0.97rem" }}>{point.text}</p>
                 </div>
               ))}
             </div>
 
             {/* CTA */}
-            <div className="flex items-center gap-3">
-              <a href="/register" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl btn-gradient text-white text-sm font-semibold">
-                Try it free <ChevronRight size={15} />
+            <div className="flex items-center gap-4">
+              <a
+                href="/register"
+                className="inline-flex items-center gap-2 btn-gradient text-white font-bold rounded-xl"
+                style={{ padding: "14px 32px", fontSize: "1rem", boxShadow: "0 6px 20px rgba(37,99,235,0.3)" }}
+              >
+                Try it free <ChevronRight size={18} />
               </a>
-              <a href="/demo" className="text-sm text-brand-500 hover:text-brand-600 transition-colors">
+              <a href="/demo" className="font-semibold text-brand-500 hover:text-brand-600 transition-colors" style={{ fontSize: "0.95rem" }}>
                 Book a live demo →
               </a>
             </div>
