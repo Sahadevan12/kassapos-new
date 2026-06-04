@@ -175,10 +175,10 @@ export function Navbar() {
                   rel="noopener noreferrer"
                   aria-label={s.label}
                   style={{
-                    width: 42,
-                    height: 42,
+                    width: 44,
+                    height: 44,
                     borderRadius: "50%",
-                    background: "rgba(255,255,255,0.15)",
+                    background: "rgba(0,0,0,0.22)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -186,11 +186,11 @@ export function Navbar() {
                     transition: "background 0.2s, transform 0.2s",
                   }}
                   onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.28)";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.38)";
                     (e.currentTarget as HTMLElement).style.transform  = "scale(1.1)";
                   }}
                   onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.15)";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.22)";
                     (e.currentTarget as HTMLElement).style.transform  = "scale(1)";
                   }}
                 >
@@ -263,7 +263,7 @@ export function Navbar() {
         <div
           style={{
             background: "linear-gradient(90deg, #021d66 0%, #0057ff 100%)",
-            padding: "12px 20px 16px",
+            padding: "8px 0 14px 20px",
           }}
           className="hidden lg:block"
         >
@@ -273,8 +273,8 @@ export function Navbar() {
             style={{
               background: "#fff",
               borderRadius: 36,
-              minHeight: 96,
-              boxShadow: "0 12px 50px rgba(2,29,102,0.18), 0 3px 10px rgba(0,0,0,0.08)",
+              minHeight: 100,
+              boxShadow: "0 14px 56px rgba(2,29,102,0.2), 0 4px 12px rgba(0,0,0,0.08)",
               overflow: "visible",
               position: "relative",
             }}
@@ -295,9 +295,9 @@ export function Navbar() {
               <Image
                 src="/images/logo.jpg"
                 alt="Kassapos"
-                width={340}
-                height={80}
-                style={{ height: 80, width: "auto", objectFit: "contain", display: "block" }}
+                width={320}
+                height={74}
+                style={{ height: 74, width: "auto", objectFit: "contain", display: "block" }}
                 priority
               />
             </Link>
@@ -456,24 +456,25 @@ export function Navbar() {
             </div>
 
             {/* Right: Blue angled phone button */}
-            <div style={{ overflow: "hidden", borderRadius: "0 36px 36px 0", flexShrink: 0 }}>
+            <div style={{ overflow: "hidden", borderRadius: "0 36px 36px 0", flexShrink: 0, marginRight: 0 }}>
               <a
                 href="tel:+918754031480"
                 className="flex items-center gap-3"
                 style={{
-                  background: "linear-gradient(135deg, #0057ff 0%, #0d47ff 100%)",
-                  clipPath: "polygon(36px 0%, 100% 0%, 100% 100%, 0% 100%)",
-                  padding: "0 40px 0 64px",
+                  background: "linear-gradient(135deg, #0057ff 0%, #1a3bff 100%)",
+                  clipPath: "polygon(38px 0%, 100% 0%, 100% 100%, 0% 100%)",
+                  padding: "0 44px 0 68px",
                   color: "#fff",
                   fontWeight: 800,
-                  fontSize: "1.08rem",
+                  fontSize: "1.12rem",
                   textDecoration: "none",
                   display: "flex",
                   alignItems: "center",
                   gap: 12,
                   height: "100%",
-                  minHeight: 96,
-                  letterSpacing: "0.01em",
+                  minHeight: 100,
+                  letterSpacing: "0.02em",
+                  whiteSpace: "nowrap",
                 }}
               >
                 <Phone size={20} />
