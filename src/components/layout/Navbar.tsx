@@ -240,10 +240,12 @@ export function Navbar() {
             background: "#fff",
             borderRadius: "0 0 24px 24px",
             boxShadow: "0 8px 32px rgba(15,30,74,0.2)",
-            overflow: "hidden",
+            overflow: "visible",
             alignItems: "stretch",
             width: "100%",
             minHeight: 110,
+            position: "relative",
+            zIndex: 50,
           }}
         >
             {/* Logo */}
@@ -420,25 +422,30 @@ export function Navbar() {
             </div>
 
             {/* Right: Blue angled phone button */}
-            <a
-              href="tel:+918754031480"
-              className="flex items-center gap-3"
-              style={{
-                background: "linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%)",
-                clipPath: "polygon(40px 0%, 100% 0%, 100% 100%, 0% 100%)",
-                padding: "0 36px 0 68px",
-                color: "#fff",
-                fontWeight: 800,
-                fontSize: "1.05rem",
-                textDecoration: "none",
-                flexShrink: 0,
-                letterSpacing: "0.01em",
-                boxShadow: "-4px 0 16px rgba(37,99,235,0.25)",
-              }}
-            >
-              <Phone size={18} />
-              8754031480
-            </a>
+            <div style={{ overflow: "hidden", borderRadius: "0 0 24px 0", flexShrink: 0 }}>
+              <a
+                href="tel:+918754031480"
+                className="flex items-center gap-3"
+                style={{
+                  background: "linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%)",
+                  clipPath: "polygon(40px 0%, 100% 0%, 100% 100%, 0% 100%)",
+                  padding: "0 36px 0 68px",
+                  color: "#fff",
+                  fontWeight: 800,
+                  fontSize: "1.05rem",
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 12,
+                  height: "100%",
+                  minHeight: 110,
+                  letterSpacing: "0.01em",
+                }}
+              >
+                <Phone size={18} />
+                8754031480
+              </a>
+            </div>
         </div>
 
         {/* ══ MOBILE HEADER ══ */}
