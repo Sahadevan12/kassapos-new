@@ -139,19 +139,19 @@ export function Navbar() {
         <div style={{ background: TOP_BG }}>
           <div
             className="hidden lg:flex items-center"
-            style={{ height: 50, padding: "0 28px", gap: 0, width: "100%" }}
+            style={{ height: 72, padding: "0 36px", gap: 0, width: "100%" }}
           >
             {/* Left: 17 years */}
-            <div className="flex items-center gap-2" style={{ color: "#fff", flexShrink: 0 }}>
-              <Trophy size={16} style={{ color: "#FBBF24" }} />
-              <span style={{ fontSize: "0.82rem", fontWeight: 500 }}>
+            <div className="flex items-center gap-3" style={{ color: "#fff", flexShrink: 0 }}>
+              <Trophy size={20} style={{ color: "#FBBF24" }} />
+              <span style={{ fontSize: "1rem", fontWeight: 700, letterSpacing: "0.01em" }}>
                 17+ Years of Excellence in Software Solutions
               </span>
             </div>
 
             {/* Center: Follow us + social icons */}
-            <div className="flex items-center justify-center gap-3 flex-1">
-              <span style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.8rem", fontWeight: 500 }}>
+            <div className="flex items-center justify-center gap-4 flex-1">
+              <span style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.9rem", fontWeight: 600 }}>
                 Follow Us :
               </span>
               {SOCIALS.map((s, i) => (
@@ -163,8 +163,8 @@ export function Navbar() {
                   style={{
                     color: "#fff",
                     display: "flex",
-                    width: 32,
-                    height: 32,
+                    width: 36,
+                    height: 36,
                     borderRadius: "50%",
                     background: "rgba(255,255,255,0.12)",
                     alignItems: "center",
@@ -180,11 +180,11 @@ export function Navbar() {
             </div>
 
             {/* Right: phone | Request Demo | Google Rating */}
-            <div className="flex items-center gap-3" style={{ flexShrink: 0 }}>
+            <div className="flex items-center gap-4" style={{ flexShrink: 0 }}>
               <a
                 href="tel:+918754031480"
                 className="flex items-center gap-2"
-                style={{ color: "#fff", fontSize: "0.88rem", fontWeight: 600, textDecoration: "none" }}
+                style={{ color: "#fff", fontSize: "0.96rem", fontWeight: 700, textDecoration: "none" }}
               >
                 <Phone size={14} />
                 8754031480
@@ -194,11 +194,11 @@ export function Navbar() {
 
               <Link href="/demo">
                 <button style={{
-                  border: "1.5px solid rgba(255,255,255,0.55)",
+                  border: "2px solid rgba(255,255,255,0.6)",
                   color: "#fff",
-                  borderRadius: 7,
-                  padding: "5px 18px",
-                  fontSize: "0.8rem",
+                  borderRadius: 8,
+                  padding: "7px 22px",
+                  fontSize: "0.88rem",
                   fontWeight: 700,
                   background: "transparent",
                   cursor: "pointer",
