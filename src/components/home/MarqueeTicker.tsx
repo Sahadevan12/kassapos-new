@@ -12,7 +12,7 @@ export function MarqueeTicker() {
   const doubled = [...ITEMS, ...ITEMS];
 
   return (
-    <section style={{ background: "#0D1B6E", overflow: "hidden", padding: "52px 0 56px" }}>
+    <section style={{ background: "#0D1B6E", overflow: "hidden", padding: "17px 0" }}>
       <motion.div
         style={{ display: "flex", width: "max-content" }}
         animate={{ x: ["0%", "-50%"] }}
