@@ -243,7 +243,7 @@ export function Navbar() {
             overflow: "hidden",
             alignItems: "stretch",
             width: "100%",
-            minHeight: 96,
+            minHeight: 110,
           }}
         >
             {/* Logo */}
@@ -251,9 +251,9 @@ export function Navbar() {
               <Image
                 src="/images/logo.jpg"
                 alt="Kassapos"
-                width={320}
-                height={78}
-                style={{ height: 78, width: "auto", objectFit: "contain", display: "block" }}
+                width={400}
+                height={96}
+                style={{ height: 96, width: "auto", objectFit: "contain", display: "block" }}
                 priority
               />
             </Link>
