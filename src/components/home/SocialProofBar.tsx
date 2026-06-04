@@ -7,22 +7,22 @@ import { EASE_EXPO } from "@/lib/animations";
 
 const ITEMS = [
   {
-    icon: <Users size={34} />,
-    value: "7,500+",
+    icon: <Users size={40} />,
+    value: "10,000+",
     label: "Happy Businesses",
   },
   {
-    icon: <Headphones size={34} />,
-    value: "Chennai Based",
+    icon: <Headphones size={40} />,
+    value: "Tamil Based",
     label: "Local Support",
   },
   {
-    icon: <ShieldCheck size={34} />,
+    icon: <ShieldCheck size={40} />,
     value: "GST",
     label: "Compliant",
   },
   {
-    icon: <Zap size={34} />,
+    icon: <Zap size={40} />,
     value: "Fast",
     label: "Installation",
   },
@@ -30,9 +30,8 @@ const ITEMS = [
 
 export function SocialProofBar() {
   return (
-    <section style={{ background: "#FFFFFF", padding: "16px 24px 24px" }}>
+    <section style={{ background: "#FFFFFF", padding: "20px 24px 28px" }}>
       <div className="container-xl">
-        {/* Dark navy bar with border-radius */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -41,9 +40,9 @@ export function SocialProofBar() {
           className="grid grid-cols-2 lg:grid-cols-4"
           style={{
             background: "linear-gradient(135deg, #0F1E4A 0%, #162454 50%, #1B2B5E 100%)",
-            borderRadius: 14,
+            borderRadius: 18,
             overflow: "hidden",
-            boxShadow: "0 8px 32px rgba(15,30,74,0.25)",
+            boxShadow: "0 10px 40px rgba(15,30,74,0.28)",
           }}
         >
           {ITEMS.map((item, i) => (
@@ -53,11 +52,11 @@ export function SocialProofBar() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08, ease: EASE_EXPO }}
-              className="flex items-center justify-center gap-3"
+              className="flex items-center justify-center gap-4"
               style={{
-                padding: "22px 20px",
-                paddingLeft:  i === 0 ? 32 : 20,
-                paddingRight: i === ITEMS.length - 1 ? 32 : 20,
+                padding: "28px 24px",
+                paddingLeft:  i === 0 ? 40 : 24,
+                paddingRight: i === ITEMS.length - 1 ? 40 : 24,
                 borderRight: i < ITEMS.length - 1
                   ? "1px solid rgba(255,255,255,0.12)"
                   : "none",
@@ -72,13 +71,13 @@ export function SocialProofBar() {
               <div>
                 <p
                   className="font-extrabold leading-tight"
-                  style={{ color: "#FBBF24", fontSize: "1.1rem" }}
+                  style={{ color: "#FBBF24", fontSize: "1.35rem" }}
                 >
                   {item.value}
                 </p>
                 <p
                   className="font-medium"
-                  style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.82rem" }}
+                  style={{ color: "rgba(255,255,255,0.78)", fontSize: "0.92rem" }}
                 >
                   {item.label}
                 </p>
