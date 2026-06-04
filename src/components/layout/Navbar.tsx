@@ -243,17 +243,17 @@ export function Navbar() {
             overflow: "hidden",
             alignItems: "stretch",
             width: "100%",
-            minHeight: 84,
+            minHeight: 96,
           }}
         >
             {/* Logo */}
-            <Link href="/" style={{ display: "flex", alignItems: "center", padding: "10px 32px 10px 28px", borderRight: "1px solid #E8EEF8", flexShrink: 0, textDecoration: "none" }}>
+            <Link href="/" style={{ display: "flex", alignItems: "center", padding: "8px 36px 8px 28px", borderRight: "1px solid #E8EEF8", flexShrink: 0, textDecoration: "none" }}>
               <Image
                 src="/images/logo.jpg"
                 alt="Kassapos"
-                width={260}
-                height={62}
-                style={{ height: 62, width: "auto", objectFit: "contain", display: "block" }}
+                width={320}
+                height={78}
+                style={{ height: 78, width: "auto", objectFit: "contain", display: "block" }}
                 priority
               />
             </Link>
