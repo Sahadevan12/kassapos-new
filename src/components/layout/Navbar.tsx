@@ -232,14 +232,15 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* ══ BOTTOM BAR (white) — desktop ══ */}
+        {/* ══ BOTTOM BAR (white floating card) — desktop ══ */}
+        <div style={{ background: TOP_BG, padding: "0 20px 16px" }}>
         <div
           className="hidden lg:flex"
           ref={dropdownRef}
           style={{
             background: "#fff",
-            borderRadius: "0 0 24px 24px",
-            boxShadow: "0 8px 32px rgba(15,30,74,0.2)",
+            borderRadius: 36,
+            boxShadow: "0 12px 48px rgba(15,30,74,0.22), 0 2px 8px rgba(0,0,0,0.08)",
             overflow: "visible",
             alignItems: "stretch",
             width: "100%",
@@ -422,7 +423,7 @@ export function Navbar() {
             </div>
 
             {/* Right: Blue angled phone button */}
-            <div style={{ overflow: "hidden", borderRadius: "0 0 24px 0", flexShrink: 0 }}>
+            <div style={{ overflow: "hidden", borderRadius: "0 36px 36px 0", flexShrink: 0 }}>
               <a
                 href="tel:+918754031480"
                 className="flex items-center gap-3"
@@ -439,6 +440,7 @@ export function Navbar() {
                   gap: 12,
                   height: "100%",
                   minHeight: 110,
+                  borderRadius: "0 36px 36px 0",
                   letterSpacing: "0.01em",
                 }}
               >
@@ -446,6 +448,7 @@ export function Navbar() {
                 8754031480
               </a>
             </div>
+        </div>
         </div>
 
         {/* ══ MOBILE HEADER ══ */}
