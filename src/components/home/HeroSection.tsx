@@ -118,7 +118,7 @@ export function HeroSection() {
 
       {/* ── Hero grid ── */}
       <div
-        className="container-xl relative pt-20 lg:pt-[168px] pb-2"
+        className="container-xl relative pt-20 lg:pt-[200px] pb-2"
         style={{ zIndex: 1, flex: 1, display: "flex", alignItems: "center" }}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
