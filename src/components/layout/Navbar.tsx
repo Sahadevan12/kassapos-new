@@ -6,7 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Phone, Home, User, Package, Settings2,
+  Phone, Home, User, Package, Settings,
   MapPin, FileText, Mail, ChevronDown, ChevronRight,
   ArrowRight, Menu, X,
 } from "lucide-react";
@@ -40,7 +40,7 @@ const NAV_LINKS = [
   { label: "Home",         href: "/",        Icon: Home,      hasDropdown: false },
   { label: "About Us",     href: "/about",   Icon: User,      hasDropdown: false },
   { label: "Products",     href: "/products",Icon: Package,   hasDropdown: true  },
-  { label: "Services",     href: "/features",Icon: Settings2, hasDropdown: false },
+  { label: "Services",     href: "/features",Icon: Settings,  hasDropdown: false },
   { label: "Sales Region", href: "/contact", Icon: MapPin,    hasDropdown: false },
   { label: "Blog",         href: "/blog",    Icon: FileText,  hasDropdown: false },
   { label: "Contact Us",   href: "/contact", Icon: Mail,      hasDropdown: false },
@@ -126,18 +126,18 @@ export function Navbar() {
                   aria-label={s.label}
                   style={{
                     width: 44, height: 44, borderRadius: "50%",
-                    background: C.white, color: C.darkBlue,
+                    background: "rgba(0,0,0,0.30)", color: C.white,
                     display: "flex", alignItems: "center", justifyContent: "center",
                     textDecoration: "none",
-                    transition: "transform .25s ease, box-shadow .25s ease",
+                    transition: "transform .25s ease, background .25s ease",
                   }}
                   onMouseEnter={e => {
                     (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
-                    (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 18px rgba(0,0,0,.25)";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.48)";
                   }}
                   onMouseLeave={e => {
                     (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                    (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.30)";
                   }}
                 >
                   {s.icon}
@@ -218,17 +218,17 @@ export function Navbar() {
           }}
         >
           {/* ── TOP-LEFT CHAMFER
-              A dark-blue triangle sits over the top-left corner of the
+              A dark-blue quarter-circle sits over the top-left corner of the
               white card so the blue header gradient "bleeds through",
-              producing the angled-cut geometry visible in the screenshot.
-              clip-path: top-left → bottom-left → top-right = right triangle */}
+              producing the smooth concave-curve geometry in the reference.
+              borderRadius "0 0 100% 0" on a square element = perfect quarter-circle. */}
           <div
             aria-hidden="true"
             style={{
               position: "absolute", top: 0, left: 0,
-              width: 55, height: 80,
+              width: 70, height: 70,
               background: C.darkBlue,
-              clipPath: "polygon(0 0, 0 100%, 100% 0)",
+              borderRadius: "0 0 100% 0",
               zIndex: 4,
               pointerEvents: "none",
             }}
@@ -370,9 +370,10 @@ export function Navbar() {
           {/* ── PHONE BOX  (absolute, right 0, full card height)
               Two layers inside overflow:hidden wrapper:
               1. bg div  — blue gradient, clip-path trapezoid
-                 polygon(0 0, 100% 0, 100% 100%, 27% 100%)
-                 = left edge slants from top-left corner down to 27% from left at bottom
-              2. content div — phone icon + number, padded left so text clears the slant */}
+                 polygon(27% 0, 100% 0, 100% 100%, 0% 100%)
+                 = left edge slants from 27% at TOP down to 0% at BOTTOM
+                 = NARROWER at top, WIDER at bottom  (matches reference geometry)
+              2. content div — centred, paddingLeft clears the diagonal edge */}
           <div style={{
             position: "absolute", top: 0, right: 0, bottom: 0,
             width: 300,
@@ -382,15 +383,15 @@ export function Navbar() {
             {/* Blue trapezoid background */}
             <div style={{
               position: "absolute", inset: 0,
-              background: "linear-gradient(120deg, #0057ff 0%, #0d47ff 100%)",
-              clipPath: "polygon(0 0, 100% 0, 100% 100%, 27% 100%)",
+              background: "linear-gradient(135deg, #0057ff 0%, #0d47ff 100%)",
+              clipPath: "polygon(27% 0, 100% 0, 100% 100%, 0% 100%)",
             }} />
-            {/* Content */}
+            {/* Content — centred in the visible blue region */}
             <a href="tel:+918754031480"
               style={{
                 position: "absolute", inset: 0,
                 display: "flex", alignItems: "center", justifyContent: "center",
-                gap: 13, paddingLeft: 54,
+                gap: 13, paddingLeft: 60,
                 color: C.white, textDecoration: "none",
                 fontSize: 25, fontWeight: 600, letterSpacing: ".5px",
                 transition: "filter .2s",
