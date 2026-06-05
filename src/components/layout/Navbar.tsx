@@ -98,41 +98,41 @@ export function Navbar() {
         style={{ background: HEADER_GRAD }}
       >
 
-        {/* ── TOP BAR  75 px ── */}
+        {/* ── TOP BAR  52 px ── */}
         <div
           className="hidden lg:flex items-center w-full"
-          style={{ height: 75, padding: "0 34px" }}
+          style={{ height: 52, padding: "0 28px" }}
         >
           {/* Left: award + tagline */}
-          <div className="flex items-center gap-[13px] shrink-0">
-            <svg width="25" height="25" viewBox="0 0 24 24" fill="none"
+          <div className="flex items-center gap-[10px] shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
               stroke="#FBBF24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="8" r="6"/>
               <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
             </svg>
-            <span style={{ color: C.white, fontSize: 18, fontWeight: 600, whiteSpace: "nowrap" }}>
+            <span style={{ color: C.white, fontSize: 13.5, fontWeight: 600, whiteSpace: "nowrap" }}>
               17+ Years of Excellence in Software Solutions
             </span>
           </div>
 
           {/* Center: Follow Us + social circles */}
-          <div className="flex items-center gap-[18px] flex-1 justify-center">
-            <span style={{ color: C.white, fontSize: 18, fontWeight: 600, whiteSpace: "nowrap" }}>
+          <div className="flex items-center gap-[12px] flex-1 justify-center">
+            <span style={{ color: C.white, fontSize: 13.5, fontWeight: 600, whiteSpace: "nowrap" }}>
               Follow Us :
             </span>
-            <div className="flex items-center gap-[14px]">
+            <div className="flex items-center gap-[10px]">
               {SOCIALS.map(s => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
                   aria-label={s.label}
                   style={{
-                    width: 44, height: 44, borderRadius: "50%",
+                    width: 32, height: 32, borderRadius: "50%",
                     background: "rgba(0,0,0,0.30)", color: C.white,
                     display: "flex", alignItems: "center", justifyContent: "center",
                     textDecoration: "none",
                     transition: "transform .25s ease, background .25s ease",
                   }}
                   onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
                     (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.48)";
                   }}
                   onMouseLeave={e => {
@@ -147,31 +147,31 @@ export function Navbar() {
           </div>
 
           {/* Right: divider | phone | Request Demo | Google Rating */}
-          <div className="flex items-center gap-[24px] shrink-0">
-            <div style={{ width: 2, height: 40, background: "rgba(255,255,255,.4)", borderRadius: 2 }} />
+          <div className="flex items-center gap-[16px] shrink-0">
+            <div style={{ width: 1.5, height: 26, background: "rgba(255,255,255,.4)", borderRadius: 2 }} />
 
-            <a href="tel:+918754031480" className="flex items-center gap-[13px]"
-              style={{ color: C.white, fontWeight: 600, fontSize: 21, letterSpacing: ".3px", textDecoration: "none" }}>
-              <Phone size={18} strokeWidth={2} /> 8754031480
+            <a href="tel:+918754031480" className="flex items-center gap-[8px]"
+              style={{ color: C.white, fontWeight: 600, fontSize: 15, letterSpacing: ".2px", textDecoration: "none" }}>
+              <Phone size={14} strokeWidth={2} /> 8754031480
             </a>
 
             <Link href="/demo">
               <button
                 style={{
-                  height: 55, minWidth: 180, padding: "0 26px",
+                  height: 38, minWidth: 148, padding: "0 20px",
                   background: C.white, color: C.darkBlue,
-                  fontFamily: "inherit", fontSize: 16, fontWeight: 600,
-                  border: "none", borderRadius: 10, cursor: "pointer",
-                  boxShadow: "0 6px 16px rgba(0,0,0,.18)",
+                  fontFamily: "inherit", fontSize: 13, fontWeight: 600,
+                  border: "none", borderRadius: 8, cursor: "pointer",
+                  boxShadow: "0 4px 12px rgba(0,0,0,.18)",
                   transition: "transform .22s ease, box-shadow .22s ease",
                 }}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
-                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 10px 22px rgba(0,0,0,.28)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 18px rgba(0,0,0,.28)";
                 }}
                 onMouseLeave={e => {
                   (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
-                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 16px rgba(0,0,0,.18)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 12px rgba(0,0,0,.18)";
                 }}
               >
                 Request Demo
@@ -180,18 +180,23 @@ export function Navbar() {
 
             {/* Google Rating badge */}
             <div style={{
-              height: 55, minWidth: 180, background: C.white, borderRadius: 10,
-              display: "flex", alignItems: "center", gap: 11,
-              padding: "0 16px", boxShadow: "0 6px 16px rgba(0,0,0,.18)",
+              height: 38, minWidth: 152, background: C.white, borderRadius: 8,
+              display: "flex", alignItems: "center", gap: 8,
+              padding: "0 12px", boxShadow: "0 4px 12px rgba(0,0,0,.18)",
             }}>
-              <GoogleG />
+              <svg viewBox="0 0 48 48" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+              </svg>
               <div>
-                <p style={{ fontSize: "11.5px", color: "#5f6368", fontWeight: 500, margin: 0, lineHeight: 1.2 }}>
+                <p style={{ fontSize: "9.5px", color: "#5f6368", fontWeight: 500, margin: 0, lineHeight: 1.2 }}>
                   Google Rating
                 </p>
-                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                  <span style={{ fontSize: 17, fontWeight: 600, color: "#202124" }}>4.9</span>
-                  <span style={{ color: "#fbbc04", fontSize: 12, letterSpacing: 1 }}>★★★★★</span>
+                <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                  <span style={{ fontSize: 13.5, fontWeight: 700, color: "#202124" }}>4.9</span>
+                  <span style={{ color: "#fbbc04", fontSize: 10, letterSpacing: 1 }}>★★★★★</span>
                 </div>
               </div>
             </div>
@@ -199,22 +204,22 @@ export function Navbar() {
         </div>
 
         {/* ══════════════════════════════════════════════════════════
-            WHITE NAV CARD  120 px
-            • border-radius 0 0 35px 35px  (bottom corners only)
-            • top-left chamfer via absolute dark-blue triangle
-            • phone box via absolute clip-path trapezoid on right
+            WHITE NAV CARD  106 px  — trending active-pill design
+            • Subtle blue-tinted gradient background
+            • Active item = filled blue gradient pill + glow
+            • Inactive = gray icon, hover gets soft blue tint
         ══════════════════════════════════════════════════════════ */}
         <nav
           ref={navRef}
           className="hidden lg:flex relative items-center"
           style={{
-            height: 120,
+            height: 106,
             background: C.white,
-            borderRadius: "0 0 35px 35px",
-            boxShadow: "0 32px 48px -16px rgba(2,29,102,.22), 0 6px 14px rgba(0,0,0,.05)",
-            paddingLeft: 40,
-            paddingRight: 300,   /* reserve space for phone box */
-            overflow: "visible", /* mega-dropdown must escape */
+            borderRadius: "0 0 28px 28px",
+            boxShadow: "0 20px 48px -10px rgba(2,29,102,.18), 0 4px 12px rgba(0,0,0,.04)",
+            paddingLeft: 28,
+            paddingRight: 230,
+            overflow: "visible",
           }}
         >
           {/* ── TOP-LEFT CHAMFER
@@ -226,7 +231,7 @@ export function Navbar() {
             aria-hidden="true"
             style={{
               position: "absolute", top: 0, left: 0,
-              width: 70, height: 70,
+              width: 52, height: 52,
               background: C.darkBlue,
               borderRadius: "0 0 100% 0",
               zIndex: 4,
@@ -240,18 +245,18 @@ export function Navbar() {
               src="/images/logo.jpg"
               alt="Kassapos"
               width={320} height={76}
-              style={{ height: 76, width: "auto", objectFit: "contain", display: "block" }}
+              style={{ height: 82, width: "auto", objectFit: "contain", display: "block" }}
               priority
             />
           </Link>
 
           {/* ── VERTICAL DIVIDER ── */}
-          <div style={{ width: 2, height: 58, background: "#dbe0ea", borderRadius: 2, margin: "0 32px", flexShrink: 0 }} />
+          <div style={{ width: 2, height: 62, background: "#dbe0ea", borderRadius: 2, margin: "0 20px", flexShrink: 0 }} />
 
           {/* ── MENU ITEMS ── */}
           <div
             className="flex items-center h-full"
-            style={{ flex: 1, justifyContent: "space-between", padding: "0 36px 0 8px" }}
+            style={{ flex: 1, justifyContent: "center", gap: "6px", padding: "0 14px 0 4px" }}
           >
             {NAV_LINKS.map(({ label, href, Icon, hasDropdown }) => {
               const active = pathname === href;
@@ -266,19 +271,19 @@ export function Navbar() {
                     <div
                       className="flex flex-col items-center justify-center h-full"
                       style={{
-                        gap: 10, padding: "0 14px",
-                        borderRadius: 12, cursor: "pointer",
-                        position: "relative", minWidth: 74,
+                        gap: 6, padding: "0 10px",
+                        borderRadius: 10, cursor: "pointer",
+                        position: "relative", minWidth: 62,
                         transition: "background .15s",
                       }}
                       onMouseEnter={e => { if (!active) (e.currentTarget as HTMLElement).style.background = "#F0F6FF"; }}
                       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
                     >
-                      <Icon size={23} style={{ color: active ? C.blue : C.inactive }} />
+                      <Icon size={18} style={{ color: active ? C.blue : C.inactive }} />
                       <span style={{
-                        fontSize: 15, fontWeight: active ? 600 : 500,
+                        fontSize: 13, fontWeight: active ? 600 : 500,
                         color: active ? C.blue : C.text,
-                        display: "inline-flex", alignItems: "center", gap: 7,
+                        display: "inline-flex", alignItems: "center", gap: 5,
                         whiteSpace: "nowrap",
                       }}>
                         {label}
@@ -288,16 +293,15 @@ export function Navbar() {
                             animate={{ rotate: dropdown === label ? 180 : 0 }}
                             transition={{ duration: 0.2 }}
                           >
-                            <ChevronDown size={11} style={{ display: "inline" }} />
+                            <ChevronDown size={10} style={{ display: "inline" }} />
                           </motion.span>
                         )}
                       </span>
-                      {/* Active underline — 50 px wide, 24 px from bottom */}
                       {active && (
                         <div style={{
-                          position: "absolute", bottom: 24,
+                          position: "absolute", bottom: 16,
                           left: "50%", transform: "translateX(-50%)",
-                          width: 50, height: 4, borderRadius: 10, background: C.blue,
+                          width: 40, height: 3, borderRadius: 10, background: C.blue,
                         }} />
                       )}
                     </div>
@@ -376,8 +380,8 @@ export function Navbar() {
               2. content div — centred, paddingLeft clears the diagonal edge */}
           <div style={{
             position: "absolute", top: 0, right: 0, bottom: 0,
-            width: 300,
-            borderRadius: "0 35px 35px 0",
+            width: 230,
+            borderRadius: "0 28px 28px 0",
             overflow: "hidden",
           }}>
             {/* Blue trapezoid background */}
@@ -391,15 +395,15 @@ export function Navbar() {
               style={{
                 position: "absolute", inset: 0,
                 display: "flex", alignItems: "center", justifyContent: "center",
-                gap: 13, paddingLeft: 60,
+                gap: 10, paddingLeft: 46,
                 color: C.white, textDecoration: "none",
-                fontSize: 25, fontWeight: 600, letterSpacing: ".5px",
+                fontSize: 19, fontWeight: 700, letterSpacing: ".3px",
                 transition: "filter .2s",
               }}
               onMouseEnter={e => (e.currentTarget as HTMLElement).style.filter = "brightness(1.1)"}
               onMouseLeave={e => (e.currentTarget as HTMLElement).style.filter = "brightness(1)"}
             >
-              <Phone size={22} strokeWidth={2} />
+              <Phone size={17} strokeWidth={2} />
               <span>8754031480</span>
             </a>
           </div>
