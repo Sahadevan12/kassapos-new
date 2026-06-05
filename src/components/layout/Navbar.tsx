@@ -8,38 +8,27 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Phone, Home, User, Package, Settings2,
   MapPin, FileText, Mail, ChevronDown, ChevronRight,
-  ArrowRight, Trophy, Menu, X,
+  ArrowRight, Menu, X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { EASE_EXPO } from "@/lib/animations";
 
-/* ─────────────────────────────────────────
-   Social SVGs (inline — lucide doesn't have them)
-───────────────────────────────────────── */
-const YoutubeSvg = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-  </svg>
-);
-const FacebookSvg = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-  </svg>
-);
-const InstagramSvg = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162S8.597 18.163 12 18.163s6.162-2.759 6.162-6.162S15.403 5.838 12 5.838zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-  </svg>
-);
-const LinkedInSvg = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+/* ── Social SVGs ── */
+const YoutubeSvg   = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>;
+const FacebookSvg  = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>;
+const InstagramSvg = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162S8.597 18.163 12 18.163s6.162-2.759 6.162-6.162S15.403 5.838 12 5.838zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>;
+const LinkedInSvg  = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>;
+
+/* ── Google G ── */
+const GoogleG = () => (
+  <svg viewBox="0 0 48 48" width="27" height="27" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
   </svg>
 );
 
-/* ─────────────────────────────────────────
-   Data
-───────────────────────────────────────── */
 const SOCIALS = [
   { icon: <YoutubeSvg />,   href: "#", label: "YouTube"   },
   { icon: <FacebookSvg />,  href: "#", label: "Facebook"  },
@@ -48,466 +37,398 @@ const SOCIALS = [
 ];
 
 const NAV_LINKS = [
-  { label: "Home",         href: "/",        Icon: Home      },
-  { label: "About Us",     href: "/about",   Icon: User      },
-  { label: "Products",     href: "/products",Icon: Package,   hasDropdown: true },
-  { label: "Services",     href: "/features",Icon: Settings2 },
-  { label: "Sales Region", href: "/contact", Icon: MapPin    },
-  { label: "Blog",         href: "/blog",    Icon: FileText  },
-  { label: "Contact Us",   href: "/contact", Icon: Mail      },
+  { label: "Home",         href: "/",        Icon: Home,      hasDropdown: false },
+  { label: "About Us",     href: "/about",   Icon: User,      hasDropdown: false },
+  { label: "Products",     href: "/products",Icon: Package,   hasDropdown: true  },
+  { label: "Services",     href: "/features",Icon: Settings2, hasDropdown: false },
+  { label: "Sales Region", href: "/contact", Icon: MapPin,    hasDropdown: false },
+  { label: "Blog",         href: "/blog",    Icon: FileText,  hasDropdown: false },
+  { label: "Contact Us",   href: "/contact", Icon: Mail,      hasDropdown: false },
 ];
 
 const MEGA_MENU = [
-  {
-    id: "retail", label: "Retail Software",
-    items: [
-      { label: "Supermarket & Grocery Shop", href: "/products/supermarket", icon: "🏪" },
-      { label: "Retail Shop",                href: "/products/retail",       icon: "🛍️" },
-      { label: "Vegetable & Fruits Shop",    href: "/products/vegetables",   icon: "🥬" },
-      { label: "Footwear Shop",              href: "/products/footwear",     icon: "👟" },
-      { label: "Home Appliances Shop",       href: "/products/home-appliances", icon: "🏠" },
-      { label: "Spa & Salon Shop",           href: "/products/spa",          icon: "💆" },
-    ],
-  },
-  {
-    id: "restaurant", label: "Restaurant Software",
-    items: [
-      { label: "Restaurant POS",       href: "/products/restaurant", icon: "🍽️" },
-      { label: "Bakery & Sweets",      href: "/products/bakery",     icon: "🥐" },
-      { label: "Cafe Billing",         href: "/products/cafe",       icon: "☕" },
-      { label: "Bar & Liquor",         href: "/products/bar",        icon: "🍺" },
-      { label: "Food Court",           href: "/products/food-court", icon: "🍜" },
-      { label: "Ice Cream Shop",       href: "/products/ice-cream",  icon: "🍦" },
-    ],
-  },
-  {
-    id: "cloud", label: "Cloud Billing Software",
-    items: [
-      { label: "Cloud Billing",        href: "/products/cloud",        icon: "☁️" },
-      { label: "Web-Based Billing",    href: "/products/web-billing",  icon: "🌐" },
-      { label: "Warehouse Mgmt",       href: "/products/warehouse",    icon: "🏭" },
-      { label: "Multi-Branch",         href: "/products/multi-branch", icon: "🏢" },
-    ],
-  },
-  {
-    id: "mobile", label: "Mobile Billing Software",
-    items: [
-      { label: "Mobile & Computer Shop",        href: "/products/mobile",      icon: "📱" },
-      { label: "Electrical & Electronics",      href: "/products/electronics", icon: "⚡" },
-    ],
-  },
-  {
-    id: "meat", label: "Chicken & Meat Shop",
-    items: [
-      { label: "Chicken & Meat Shop",  href: "/products/chicken-meat", icon: "🍗" },
-      { label: "WholeSale & Agencies", href: "/products/wholesale",    icon: "📦" },
-    ],
-  },
-  {
-    id: "gst", label: "GST Invoicing Software",
-    items: [
-      { label: "Garments & Textiles",  href: "/products/textile",     icon: "👗" },
-      { label: "Hardware & Plywood",   href: "/products/hardware",    icon: "🔧" },
-      { label: "Automobile & Spares",  href: "/products/automobile",  icon: "🚗" },
-      { label: "GST Billing",          href: "/products/gst-billing", icon: "📋" },
-    ],
-  },
+  { id: "retail",     label: "Retail Software",         items: [{ label: "Supermarket & Grocery Shop", href: "/products/supermarket", icon: "🏪" },{ label: "Retail Shop", href: "/products/retail", icon: "🛍️" },{ label: "Vegetable & Fruits Shop", href: "/products/vegetables", icon: "🥬" },{ label: "Footwear Shop", href: "/products/footwear", icon: "👟" },{ label: "Home Appliances Shop", href: "/products/home-appliances", icon: "🏠" },{ label: "Spa & Salon Shop", href: "/products/spa", icon: "💆" }] },
+  { id: "restaurant", label: "Restaurant Software",     items: [{ label: "Restaurant POS", href: "/products/restaurant", icon: "🍽️" },{ label: "Bakery & Sweets", href: "/products/bakery", icon: "🥐" },{ label: "Cafe Billing", href: "/products/cafe", icon: "☕" },{ label: "Bar & Liquor", href: "/products/bar", icon: "🍺" },{ label: "Food Court", href: "/products/food-court", icon: "🍜" },{ label: "Ice Cream Shop", href: "/products/ice-cream", icon: "🍦" }] },
+  { id: "cloud",      label: "Cloud Billing Software",  items: [{ label: "Cloud Billing", href: "/products/cloud", icon: "☁️" },{ label: "Web-Based Billing", href: "/products/web-billing", icon: "🌐" },{ label: "Warehouse Mgmt", href: "/products/warehouse", icon: "🏭" },{ label: "Multi-Branch", href: "/products/multi-branch", icon: "🏢" }] },
+  { id: "mobile",     label: "Mobile Billing Software", items: [{ label: "Mobile & Computer Shop", href: "/products/mobile", icon: "📱" },{ label: "Electrical & Electronics", href: "/products/electronics", icon: "⚡" }] },
+  { id: "meat",       label: "Chicken & Meat Shop",     items: [{ label: "Chicken & Meat Shop", href: "/products/chicken-meat", icon: "🍗" },{ label: "WholeSale & Agencies", href: "/products/wholesale", icon: "📦" }] },
+  { id: "gst",        label: "GST Invoicing Software",  items: [{ label: "Garments & Textiles", href: "/products/textile", icon: "👗" },{ label: "Hardware & Plywood", href: "/products/hardware", icon: "🔧" },{ label: "Automobile & Spares", href: "/products/automobile", icon: "🚗" },{ label: "GST Billing", href: "/products/gst-billing", icon: "📋" }] },
 ];
 
-/* ─────────────────────────────────────────
-   Navbar
-───────────────────────────────────────── */
+const C = {
+  darkBlue : "#021d66",
+  blue     : "#0057ff",
+  white    : "#ffffff",
+  text     : "#111827",
+  inactive : "#1f2937",
+};
+
+/* ─── gradient used across header & chamfer ─── */
+const HEADER_GRAD = `linear-gradient(90deg, ${C.darkBlue} 0%, #0a3bbd 48%, ${C.blue} 100%)`;
+
 export function Navbar() {
-  const pathname        = usePathname();
-  const [mobileOpen,    setMobileOpen]    = useState(false);
-  const [dropdown,      setDropdown]      = useState<string | null>(null);
-  const [activeMegaCat, setActiveMegaCat] = useState(MEGA_MENU[0].id);
-  const dropdownRef     = useRef<HTMLDivElement>(null);
-  const timerRef        = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [dropdown,   setDropdown]   = useState<string | null>(null);
+  const [megaCat,    setMegaCat]    = useState(MEGA_MENU[0].id);
+  const navRef = useRef<HTMLElement>(null);
+  const timer  = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => { setMobileOpen(false); setDropdown(null); }, [pathname]);
-
   useEffect(() => {
-    const onClick = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node))
-        setDropdown(null);
+    const h = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) setDropdown(null);
     };
-    document.addEventListener("mousedown", onClick);
-    return () => document.removeEventListener("mousedown", onClick);
+    document.addEventListener("mousedown", h);
+    return () => document.removeEventListener("mousedown", h);
   }, []);
 
-  const openDD  = (label: string) => { if (timerRef.current) clearTimeout(timerRef.current); setDropdown(label); };
-  const closeDD = () => { timerRef.current = setTimeout(() => setDropdown(null), 150); };
+  const openDD  = (l: string) => { if (timer.current) clearTimeout(timer.current); setDropdown(l); };
+  const closeDD = () => { timer.current = setTimeout(() => setDropdown(null), 160); };
 
   if (pathname?.startsWith("/dashboard")) return null;
 
   return (
     <>
-      {/* ════════════════════════════════════════
-          FIXED HEADER SHELL
-      ════════════════════════════════════════ */}
-      <header className="fixed top-0 left-0 right-0 z-50 w-full">
+      {/* ══════════════════════════════════════════════════════════
+          FIXED HEADER  —  blue gradient behind everything
+      ══════════════════════════════════════════════════════════ */}
+      <header
+        className="fixed top-0 left-0 right-0 z-50 w-full"
+        style={{ background: HEADER_GRAD }}
+      >
 
-        {/* ── TOP BAR ── */}
-        <div style={{ background: "linear-gradient(90deg, #021d66 0%, #0057ff 100%)" }}>
-          <div
-            className="hidden lg:flex items-center w-full"
-            style={{ height: 72, padding: "0 32px" }}
-          >
-            {/* Left: 17 Years */}
-            <div className="flex items-center gap-3 shrink-0">
-              <Trophy size={22} color="#FBBF24" />
-              <span style={{ color: "#fff", fontSize: "0.92rem", fontWeight: 700, letterSpacing: "0.01em" }}>
-                17+ Years of Excellence in Software Solutions
-              </span>
-            </div>
+        {/* ── TOP BAR  75 px ── */}
+        <div
+          className="hidden lg:flex items-center w-full"
+          style={{ height: 75, padding: "0 34px" }}
+        >
+          {/* Left: award + tagline */}
+          <div className="flex items-center gap-[13px] shrink-0">
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="none"
+              stroke="#FBBF24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="8" r="6"/>
+              <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+            </svg>
+            <span style={{ color: C.white, fontSize: 18, fontWeight: 600, whiteSpace: "nowrap" }}>
+              17+ Years of Excellence in Software Solutions
+            </span>
+          </div>
 
-            {/* Center: Follow Us + Social */}
-            <div className="flex items-center gap-4 flex-1 justify-center">
-              <span style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.88rem", fontWeight: 600, marginRight: 4 }}>
-                Follow Us :
-              </span>
-              {SOCIALS.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+          {/* Center: Follow Us + social circles */}
+          <div className="flex items-center gap-[18px] flex-1 justify-center">
+            <span style={{ color: C.white, fontSize: 18, fontWeight: 600, whiteSpace: "nowrap" }}>
+              Follow Us :
+            </span>
+            <div className="flex items-center gap-[14px]">
+              {SOCIALS.map(s => (
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
                   aria-label={s.label}
                   style={{
-                    width: 44,
-                    height: 44,
-                    borderRadius: "50%",
-                    background: "rgba(0,0,0,0.22)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "#fff",
-                    transition: "background 0.2s, transform 0.2s",
+                    width: 44, height: 44, borderRadius: "50%",
+                    background: C.white, color: C.darkBlue,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    textDecoration: "none",
+                    transition: "transform .25s ease, box-shadow .25s ease",
                   }}
                   onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.38)";
-                    (e.currentTarget as HTMLElement).style.transform  = "scale(1.1)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 18px rgba(0,0,0,.25)";
                   }}
                   onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.22)";
-                    (e.currentTarget as HTMLElement).style.transform  = "scale(1)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "none";
                   }}
                 >
                   {s.icon}
                 </a>
               ))}
             </div>
+          </div>
 
-            {/* Right: Phone | Divider | Request Demo | Google Rating */}
-            <div className="flex items-center gap-4 shrink-0">
-              <a
-                href="tel:+918754031480"
-                className="flex items-center gap-2"
-                style={{ color: "#fff", fontWeight: 700, fontSize: "0.96rem", textDecoration: "none" }}
-              >
-                <Phone size={16} />
-                8754031480
-              </a>
+          {/* Right: divider | phone | Request Demo | Google Rating */}
+          <div className="flex items-center gap-[24px] shrink-0">
+            <div style={{ width: 2, height: 40, background: "rgba(255,255,255,.4)", borderRadius: 2 }} />
 
-              <div style={{ width: 1, height: 28, background: "rgba(255,255,255,0.35)" }} />
+            <a href="tel:+918754031480" className="flex items-center gap-[13px]"
+              style={{ color: C.white, fontWeight: 600, fontSize: 21, letterSpacing: ".3px", textDecoration: "none" }}>
+              <Phone size={18} strokeWidth={2} /> 8754031480
+            </a>
 
-              <Link href="/demo">
-                <button
-                  style={{
-                    background: "#fff",
-                    color: "#021d66",
-                    border: "none",
-                    borderRadius: 10,
-                    height: 46,
-                    minWidth: 160,
-                    fontSize: "0.88rem",
-                    fontWeight: 700,
-                    cursor: "pointer",
-                    letterSpacing: "0.01em",
-                    boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
-                  }}
-                >
-                  Request Demo
-                </button>
-              </Link>
-
-              {/* Google Rating */}
-              <div
-                className="flex items-center gap-2"
+            <Link href="/demo">
+              <button
                 style={{
-                  background: "#fff",
-                  borderRadius: 10,
-                  padding: "6px 14px 6px 10px",
-                  minWidth: 160,
-                  boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
+                  height: 55, minWidth: 180, padding: "0 26px",
+                  background: C.white, color: C.darkBlue,
+                  fontFamily: "inherit", fontSize: 16, fontWeight: 600,
+                  border: "none", borderRadius: 10, cursor: "pointer",
+                  boxShadow: "0 6px 16px rgba(0,0,0,.18)",
+                  transition: "transform .22s ease, box-shadow .22s ease",
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 10px 22px rgba(0,0,0,.28)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 16px rgba(0,0,0,.18)";
                 }}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/navbar/google.png" alt="Google" style={{ width: 30, height: 30, objectFit: "contain" }} />
-                <div>
-                  <p style={{ fontSize: "0.62rem", color: "#5F6368", fontWeight: 700, margin: 0, lineHeight: 1.3 }}>
-                    Google Rating
-                  </p>
-                  <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                    <span style={{ fontSize: "0.95rem", fontWeight: 900, color: "#111827" }}>4.9</span>
-                    <span style={{ color: "#FBBC04", fontSize: "0.7rem", letterSpacing: 1 }}>★★★★★</span>
-                  </div>
+                Request Demo
+              </button>
+            </Link>
+
+            {/* Google Rating badge */}
+            <div style={{
+              height: 55, minWidth: 180, background: C.white, borderRadius: 10,
+              display: "flex", alignItems: "center", gap: 11,
+              padding: "0 16px", boxShadow: "0 6px 16px rgba(0,0,0,.18)",
+            }}>
+              <GoogleG />
+              <div>
+                <p style={{ fontSize: "11.5px", color: "#5f6368", fontWeight: 500, margin: 0, lineHeight: 1.2 }}>
+                  Google Rating
+                </p>
+                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                  <span style={{ fontSize: 17, fontWeight: 600, color: "#202124" }}>4.9</span>
+                  <span style={{ color: "#fbbc04", fontSize: 12, letterSpacing: 1 }}>★★★★★</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* ── MAIN NAV (desktop) — floating white card ── */}
-        <div
+        {/* ══════════════════════════════════════════════════════════
+            WHITE NAV CARD  120 px
+            • border-radius 0 0 35px 35px  (bottom corners only)
+            • top-left chamfer via absolute dark-blue triangle
+            • phone box via absolute clip-path trapezoid on right
+        ══════════════════════════════════════════════════════════ */}
+        <nav
+          ref={navRef}
+          className="hidden lg:flex relative items-center"
           style={{
-            background: "linear-gradient(90deg, #021d66 0%, #0057ff 100%)",
-            padding: "8px 0 14px 20px",
+            height: 120,
+            background: C.white,
+            borderRadius: "0 0 35px 35px",
+            boxShadow: "0 32px 48px -16px rgba(2,29,102,.22), 0 6px 14px rgba(0,0,0,.05)",
+            paddingLeft: 40,
+            paddingRight: 300,   /* reserve space for phone box */
+            overflow: "visible", /* mega-dropdown must escape */
           }}
-          className="hidden lg:block"
         >
+          {/* ── TOP-LEFT CHAMFER
+              A dark-blue triangle sits over the top-left corner of the
+              white card so the blue header gradient "bleeds through",
+              producing the angled-cut geometry visible in the screenshot.
+              clip-path: top-left → bottom-left → top-right = right triangle */}
           <div
-            ref={dropdownRef}
-            className="flex items-stretch"
+            aria-hidden="true"
             style={{
-              background: "#fff",
-              borderRadius: 36,
-              minHeight: 100,
-              boxShadow: "0 14px 56px rgba(2,29,102,0.2), 0 4px 12px rgba(0,0,0,0.08)",
-              overflow: "visible",
-              position: "relative",
+              position: "absolute", top: 0, left: 0,
+              width: 55, height: 80,
+              background: C.darkBlue,
+              clipPath: "polygon(0 0, 0 100%, 100% 0)",
+              zIndex: 4,
+              pointerEvents: "none",
             }}
+          />
+
+          {/* ── LOGO ── */}
+          <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", flexShrink: 0 }}>
+            <Image
+              src="/images/logo.jpg"
+              alt="Kassapos"
+              width={320} height={76}
+              style={{ height: 76, width: "auto", objectFit: "contain", display: "block" }}
+              priority
+            />
+          </Link>
+
+          {/* ── VERTICAL DIVIDER ── */}
+          <div style={{ width: 2, height: 58, background: "#dbe0ea", borderRadius: 2, margin: "0 32px", flexShrink: 0 }} />
+
+          {/* ── MENU ITEMS ── */}
+          <div
+            className="flex items-center h-full"
+            style={{ flex: 1, justifyContent: "space-between", padding: "0 36px 0 8px" }}
           >
-            {/* Logo */}
-            <Link
-              href="/"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                padding: "8px 32px 8px 28px",
-                borderRight: "2px solid #E8EEF8",
-                flexShrink: 0,
-                textDecoration: "none",
-                borderRadius: "36px 0 0 36px",
-              }}
-            >
-              <Image
-                src="/images/logo.jpg"
-                alt="Kassapos"
-                width={320}
-                height={74}
-                style={{ height: 74, width: "auto", objectFit: "contain", display: "block" }}
-                priority
-              />
-            </Link>
-
-            {/* Nav links */}
-            <div className="flex items-center flex-1 justify-center" style={{ padding: "0 8px", gap: 4 }}>
-              {NAV_LINKS.map(({ label, href, Icon, hasDropdown }) => {
-                const isActive = pathname === href;
-                return (
-                  <div
-                    key={label}
-                    className="relative"
-                    onMouseEnter={() => hasDropdown && openDD(label)}
-                    onMouseLeave={closeDD}
-                  >
-                    <Link href={href} style={{ textDecoration: "none" }}>
-                      <div
-                        className="flex flex-col items-center justify-center"
-                        style={{
-                          padding: "8px 16px",
-                          cursor: "pointer",
-                          position: "relative",
-                          minWidth: 76,
-                          borderRadius: 12,
-                          transition: "background 0.15s",
-                        }}
-                        onMouseEnter={e => !isActive && ((e.currentTarget as HTMLElement).style.background = "#F0F4FF")}
-                        onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = "transparent")}
-                      >
-                        <Icon
-                          size={20}
-                          style={{ color: isActive ? "#0057ff" : "#374151", marginBottom: 4, transition: "color 0.15s" }}
-                        />
-                        <span
-                          style={{
-                            fontSize: "0.8rem",
-                            fontWeight: isActive ? 700 : 600,
-                            color: isActive ? "#0057ff" : "#374151",
-                            whiteSpace: "nowrap",
-                          }}
-                        >
-                          {label}
-                          {hasDropdown && (
-                            <motion.span
-                              style={{ display: "inline-block", marginLeft: 3, verticalAlign: "middle" }}
-                              animate={{ rotate: dropdown === label ? 180 : 0 }}
-                              transition={{ duration: 0.2 }}
-                            >
-                              <ChevronDown size={12} style={{ display: "inline" }} />
-                            </motion.span>
-                          )}
-                        </span>
-                        {/* Active underline */}
-                        {isActive && (
-                          <div
-                            style={{
-                              position: "absolute",
-                              bottom: 2,
-                              left: "50%",
-                              transform: "translateX(-50%)",
-                              width: 50,
-                              height: 4,
-                              borderRadius: 10,
-                              background: "#0057ff",
-                            }}
-                          />
+            {NAV_LINKS.map(({ label, href, Icon, hasDropdown }) => {
+              const active = pathname === href;
+              return (
+                <div
+                  key={label}
+                  className="relative h-full"
+                  onMouseEnter={() => hasDropdown && openDD(label)}
+                  onMouseLeave={closeDD}
+                >
+                  <Link href={href} style={{ textDecoration: "none" }}>
+                    <div
+                      className="flex flex-col items-center justify-center h-full"
+                      style={{
+                        gap: 10, padding: "0 14px",
+                        borderRadius: 12, cursor: "pointer",
+                        position: "relative", minWidth: 74,
+                        transition: "background .15s",
+                      }}
+                      onMouseEnter={e => { if (!active) (e.currentTarget as HTMLElement).style.background = "#F0F6FF"; }}
+                      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
+                    >
+                      <Icon size={23} style={{ color: active ? C.blue : C.inactive }} />
+                      <span style={{
+                        fontSize: 15, fontWeight: active ? 600 : 500,
+                        color: active ? C.blue : C.text,
+                        display: "inline-flex", alignItems: "center", gap: 7,
+                        whiteSpace: "nowrap",
+                      }}>
+                        {label}
+                        {hasDropdown && (
+                          <motion.span
+                            style={{ display: "inline-block", verticalAlign: "middle" }}
+                            animate={{ rotate: dropdown === label ? 180 : 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <ChevronDown size={11} style={{ display: "inline" }} />
+                          </motion.span>
                         )}
-                      </div>
-                    </Link>
-
-                    {/* Products Mega Dropdown */}
-                    <AnimatePresence>
-                      {hasDropdown && dropdown === label && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 6, scale: 0.98 }}
-                          transition={{ duration: 0.18, ease: EASE_EXPO }}
-                          style={{
-                            position: "absolute",
-                            top: "calc(100% + 12px)",
-                            left: "50%",
-                            transform: "translateX(-50%)",
-                            width: 700,
-                            background: "#fff",
-                            borderRadius: 18,
-                            border: "1px solid #E2EAF8",
-                            boxShadow: "0 20px 60px rgba(2,29,102,0.14), 0 4px 16px rgba(0,0,0,0.06)",
-                            zIndex: 100,
-                            overflow: "hidden",
-                            display: "flex",
-                            flexDirection: "column",
-                          }}
-                          onMouseEnter={() => openDD(label)}
-                          onMouseLeave={closeDD}
-                        >
-                          <div style={{ display: "flex", flex: 1 }}>
-                            {/* Left: category list */}
-                            <div style={{ width: 260, flexShrink: 0, borderRight: "1px solid #F1F5F9", padding: "12px 8px", background: "#FAFBFF" }}>
-                              {MEGA_MENU.map((cat) => {
-                                const active = activeMegaCat === cat.id;
-                                return (
-                                  <div
-                                    key={cat.id}
-                                    onMouseEnter={() => setActiveMegaCat(cat.id)}
-                                    style={{
-                                      display: "flex",
-                                      alignItems: "center",
-                                      justifyContent: "space-between",
-                                      padding: "10px 14px",
-                                      borderRadius: 10,
-                                      cursor: "pointer",
-                                      background: active ? "#EEF4FF" : "transparent",
-                                      borderLeft: active ? "3px solid #0057ff" : "3px solid transparent",
-                                      marginBottom: 2,
-                                      transition: "all 0.15s",
-                                    }}
-                                  >
-                                    <span style={{ fontSize: "0.875rem", fontWeight: active ? 700 : 500, color: active ? "#021d66" : "#374151" }}>
-                                      {cat.label}
-                                    </span>
-                                    <ChevronRight size={14} style={{ color: active ? "#0057ff" : "#CBD5E1" }} />
-                                  </div>
-                                );
-                              })}
-                            </div>
-                            {/* Right: items */}
-                            <div style={{ flex: 1, padding: "12px 8px" }}>
-                              {MEGA_MENU.find(c => c.id === activeMegaCat)?.items.map((item) => (
-                                <Link key={item.href} href={item.href} style={{ textDecoration: "none", display: "block" }}>
-                                  <div
-                                    style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 14px", borderRadius: 10, marginBottom: 2, transition: "background 0.15s" }}
-                                    onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.background = "#EEF4FF"}
-                                    onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.background = "transparent"}
-                                  >
-                                    <span style={{ fontSize: "1.2rem", width: 28, textAlign: "center" }}>{item.icon}</span>
-                                    <span style={{ fontSize: "0.875rem", fontWeight: 500, color: "#1E293B" }}>{item.label}</span>
-                                  </div>
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
-                          {/* Footer */}
-                          <div style={{ padding: "10px 20px", borderTop: "1px solid #F1F5F9", display: "flex", justifyContent: "space-between", background: "#FAFBFF" }}>
-                            <span style={{ fontSize: "0.77rem", color: "#94A3B8" }}>20+ industry-specific solutions</span>
-                            <Link href="/products" style={{ display: "flex", alignItems: "center", gap: 5, fontSize: "0.8rem", color: "#0057ff", fontWeight: 600, textDecoration: "none" }}>
-                              View all <ArrowRight size={12} />
-                            </Link>
-                          </div>
-                        </motion.div>
+                      </span>
+                      {/* Active underline — 50 px wide, 24 px from bottom */}
+                      {active && (
+                        <div style={{
+                          position: "absolute", bottom: 24,
+                          left: "50%", transform: "translateX(-50%)",
+                          width: 50, height: 4, borderRadius: 10, background: C.blue,
+                        }} />
                       )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })}
-            </div>
+                    </div>
+                  </Link>
 
-            {/* Right: Blue angled phone button */}
-            <div style={{ overflow: "hidden", borderRadius: "0 36px 36px 0", flexShrink: 0, marginRight: 0 }}>
-              <a
-                href="tel:+918754031480"
-                className="flex items-center gap-3"
-                style={{
-                  background: "linear-gradient(135deg, #0057ff 0%, #1a3bff 100%)",
-                  clipPath: "polygon(38px 0%, 100% 0%, 100% 100%, 0% 100%)",
-                  padding: "0 44px 0 68px",
-                  color: "#fff",
-                  fontWeight: 800,
-                  fontSize: "1.12rem",
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 12,
-                  height: "100%",
-                  minHeight: 100,
-                  letterSpacing: "0.02em",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                <Phone size={20} />
-                8754031480
-              </a>
-            </div>
+                  {/* Mega dropdown */}
+                  <AnimatePresence>
+                    {hasDropdown && dropdown === label && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                        transition={{ duration: 0.17, ease: EASE_EXPO }}
+                        style={{
+                          position: "absolute",
+                          top: "calc(100% + 14px)",
+                          left: "50%", transform: "translateX(-50%)",
+                          width: 700, background: C.white,
+                          borderRadius: 18,
+                          border: "1px solid #E2EAF8",
+                          boxShadow: "0 20px 60px rgba(2,29,102,.13), 0 4px 16px rgba(0,0,0,.06)",
+                          zIndex: 200, overflow: "hidden",
+                          display: "flex", flexDirection: "column",
+                        }}
+                        onMouseEnter={() => openDD(label)}
+                        onMouseLeave={closeDD}
+                      >
+                        <div style={{ display: "flex", flex: 1 }}>
+                          {/* Left category list */}
+                          <div style={{ width: 255, flexShrink: 0, borderRight: "1px solid #F1F5F9", padding: "12px 8px", background: "#FAFBFF" }}>
+                            {MEGA_MENU.map(cat => {
+                              const a = megaCat === cat.id;
+                              return (
+                                <div key={cat.id} onMouseEnter={() => setMegaCat(cat.id)}
+                                  style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 14px", borderRadius: 10, cursor: "pointer", background: a ? "#EEF4FF" : "transparent", borderLeft: a ? `3px solid ${C.blue}` : "3px solid transparent", marginBottom: 2, transition: "all .15s" }}>
+                                  <span style={{ fontSize: ".875rem", fontWeight: a ? 700 : 500, color: a ? C.darkBlue : C.inactive }}>{cat.label}</span>
+                                  <ChevronRight size={13} style={{ color: a ? C.blue : "#CBD5E1" }} />
+                                </div>
+                              );
+                            })}
+                          </div>
+                          {/* Right items */}
+                          <div style={{ flex: 1, padding: "12px 8px" }}>
+                            {MEGA_MENU.find(c => c.id === megaCat)?.items.map(item => (
+                              <Link key={item.href} href={item.href} style={{ textDecoration: "none", display: "block" }}>
+                                <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 14px", borderRadius: 10, marginBottom: 2, transition: "background .15s" }}
+                                  onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.background = "#EEF4FF"}
+                                  onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.background = "transparent"}>
+                                  <span style={{ fontSize: "1.15rem", width: 26, textAlign: "center" }}>{item.icon}</span>
+                                  <span style={{ fontSize: ".875rem", fontWeight: 500, color: "#1E293B" }}>{item.label}</span>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                        <div style={{ padding: "10px 20px", borderTop: "1px solid #F1F5F9", display: "flex", justifyContent: "space-between", background: "#FAFBFF" }}>
+                          <span style={{ fontSize: ".77rem", color: "#94A3B8" }}>20+ industry-specific solutions</span>
+                          <Link href="/products" style={{ display: "flex", alignItems: "center", gap: 5, fontSize: ".8rem", color: C.blue, fontWeight: 600, textDecoration: "none" }}>
+                            View all <ArrowRight size={12} />
+                          </Link>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
-        </div>
+
+          {/* ── PHONE BOX  (absolute, right 0, full card height)
+              Two layers inside overflow:hidden wrapper:
+              1. bg div  — blue gradient, clip-path trapezoid
+                 polygon(0 0, 100% 0, 100% 100%, 27% 100%)
+                 = left edge slants from top-left corner down to 27% from left at bottom
+              2. content div — phone icon + number, padded left so text clears the slant */}
+          <div style={{
+            position: "absolute", top: 0, right: 0, bottom: 0,
+            width: 300,
+            borderRadius: "0 35px 35px 0",
+            overflow: "hidden",
+          }}>
+            {/* Blue trapezoid background */}
+            <div style={{
+              position: "absolute", inset: 0,
+              background: "linear-gradient(120deg, #0057ff 0%, #0d47ff 100%)",
+              clipPath: "polygon(0 0, 100% 0, 100% 100%, 27% 100%)",
+            }} />
+            {/* Content */}
+            <a href="tel:+918754031480"
+              style={{
+                position: "absolute", inset: 0,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                gap: 13, paddingLeft: 54,
+                color: C.white, textDecoration: "none",
+                fontSize: 25, fontWeight: 600, letterSpacing: ".5px",
+                transition: "filter .2s",
+              }}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.filter = "brightness(1.1)"}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.filter = "brightness(1)"}
+            >
+              <Phone size={22} strokeWidth={2} />
+              <span>8754031480</span>
+            </a>
+          </div>
+        </nav>
 
         {/* ── MOBILE HEADER ── */}
         <div
           className="lg:hidden flex items-center justify-between px-5 py-3"
-          style={{ background: "linear-gradient(90deg, #021d66 0%, #0057ff 100%)" }}
+          style={{ minHeight: 66 }}
         >
           <Link href="/">
-            <div style={{ background: "#fff", borderRadius: 12, padding: "4px 14px", boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}>
-              <Image src="/images/logo.jpg" alt="Kassapos" width={150} height={40} style={{ height: 40, width: "auto", display: "block" }} priority />
+            <div style={{ background: C.white, borderRadius: 12, padding: "4px 14px", boxShadow: "0 2px 8px rgba(0,0,0,.15)" }}>
+              <Image src="/images/logo.jpg" alt="Kassapos" width={150} height={40}
+                style={{ height: 40, width: "auto", display: "block" }} priority />
             </div>
           </Link>
           <div className="flex items-center gap-2">
             <a href="tel:+918754031480">
-              <button style={{ background: "#fff", color: "#021d66", borderRadius: 8, padding: "7px 14px", fontSize: "0.8rem", fontWeight: 700, border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 5 }}>
+              <button style={{ background: C.white, color: C.darkBlue, borderRadius: 8, padding: "7px 14px", fontSize: ".78rem", fontWeight: 700, border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 5 }}>
                 <Phone size={13} /> 8754031480
               </button>
             </a>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              style={{ width: 40, height: 40, borderRadius: 10, background: "rgba(255,255,255,0.15)", border: "none", cursor: "pointer", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}
+              style={{ width: 40, height: 40, borderRadius: 10, background: "rgba(255,255,255,.18)", border: "none", cursor: "pointer", color: C.white, display: "flex", alignItems: "center", justifyContent: "center" }}
             >
               <AnimatePresence mode="wait">
                 {mobileOpen
-                  ? <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}><X size={20} /></motion.span>
-                  : <motion.span key="m" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}><Menu size={20} /></motion.span>
+                  ? <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: .15 }}><X size={20} /></motion.span>
+                  : <motion.span key="m" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: .15 }}><Menu size={20} /></motion.span>
                 }
               </AnimatePresence>
             </button>
@@ -515,44 +436,34 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* ════════════════════════════════════════
-          MOBILE DRAWER
-      ════════════════════════════════════════ */}
+      {/* ══ MOBILE DRAWER ══ */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: "0%" }}
             exit={{ opacity: 0, x: "100%" }}
-            transition={{ duration: 0.32, ease: EASE_EXPO }}
+            transition={{ duration: .3, ease: EASE_EXPO }}
             className="fixed inset-0 z-40 lg:hidden"
           >
-            <div className="absolute inset-0 bg-white/95 backdrop-blur-xl" onClick={() => setMobileOpen(false)} />
+            <div className="absolute inset-0 bg-white/96 backdrop-blur-xl" onClick={() => setMobileOpen(false)} />
             <div className="relative z-10 flex flex-col h-full pt-24 pb-8 px-6 overflow-y-auto">
               <nav className="flex flex-col gap-1 mb-8">
                 {NAV_LINKS.map(({ label, href, Icon }, i) => (
-                  <motion.div
-                    key={label}
-                    initial={{ opacity: 0, x: 30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.06, ease: EASE_EXPO }}
-                  >
-                    <Link
-                      href={href}
-                      className={cn(
-                        "flex items-center gap-3 px-4 py-3.5 rounded-xl text-base font-bold transition-all",
-                        pathname === href ? "text-[#0057ff] bg-blue-50" : "text-[#111827] hover:bg-slate-50"
-                      )}
-                    >
-                      <Icon size={18} />
-                      {label}
+                  <motion.div key={label} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * .05, ease: EASE_EXPO }}>
+                    <Link href={href} className={cn(
+                      "flex items-center gap-3 px-4 py-3.5 rounded-xl text-base font-bold transition-all",
+                      pathname === href ? "text-blue-600 bg-blue-50" : "text-[#111827] hover:bg-slate-50"
+                    )}>
+                      <Icon size={18} /> {label}
                     </Link>
                   </motion.div>
                 ))}
               </nav>
               <div className="mt-auto flex flex-col gap-3">
                 <Link href="/demo">
-                  <button className="w-full rounded-xl py-3 font-bold text-white text-sm" style={{ background: "linear-gradient(90deg,#021d66,#0057ff)" }}>
+                  <button className="w-full rounded-xl py-3 font-bold text-white text-sm"
+                    style={{ background: `linear-gradient(90deg,${C.darkBlue},${C.blue})` }}>
                     Request Demo
                   </button>
                 </Link>
@@ -561,11 +472,12 @@ export function Navbar() {
                     <Phone size={14} /> 8754031480
                   </button>
                 </a>
-                <div className="flex justify-center gap-4 pt-2">
+                <div className="flex justify-center gap-3 pt-2">
                   {SOCIALS.map(s => (
                     <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
-                      style={{ width: 40, height: 40, borderRadius: "50%", background: "#EEF4FF", display: "flex", alignItems: "center", justifyContent: "center", color: "#021d66" }}
-                    >{s.icon}</a>
+                      style={{ width: 40, height: 40, borderRadius: "50%", background: "#EEF4FF", display: "flex", alignItems: "center", justifyContent: "center", color: C.darkBlue }}>
+                      {s.icon}
+                    </a>
                   ))}
                 </div>
               </div>
