@@ -56,15 +56,16 @@ const MEGA_MENU = [
 ];
 
 const C = {
-  darkBlue : "#021d66",
+  darkBlue : "#0c2778",   /* matches left edge of header gradient */
   blue     : "#0057ff",
   white    : "#ffffff",
   text     : "#111827",
   inactive : "#1f2937",
 };
 
-/* ─── gradient used across header & chamfer ─── */
-const HEADER_GRAD = `linear-gradient(90deg, ${C.darkBlue} 0%, #0a3bbd 48%, ${C.blue} 100%)`;
+/* ─── Matches the reference: dark navy → slightly brighter navy.
+       Does NOT end in vivid #0057ff — keeps uniform dark-blue feel ─── */
+const HEADER_GRAD = "linear-gradient(90deg, #0c2778 0%, #1040c0 55%, #1848e0 100%)";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -98,41 +99,41 @@ export function Navbar() {
         style={{ background: HEADER_GRAD }}
       >
 
-        {/* ── TOP BAR  70 px ── */}
+        {/* ── TOP BAR  56 px ── */}
         <div
           className="hidden lg:flex items-center w-full"
-          style={{ height: 70, padding: "0 34px" }}
+          style={{ height: 56, padding: "0 28px" }}
         >
           {/* Left: award + tagline */}
-          <div className="flex items-center gap-[13px] shrink-0">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+          <div className="flex items-center gap-[10px] shrink-0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
               stroke="#FBBF24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="8" r="6"/>
               <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
             </svg>
-            <span style={{ color: C.white, fontSize: 16, fontWeight: 600, whiteSpace: "nowrap" }}>
+            <span style={{ color: C.white, fontSize: 13, fontWeight: 600, whiteSpace: "nowrap" }}>
               17+ Years of Excellence in Software Solutions
             </span>
           </div>
 
           {/* Center: Follow Us + social circles */}
-          <div className="flex items-center gap-[16px] flex-1 justify-center">
-            <span style={{ color: C.white, fontSize: 16, fontWeight: 600, whiteSpace: "nowrap" }}>
+          <div className="flex items-center gap-[14px] flex-1 justify-center">
+            <span style={{ color: C.white, fontSize: 13, fontWeight: 600, whiteSpace: "nowrap" }}>
               Follow Us :
             </span>
-            <div className="flex items-center gap-[12px]">
+            <div className="flex items-center gap-[10px]">
               {SOCIALS.map(s => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
                   aria-label={s.label}
                   style={{
-                    width: 40, height: 40, borderRadius: "50%",
+                    width: 34, height: 34, borderRadius: "50%",
                     background: "rgba(0,0,0,0.30)", color: C.white,
                     display: "flex", alignItems: "center", justifyContent: "center",
                     textDecoration: "none",
                     transition: "transform .25s ease, background .25s ease",
                   }}
                   onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
                     (e.currentTarget as HTMLElement).style.background = "rgba(0,0,0,0.48)";
                   }}
                   onMouseLeave={e => {
@@ -147,31 +148,31 @@ export function Navbar() {
           </div>
 
           {/* Right: divider | phone | Request Demo | Google Rating */}
-          <div className="flex items-center gap-[20px] shrink-0">
-            <div style={{ width: 2, height: 36, background: "rgba(255,255,255,.4)", borderRadius: 2 }} />
+          <div className="flex items-center gap-[16px] shrink-0">
+            <div style={{ width: 1.5, height: 28, background: "rgba(255,255,255,.4)", borderRadius: 2 }} />
 
-            <a href="tel:+918754031480" className="flex items-center gap-[10px]"
-              style={{ color: C.white, fontWeight: 600, fontSize: 18, letterSpacing: ".3px", textDecoration: "none" }}>
-              <Phone size={16} strokeWidth={2} /> 8754031480
+            <a href="tel:+918754031480" className="flex items-center gap-[7px]"
+              style={{ color: C.white, fontWeight: 600, fontSize: 14, letterSpacing: ".2px", textDecoration: "none" }}>
+              <Phone size={13} strokeWidth={2} /> 8754031480
             </a>
 
             <Link href="/demo">
               <button
                 style={{
-                  height: 50, minWidth: 168, padding: "0 24px",
+                  height: 40, minWidth: 145, padding: "0 18px",
                   background: C.white, color: C.darkBlue,
-                  fontFamily: "inherit", fontSize: 15, fontWeight: 600,
-                  border: "none", borderRadius: 10, cursor: "pointer",
-                  boxShadow: "0 6px 16px rgba(0,0,0,.18)",
+                  fontFamily: "inherit", fontSize: 13, fontWeight: 600,
+                  border: "none", borderRadius: 8, cursor: "pointer",
+                  boxShadow: "0 4px 12px rgba(0,0,0,.18)",
                   transition: "transform .22s ease, box-shadow .22s ease",
                 }}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
-                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 10px 22px rgba(0,0,0,.28)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 18px rgba(0,0,0,.28)";
                 }}
                 onMouseLeave={e => {
                   (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
-                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 16px rgba(0,0,0,.18)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 12px rgba(0,0,0,.18)";
                 }}
               >
                 Request Demo
@@ -180,18 +181,23 @@ export function Navbar() {
 
             {/* Google Rating badge */}
             <div style={{
-              height: 50, minWidth: 172, background: C.white, borderRadius: 10,
-              display: "flex", alignItems: "center", gap: 10,
-              padding: "0 14px", boxShadow: "0 6px 16px rgba(0,0,0,.18)",
+              height: 40, minWidth: 155, background: C.white, borderRadius: 8,
+              display: "flex", alignItems: "center", gap: 8,
+              padding: "0 12px", boxShadow: "0 4px 12px rgba(0,0,0,.18)",
             }}>
-              <GoogleG />
+              <svg viewBox="0 0 48 48" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+              </svg>
               <div>
-                <p style={{ fontSize: "11px", color: "#5f6368", fontWeight: 500, margin: 0, lineHeight: 1.2 }}>
+                <p style={{ fontSize: "9.5px", color: "#5f6368", fontWeight: 500, margin: 0, lineHeight: 1.2 }}>
                   Google Rating
                 </p>
-                <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                  <span style={{ fontSize: 16, fontWeight: 700, color: "#202124" }}>4.9</span>
-                  <span style={{ color: "#fbbc04", fontSize: 11, letterSpacing: 1 }}>★★★★★</span>
+                <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: "#202124" }}>4.9</span>
+                  <span style={{ color: "#fbbc04", fontSize: 10, letterSpacing: 1 }}>★★★★★</span>
                 </div>
               </div>
             </div>
@@ -208,12 +214,12 @@ export function Navbar() {
           ref={navRef}
           className="hidden lg:flex relative items-center"
           style={{
-            height: 120,
+            height: 96,
             background: C.white,
-            borderRadius: "0 0 35px 35px",
-            boxShadow: "0 32px 48px -16px rgba(2,29,102,.22), 0 6px 14px rgba(0,0,0,.05)",
-            paddingLeft: 38,
-            paddingRight: 290,
+            borderRadius: "0 0 28px 28px",
+            boxShadow: "0 24px 40px -12px rgba(2,29,102,.20), 0 4px 10px rgba(0,0,0,.05)",
+            paddingLeft: 28,
+            paddingRight: 235,
             overflow: "visible",
           }}
         >
@@ -226,7 +232,7 @@ export function Navbar() {
             aria-hidden="true"
             style={{
               position: "absolute", top: 0, left: 0,
-              width: 64, height: 64,
+              width: 50, height: 50,
               background: C.darkBlue,
               borderRadius: "0 0 100% 0",
               zIndex: 4,
@@ -240,18 +246,18 @@ export function Navbar() {
               src="/images/logo.jpg"
               alt="Kassapos"
               width={320} height={76}
-              style={{ height: 76, width: "auto", objectFit: "contain", display: "block" }}
+              style={{ height: 62, width: "auto", objectFit: "contain", display: "block" }}
               priority
             />
           </Link>
 
           {/* ── VERTICAL DIVIDER ── */}
-          <div style={{ width: 2, height: 58, background: "#dbe0ea", borderRadius: 2, margin: "0 28px", flexShrink: 0 }} />
+          <div style={{ width: 2, height: 46, background: "#dbe0ea", borderRadius: 2, margin: "0 22px", flexShrink: 0 }} />
 
           {/* ── MENU ITEMS ── */}
           <div
             className="flex items-center h-full"
-            style={{ flex: 1, justifyContent: "space-between", padding: "0 36px 0 8px" }}
+            style={{ flex: 1, justifyContent: "space-between", padding: "0 26px 0 6px" }}
           >
             {NAV_LINKS.map(({ label, href, Icon, hasDropdown }) => {
               const active = pathname === href;
@@ -266,19 +272,19 @@ export function Navbar() {
                     <div
                       className="flex flex-col items-center justify-center h-full"
                       style={{
-                        gap: 10, padding: "0 14px",
-                        borderRadius: 12, cursor: "pointer",
-                        position: "relative", minWidth: 72,
+                        gap: 7, padding: "0 10px",
+                        borderRadius: 10, cursor: "pointer",
+                        position: "relative", minWidth: 60,
                         transition: "background .15s",
                       }}
                       onMouseEnter={e => { if (!active) (e.currentTarget as HTMLElement).style.background = "#F0F6FF"; }}
                       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
                     >
-                      <Icon size={21} style={{ color: active ? C.blue : C.inactive }} />
+                      <Icon size={17} style={{ color: active ? C.blue : C.inactive }} />
                       <span style={{
-                        fontSize: 14, fontWeight: active ? 600 : 500,
+                        fontSize: 12.5, fontWeight: active ? 600 : 500,
                         color: active ? C.blue : C.text,
-                        display: "inline-flex", alignItems: "center", gap: 6,
+                        display: "inline-flex", alignItems: "center", gap: 4,
                         whiteSpace: "nowrap",
                       }}>
                         {label}
@@ -294,9 +300,9 @@ export function Navbar() {
                       </span>
                       {active && (
                         <div style={{
-                          position: "absolute", bottom: 22,
+                          position: "absolute", bottom: 16,
                           left: "50%", transform: "translateX(-50%)",
-                          width: 48, height: 4, borderRadius: 10, background: C.blue,
+                          width: 36, height: 3, borderRadius: 10, background: C.blue,
                         }} />
                       )}
                     </div>
@@ -375,8 +381,8 @@ export function Navbar() {
               2. content div — centred, paddingLeft clears the diagonal edge */}
           <div style={{
             position: "absolute", top: 0, right: 0, bottom: 0,
-            width: 290,
-            borderRadius: "0 35px 35px 0",
+            width: 235,
+            borderRadius: "0 28px 28px 0",
             overflow: "hidden",
           }}>
             {/* Blue trapezoid background */}
@@ -390,15 +396,15 @@ export function Navbar() {
               style={{
                 position: "absolute", inset: 0,
                 display: "flex", alignItems: "center", justifyContent: "center",
-                gap: 12, paddingLeft: 58,
+                gap: 9, paddingLeft: 46,
                 color: C.white, textDecoration: "none",
-                fontSize: 23, fontWeight: 700, letterSpacing: ".4px",
+                fontSize: 18, fontWeight: 700, letterSpacing: ".3px",
                 transition: "filter .2s",
               }}
               onMouseEnter={e => (e.currentTarget as HTMLElement).style.filter = "brightness(1.1)"}
               onMouseLeave={e => (e.currentTarget as HTMLElement).style.filter = "brightness(1)"}
             >
-              <Phone size={20} strokeWidth={2} />
+              <Phone size={16} strokeWidth={2} />
               <span>8754031480</span>
             </a>
           </div>
