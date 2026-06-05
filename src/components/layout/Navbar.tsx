@@ -214,7 +214,7 @@ export function Navbar() {
           ref={navRef}
           className="hidden lg:flex relative items-center"
           style={{
-            height: 96,
+            height: 104,
             background: C.white,
             borderRadius: "0 0 28px 28px",
             boxShadow: "0 24px 40px -12px rgba(2,29,102,.20), 0 4px 10px rgba(0,0,0,.05)",
@@ -246,13 +246,13 @@ export function Navbar() {
               src="/images/logo.jpg"
               alt="Kassapos"
               width={320} height={76}
-              style={{ height: 62, width: "auto", objectFit: "contain", display: "block" }}
+              style={{ height: 80, width: "auto", objectFit: "contain", display: "block" }}
               priority
             />
           </Link>
 
           {/* ── VERTICAL DIVIDER ── */}
-          <div style={{ width: 2, height: 46, background: "#dbe0ea", borderRadius: 2, margin: "0 22px", flexShrink: 0 }} />
+          <div style={{ width: 2, height: 58, background: "#dbe0ea", borderRadius: 2, margin: "0 22px", flexShrink: 0 }} />
 
           {/* ── MENU ITEMS ── */}
           <div
