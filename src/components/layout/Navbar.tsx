@@ -35,10 +35,10 @@ const LinkedInSvg = () => (
 
 /* ══════════════════════════ DATA ══════════════════════════ */
 const SOCIALS = [
-  { icon: <YoutubeSvg />,   href: "#", label: "YouTube"   },
-  { icon: <FacebookSvg />,  href: "#", label: "Facebook"  },
-  { icon: <InstagramSvg />, href: "#", label: "Instagram" },
-  { icon: <LinkedInSvg />,  href: "#", label: "LinkedIn"  },
+  { icon: <YoutubeSvg />,   href: "#", label: "YouTube",   bg: "#FF0000" },
+  { icon: <FacebookSvg />,  href: "#", label: "Facebook",  bg: "#1877F2" },
+  { icon: <InstagramSvg />, href: "#", label: "Instagram", bg: "linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)" },
+  { icon: <LinkedInSvg />,  href: "#", label: "LinkedIn",  bg: "#0A66C2" },
 ];
 
 const NAV_LINKS = [
@@ -88,17 +88,31 @@ export function Navbar() {
     <>
       {/* ══════════════ DESKTOP HEADER ══════════════ */}
       <header className="fixed top-0 left-0 right-0 z-50 hidden lg:block">
-        <div style={{ width: "100%" }}>
+        {/*
+          Outer wrapper: position:relative so the blue backdrop div can be absolute.
+          The blue backdrop only covers 62px (top bar) + 20px (nav card top corner radius)
+          = 82px total. This gives blue at the nav card's top corners but NOT bottom corners.
+        */}
+        <div style={{ width: "100%", position: "relative" }}>
+
+          {/* Blue backdrop — only tall enough to show through nav card's top rounded corners */}
+          <div aria-hidden="true" style={{
+            position: "absolute", top: 0, left: 0, right: 0,
+            height: 70,
+            background: "linear-gradient(90deg, #0c2778 0%, #1040c0 55%, #1848e0 100%)",
+            zIndex: 0,
+            pointerEvents: "none",
+          }} />
 
           {/* ─────────────────── TOP BAR ─────────────────── */}
           <div
             style={{
-              height: 62,
-              background: "linear-gradient(90deg, #168BFF 0%, #0A58FF 52%, #0B43E8 100%)",
-              borderRadius: 0,
+              height: 50,
               display: "flex",
               alignItems: "center",
               padding: "0 32px",
+              position: "relative",
+              zIndex: 2,
             }}
           >
             {/* LEFT — Award icon + tagline */}
@@ -127,24 +141,25 @@ export function Navbar() {
                     rel="noopener noreferrer"
                     aria-label={s.label}
                     style={{
-                      width: 38, height: 38, borderRadius: "50%",
-                      background: "transparent",
-                      border: "1.5px solid rgba(255,255,255,0.75)",
+                      width: 32, height: 32, borderRadius: "50%",
+                      background: s.bg,
+                      border: "none",
                       color: "#fff",
                       display: "flex", alignItems: "center", justifyContent: "center",
                       textDecoration: "none",
-                      transition: "background .2s ease, transform .2s ease",
+                      transition: "opacity .2s ease, transform .2s ease",
                       flexShrink: 0,
+                      opacity: 1,
                     }}
                     onMouseEnter={e => {
                       const el = e.currentTarget as HTMLAnchorElement;
-                      el.style.background = "rgba(255,255,255,0.18)";
-                      el.style.transform  = "translateY(-2px)";
+                      el.style.opacity = "0.85";
+                      el.style.transform = "translateY(-2px)";
                     }}
                     onMouseLeave={e => {
                       const el = e.currentTarget as HTMLAnchorElement;
-                      el.style.background = "transparent";
-                      el.style.transform  = "translateY(0)";
+                      el.style.opacity = "1";
+                      el.style.transform = "translateY(0)";
                     }}
                   >
                     {s.icon}
@@ -170,7 +185,7 @@ export function Navbar() {
               <Link href="/demo" style={{ textDecoration: "none" }}>
                 <button
                   style={{
-                    height: 38, padding: "0 16px",
+                    height: 32, padding: "0 14px",
                     display: "flex", alignItems: "center", gap: 7,
                     background: "transparent",
                     border: "1.5px solid rgba(255,255,255,0.8)",
@@ -191,10 +206,11 @@ export function Navbar() {
               {/* Google Rating */}
               <div
                 style={{
-                  height: 46, background: "#ffffff", borderRadius: 11,
+                  height: 38, background: "#ffffff", borderRadius: 9,
                   padding: "0 12px",
                   display: "flex", alignItems: "center", gap: 8,
                   boxShadow: "0 2px 12px rgba(0,0,0,0.13)",
+                  border: "2px solid #22C55E",
                   flexShrink: 0,
                 }}
               >
@@ -219,38 +235,44 @@ export function Navbar() {
           <nav
             ref={navRef}
             style={{
-              height: 108,
+              height: 88,
               background: "#FFFFFF",
-              borderRadius: "0 0 22px 22px",
+              borderRadius: "20px 20px 22px 22px",
               boxShadow: "0 20px 60px rgba(0,0,0,0.08)",
-              padding: "0 28px",
+              padding: "0 24px",
               display: "flex",
               alignItems: "center",
               position: "relative",
+              zIndex: 1,
             }}
           >
-            {/* ── LOGO SECTION (~280px) ── */}
-            <div style={{ width: 280, flexShrink: 0, display: "flex", alignItems: "center" }}>
+            {/* ── LOGO SECTION (~260px) ── */}
+            <div style={{ width: 260, flexShrink: 0, display: "flex", alignItems: "center" }}>
               <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
                 <Image
                   src="/images/logo.jpg"
                   alt="Kassapos Software Solutions"
-                  width={240} height={68}
-                  style={{ height: 68, width: "auto", objectFit: "contain", display: "block" }}
+                  width={240} height={78}
+                  style={{
+                    height: 78, width: "auto",
+                    objectFit: "contain", display: "block",
+                    transform: "scale(1.12)",
+                    transformOrigin: "left center",
+                  }}
                   priority
                 />
               </Link>
             </div>
 
             {/* Vertical divider */}
-            <div style={{ width: 1.5, height: 64, background: "#E2E8F0", borderRadius: 2, flexShrink: 0 }} />
+            <div style={{ width: 1.5, height: 52, background: "#E2E8F0", borderRadius: 2, flexShrink: 0 }} />
 
             {/* ── NAV LINKS (centered, fills remaining space) ── */}
             <div
               style={{
                 flex: 1, height: "100%",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                gap: 4,
+                gap: 15,
               }}
             >
               {NAV_LINKS.map(({ label, href, Icon, hasDropdown }) => {
@@ -266,8 +288,8 @@ export function Navbar() {
                       <div
                         style={{
                           position: "relative",
-                          width: 84, height: 80,
-                          borderRadius: 16,
+                          width: 78, height: 68,
+                          borderRadius: 14,
                           background: active ? "#F5F7FD" : "transparent",
                           display: "flex", flexDirection: "column",
                           alignItems: "center", justifyContent: "center",
@@ -312,9 +334,9 @@ export function Navbar() {
                           <div
                             style={{
                               position: "absolute",
-                              bottom: 8, left: "50%",
+                              bottom: 6, left: "50%",
                               transform: "translateX(-50%)",
-                              width: 36, height: 3,
+                              width: 30, height: 3,
                               borderRadius: 999,
                               background: "#0A58FF",
                             }}
@@ -399,13 +421,13 @@ export function Navbar() {
             </div>
 
             {/* Vertical divider */}
-            <div style={{ width: 1.5, height: 64, background: "#E2E8F0", borderRadius: 2, flexShrink: 0 }} />
+            <div style={{ width: 1.5, height: 52, background: "#E2E8F0", borderRadius: 2, flexShrink: 0 }} />
 
             {/* ── CALL CTA CARD (pill) ── */}
             <a
               href="tel:+918754031480"
               style={{
-                width: 268, height: 68,
+                width: 248, height: 58,
                 flexShrink: 0,
                 marginLeft: 16,
                 background: "#FAFBFF",
@@ -431,19 +453,19 @@ export function Navbar() {
               {/* Blue gradient circle */}
               <div
                 style={{
-                  width: 48, height: 48, borderRadius: "50%",
+                  width: 42, height: 42, borderRadius: "50%",
                   background: "linear-gradient(135deg, #168BFF 0%, #0A58FF 100%)",
-                  boxShadow: "0 3px 14px rgba(10,88,255,0.38)",
+                  boxShadow: "0 3px 12px rgba(10,88,255,0.35)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   flexShrink: 0,
                 }}
               >
-                <Phone size={20} color="#ffffff" strokeWidth={2.2} />
+                <Phone size={17} color="#ffffff" strokeWidth={2.2} />
               </div>
 
               {/* Text */}
               <div style={{ flex: 1 }}>
-                <p style={{ fontSize: 16, fontWeight: 800, color: "#0F172A", margin: 0, lineHeight: 1.2, letterSpacing: "0.2px" }}>
+                <p style={{ fontSize: 14.5, fontWeight: 800, color: "#0F172A", margin: 0, lineHeight: 1.2, letterSpacing: "0.2px" }}>
                   8754031480
                 </p>
                 <p style={{ fontSize: 11, color: "#6B7280", margin: "3px 0 0", fontWeight: 500 }}>
@@ -461,7 +483,7 @@ export function Navbar() {
       {/* ══════════════ MOBILE HEADER ══════════════ */}
       <header
         className="lg:hidden fixed top-0 left-0 right-0 z-50"
-        style={{ background: "linear-gradient(90deg, #168BFF 0%, #0A58FF 52%, #0B43E8 100%)" }}
+        style={{ background: "linear-gradient(90deg, #0c2778 0%, #1040c0 55%, #1848e0 100%)" }}
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", minHeight: 66 }}>
           <Link href="/" style={{ textDecoration: "none" }}>
