@@ -156,25 +156,29 @@ function FeatureCard({
       viewport={{ once: true, margin: "-40px" }}
       transition={{ delay: index * 0.055, duration: 0.48, ease: EASE_EXPO }}
     >
-      <div
-        className="absolute top-0 inset-x-0 h-px"
-        style={{
-          background: `linear-gradient(90deg, transparent 10%, ${feature.color}50 50%, transparent 90%)`,
-          opacity: hovered ? 1 : 0,
-          transition: "opacity 0.25s ease",
-        }}
+      {/* Accent line — slides in from left on entry */}
+      <motion.div
+        className="absolute top-0 left-0 h-px"
+        style={{ background: `linear-gradient(90deg, ${feature.color}70, ${feature.color}20, transparent)` }}
+        initial={{ width: "0%" }}
+        whileInView={{ width: "100%" }}
+        viewport={{ once: true }}
+        transition={{ delay: index * 0.055 + 0.3, duration: 0.6, ease: EASE_EXPO }}
       />
 
-      <div
+      {/* Icon — gentle float */}
+      <motion.div
         className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0"
         style={{
           background: hovered ? `${feature.color}14` : feature.accentBg,
           color: feature.color,
           transition: "background 0.25s ease",
         }}
+        animate={{ y: [0, -5, 0] }}
+        transition={{ repeat: Infinity, duration: 2.8 + (index % 4) * 0.4, ease: "easeInOut" }}
       >
         {feature.icon}
-      </div>
+      </motion.div>
 
       <div>
         <h3 className="font-bold text-slate-900 text-[17px] leading-snug mb-1.5">
