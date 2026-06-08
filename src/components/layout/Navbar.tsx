@@ -171,11 +171,11 @@ export function Navbar() {
             {/* RIGHT — phone | divider | demo button | google rating */}
             <div style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
               <a
-                href="tel:+918754031480"
+                href="mailto:support@kassapos.com"
                 style={{ display: "flex", alignItems: "center", gap: 6, color: "#fff", textDecoration: "none", fontSize: 13, fontWeight: 600, whiteSpace: "nowrap" }}
               >
-                <Phone size={14} strokeWidth={2} />
-                8754031480
+                <Mail size={14} strokeWidth={2} />
+                support@kassapos.com
               </a>
 
               {/* Vertical divider */}
