@@ -10,6 +10,7 @@ import {
   MapPin, FileText, Mail, ChevronDown, ChevronRight,
   ArrowRight, Menu, X,
 } from "lucide-react";
+import { openDemoModal } from "@/components/ui/DemoModal";
 
 /* ══════════════════════════ SOCIAL SVGs ══════════════════════════ */
 const YoutubeSvg = () => (
@@ -182,26 +183,25 @@ export function Navbar() {
               <div style={{ width: 1.5, height: 24, background: "rgba(255,255,255,0.4)", borderRadius: 2 }} />
 
               {/* Request Demo */}
-              <Link href="/demo" style={{ textDecoration: "none" }}>
-                <button
-                  style={{
-                    height: 32, padding: "0 14px",
-                    display: "flex", alignItems: "center", gap: 7,
-                    background: "transparent",
-                    border: "1.5px solid rgba(255,255,255,0.8)",
-                    borderRadius: 10,
-                    color: "#fff",
-                    fontSize: 13, fontWeight: 600,
-                    cursor: "pointer", fontFamily: "inherit",
-                    whiteSpace: "nowrap",
-                    transition: "background .2s ease",
-                  }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.15)"; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}
-                >
-                  Request Demo <ArrowRight size={13} />
-                </button>
-              </Link>
+              <button
+                onClick={openDemoModal}
+                style={{
+                  height: 32, padding: "0 14px",
+                  display: "flex", alignItems: "center", gap: 7,
+                  background: "transparent",
+                  border: "1.5px solid rgba(255,255,255,0.8)",
+                  borderRadius: 10,
+                  color: "#fff",
+                  fontSize: 13, fontWeight: 600,
+                  cursor: "pointer", fontFamily: "inherit",
+                  whiteSpace: "nowrap",
+                  transition: "background .2s ease",
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.15)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}
+              >
+                Request Demo <ArrowRight size={13} />
+              </button>
 
               {/* Google Rating */}
               <div
@@ -302,16 +302,16 @@ export function Navbar() {
                       >
                         {/* Icon */}
                         <Icon
-                          size={22}
-                          style={{ color: active ? "#0A58FF" : "#6B7280" }}
-                          strokeWidth={active ? 2 : 1.6}
+                          size={24}
+                          style={{ color: active ? "#0A58FF" : "#4B5563" }}
+                          strokeWidth={active ? 2.2 : 2}
                         />
 
                         {/* Label */}
                         <span
                           style={{
-                            fontSize: 12.5, fontWeight: active ? 700 : 500,
-                            color: active ? "#0A58FF" : "#374151",
+                            fontSize: 14, fontWeight: active ? 800 : 650,
+                            color: active ? "#0A58FF" : "#1F2937",
                             whiteSpace: "nowrap",
                             display: "flex", alignItems: "center", gap: 2,
                             lineHeight: 1,
@@ -546,11 +546,12 @@ export function Navbar() {
                 ))}
               </nav>
               <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", gap: 12 }}>
-                <Link href="/demo" style={{ textDecoration: "none" }}>
-                  <button style={{ width: "100%", borderRadius: 12, padding: "12px 0", fontWeight: 700, color: "#fff", fontSize: 14, background: "linear-gradient(90deg, #0c2778, #0A58FF)", border: "none", cursor: "pointer", fontFamily: "inherit" }}>
-                    Request Demo
-                  </button>
-                </Link>
+                <button
+                  onClick={openDemoModal}
+                  style={{ width: "100%", borderRadius: 12, padding: "12px 0", fontWeight: 700, color: "#fff", fontSize: 14, background: "linear-gradient(90deg, #0c2778, #0A58FF)", border: "none", cursor: "pointer", fontFamily: "inherit" }}
+                >
+                  Request Demo
+                </button>
                 <a href="tel:+918754031480" style={{ textDecoration: "none" }}>
                   <button style={{ width: "100%", borderRadius: 12, padding: "12px 0", fontWeight: 700, color: "#374151", fontSize: 14, background: "#fff", border: "1px solid #E2E8F0", cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
                     <Phone size={14} /> 8754031480

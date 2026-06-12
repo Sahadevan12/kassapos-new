@@ -66,12 +66,12 @@ const SOCIAL_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden" style={{ background: "#0D1B2E" }}>
+    <footer className="relative overflow-hidden" style={{ background: "#1E293B" }}>
       {/* Subtle top glow */}
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(37,99,235,0.5), transparent)" }} />
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(96,165,250,0.5), transparent)" }} />
 
       {/* CTA Band */}
-      <div style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+      <div style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", background: "#162032" }}>
         <div className="container-xl py-14">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
@@ -117,8 +117,8 @@ export function Footer() {
                   borderRadius: 16,
                   padding: "8px 18px",
                   display: "inline-flex",
-                  border: "1.5px solid rgba(37,99,235,0.35)",
-                  boxShadow: "0 4px 18px rgba(37,99,235,0.25), 0 1px 4px rgba(0,0,0,0.2)",
+                  border: "1.5px solid rgba(96,165,250,0.3)",
+                  boxShadow: "0 4px 18px rgba(37,99,235,0.25)",
                 }}
               >
                 <Image
@@ -185,7 +185,7 @@ export function Footer() {
                     className="flex items-center gap-3 transition-colors group"
                     style={{ color: "rgba(148,163,184,0.75)", fontSize: "1rem", lineHeight: 1.5 }}
                   >
-                    <span className="w-2 h-2 rounded-full shrink-0 transition-colors group-hover:bg-blue-300" style={{ background: "rgba(59,130,246,0.7)" }} />
+                    <span className="w-2 h-2 rounded-full shrink-0 transition-colors group-hover:bg-blue-300" style={{ background: "rgba(96,165,250,0.7)" }} />
                     <span className="group-hover:text-white transition-colors">{item.label}</span>
                   </Link>
                 </li>
@@ -206,7 +206,7 @@ export function Footer() {
                     className="flex items-center gap-3 transition-colors group"
                     style={{ color: "rgba(148,163,184,0.75)", fontSize: "1rem", lineHeight: 1.5 }}
                   >
-                    <span className="w-2 h-2 rounded-full shrink-0 transition-colors group-hover:bg-blue-300" style={{ background: "rgba(59,130,246,0.7)" }} />
+                    <span className="w-2 h-2 rounded-full shrink-0 transition-colors group-hover:bg-blue-300" style={{ background: "rgba(96,165,250,0.7)" }} />
                     <span className="group-hover:text-white transition-colors">{item.label}</span>
                   </Link>
                 </li>
@@ -225,7 +225,7 @@ export function Footer() {
                 className="flex items-center gap-3.5 transition-colors group"
                 style={{ color: "rgba(148,163,184,0.75)", fontSize: "1rem" }}
               >
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: "rgba(37,99,235,0.22)" }}>
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: "rgba(96,165,250,0.18)" }}>
                   <Phone size={17} className="text-blue-400" />
                 </div>
                 <span className="group-hover:text-white transition-colors">{SITE.phone}</span>
@@ -235,7 +235,7 @@ export function Footer() {
                 className="flex items-center gap-3.5 transition-colors group"
                 style={{ color: "rgba(148,163,184,0.75)", fontSize: "1rem" }}
               >
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: "rgba(37,99,235,0.22)" }}>
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: "rgba(96,165,250,0.18)" }}>
                   <Mail size={17} className="text-blue-400" />
                 </div>
                 <span className="group-hover:text-white transition-colors">{SITE.email}</span>
@@ -273,7 +273,7 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", background: "#131E2D" }}>
         <div className="container-xl py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-sm" style={{ color: "rgba(148,163,184,0.45)" }}>
             © {new Date().getFullYear()} {SITE.fullName}. All rights reserved.

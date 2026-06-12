@@ -30,7 +30,7 @@ const ITEMS = [
 
 export function SocialProofBar() {
   return (
-    <section style={{ background: "#FFFFFF", padding: "20px 0 28px" }}>
+    <section style={{ background: "#FFFFFF", padding: "10px 0 14px" }}>
       <div style={{ maxWidth: 1400, margin: "0 auto", paddingLeft: 16, paddingRight: 16 }}>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -54,7 +54,8 @@ export function SocialProofBar() {
               transition={{ duration: 0.4, delay: i * 0.08, ease: EASE_EXPO }}
               className="flex items-center justify-center gap-4"
               style={{
-                padding: "28px 32px",
+                paddingTop: 18,
+                paddingBottom: 18,
                 paddingLeft:  i === 0 ? 48 : 32,
                 paddingRight: i === ITEMS.length - 1 ? 48 : 32,
                 borderRight: i < ITEMS.length - 1

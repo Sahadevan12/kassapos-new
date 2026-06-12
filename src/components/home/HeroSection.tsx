@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { openDemoModal } from "@/components/ui/DemoModal";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Calendar, Shield, Lock, MessageSquare,
@@ -98,7 +99,7 @@ export function HeroSection() {
 
   return (
     <section
-      className="flex flex-col relative overflow-x-hidden min-h-screen"
+      className="flex flex-col relative overflow-x-hidden"
       style={{ background: "#FFFFFF" }}
     >
       {/* ── Subtle bg blob (desktop only) ── */}
@@ -118,7 +119,7 @@ export function HeroSection() {
 
       {/* ── Hero grid ── */}
       <div
-        className="container-xl relative pt-20 lg:pt-[200px] pb-2"
+        className="container-xl relative pt-24 lg:pt-[160px] pb-6 lg:pb-4"
         style={{ zIndex: 1, flex: 1, display: "flex", alignItems: "center" }}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
@@ -217,31 +218,34 @@ export function HeroSection() {
             </AnimatePresence>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 mb-5">
-              <Link
-                href="/demo"
-                className="inline-flex items-center justify-center gap-2 font-bold rounded-xl text-white text-sm"
+            <div className="flex flex-row gap-3 mb-5">
+              <button
+                onClick={openDemoModal}
+                className="inline-flex items-center justify-center gap-1.5 font-bold rounded-xl text-white text-sm whitespace-nowrap"
                 style={{
                   background: "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
                   boxShadow: "0 6px 20px rgba(245,158,11,0.38)",
-                  padding: "11px 26px",
-                  minWidth: 175,
+                  padding: "11px 16px",
+                  flex: 1,
+                  border: "none",
+                  cursor: "pointer",
+                  fontFamily: "inherit",
                 }}
               >
                 <Calendar size={16} />
                 BOOK FREE DEMO
-              </Link>
+              </button>
 
               <a
                 href="https://wa.me/918754031480"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 font-bold rounded-xl text-white text-sm"
+                className="inline-flex items-center justify-center gap-1.5 font-bold rounded-xl text-white text-sm whitespace-nowrap"
                 style={{
                   background: "linear-gradient(135deg, #22C55E 0%, #16A34A 100%)",
                   boxShadow: "0 6px 20px rgba(34,197,94,0.38)",
-                  padding: "11px 26px",
-                  minWidth: 175,
+                  padding: "11px 16px",
+                  flex: 1,
                 }}
               >
                 <WaSvg />

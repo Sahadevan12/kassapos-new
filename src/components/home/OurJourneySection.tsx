@@ -162,8 +162,88 @@ export function OurJourneySection() {
           ))}
         </div>
 
-        {/* ── timeline ── */}
-        <div style={{ position: "relative", maxWidth: 800, margin: "0 auto" }}>
+        {/* ── MOBILE timeline ── */}
+        <div className="block md:hidden" style={{ position: "relative", paddingLeft: 32 }}>
+          {/* left vertical line */}
+          <motion.div
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            style={{
+              position: "absolute",
+              left: 10,
+              top: 0, bottom: 0,
+              width: 3,
+              background: "linear-gradient(to bottom, #2563EB, #06B6D4, #7C3AED, #059669, #DC2626)",
+              borderRadius: 2,
+              transformOrigin: "top",
+            }}
+          />
+
+          {MILESTONES.map((m, i) => (
+            <motion.div
+              key={m.year}
+              initial={{ opacity: 0, x: -28 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ delay: 0.1 * i, duration: 0.5, ease: SPRING }}
+              className="relative mb-6 last:mb-0"
+            >
+              {/* dot on line */}
+              <div
+                style={{
+                  position: "absolute",
+                  left: -26,
+                  top: 22,
+                  width: 14,
+                  height: 14,
+                  borderRadius: "50%",
+                  background: m.color,
+                  border: "3px solid #F8FAFF",
+                  boxShadow: `0 0 0 3px ${m.color}40`,
+                  zIndex: 2,
+                }}
+              />
+              {/* card */}
+              <div
+                style={{
+                  background: "#FFFFFF",
+                  borderRadius: 16,
+                  padding: "18px 20px",
+                  boxShadow: "0 4px 20px rgba(37,99,235,0.08)",
+                  border: `1px solid ${m.color}20`,
+                }}
+              >
+                <span
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    background: `${m.color}15`,
+                    color: m.color,
+                    borderRadius: 999,
+                    padding: "3px 12px",
+                    fontSize: "0.72rem",
+                    fontWeight: 800,
+                    letterSpacing: "0.06em",
+                    marginBottom: 8,
+                  }}
+                >
+                  {m.year}
+                </span>
+                <h3 style={{ fontSize: "1rem", fontWeight: 800, color: "#0F172A", letterSpacing: "-0.02em", marginBottom: 5 }}>
+                  {m.title}
+                </h3>
+                <p style={{ fontSize: "0.84rem", color: "#64748B", lineHeight: 1.65 }}>
+                  {m.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* ── DESKTOP timeline (zigzag) ── */}
+        <div className="hidden md:block" style={{ position: "relative", maxWidth: 800, margin: "0 auto" }}>
           {/* centre vertical line */}
           <motion.div
             initial={{ scaleY: 0 }}
@@ -180,7 +260,6 @@ export function OurJourneySection() {
               borderRadius: 2,
               transformOrigin: "top",
             }}
-            className="hidden md:block"
           />
 
           {MILESTONES.map((m, i) => {
@@ -192,16 +271,15 @@ export function OurJourneySection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ delay: 0.1 * i, duration: 0.6, ease: SPRING }}
-                className="relative flex md:items-center mb-10 last:mb-0"
+                className="relative flex items-center mb-10 last:mb-0"
                 style={{
                   justifyContent: isLeft ? "flex-start" : "flex-end",
                   paddingLeft: isLeft ? 0 : "50%",
                   paddingRight: isLeft ? "50%" : 0,
                 }}
               >
-                {/* card */}
                 <div
-                  className="relative w-full md:w-[90%]"
+                  className="relative w-[90%]"
                   style={{
                     marginLeft: isLeft ? 0 : "auto",
                     marginRight: isLeft ? "auto" : 0,
@@ -216,10 +294,8 @@ export function OurJourneySection() {
                       padding: "24px 26px",
                       boxShadow: "0 4px 24px rgba(37,99,235,0.08), 0 1px 4px rgba(0,0,0,0.04)",
                       border: `1px solid ${m.color}20`,
-                      position: "relative",
                     }}
                   >
-                    {/* year badge */}
                     <span
                       style={{
                         display: "inline-flex",
@@ -236,15 +312,7 @@ export function OurJourneySection() {
                     >
                       {m.year}
                     </span>
-                    <h3
-                      style={{
-                        fontSize: "1.05rem",
-                        fontWeight: 800,
-                        color: "#0F172A",
-                        letterSpacing: "-0.02em",
-                        marginBottom: 6,
-                      }}
-                    >
+                    <h3 style={{ fontSize: "1.05rem", fontWeight: 800, color: "#0F172A", letterSpacing: "-0.02em", marginBottom: 6 }}>
                       {m.title}
                     </h3>
                     <p style={{ fontSize: "0.87rem", color: "#64748B", lineHeight: 1.65 }}>
@@ -254,15 +322,16 @@ export function OurJourneySection() {
 
                   {/* connector dot */}
                   <div
-                    className="hidden md:block absolute top-1/2"
                     style={{
                       width: 14,
                       height: 14,
                       borderRadius: "50%",
                       background: m.color,
-                      border: "3px solid #FFFFFF",
+                      border: "3px solid #F8FAFF",
                       boxShadow: `0 0 0 3px ${m.color}40`,
                       transform: "translateY(-50%)",
+                      position: "absolute",
+                      top: "50%",
                       right: isLeft ? -7 : "auto",
                       left: isLeft ? "auto" : -7,
                       zIndex: 2,

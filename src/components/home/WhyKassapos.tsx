@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 import { EASE_EXPO } from "@/lib/animations";
 
 const REASONS = [
-  "Local Chennai Support",
-  "Quick Installation",
-  "Affordable Pricing",
-  "Tamil Training Provided",
-  "Free Demo & Consultation",
-  "User Friendly Interface",
-  "Regular Updates",
-  "Dedicated Support Team",
+  { label: "Local Chennai Support",      icon: "📍" },
+  { label: "Quick Installation",         icon: "⚡" },
+  { label: "Affordable Pricing",         icon: "💰" },
+  { label: "Tamil Training Provided",    icon: "🎓" },
+  { label: "Free Demo & Consultation",   icon: "🎯" },
+  { label: "User Friendly Interface",    icon: "🖥️" },
+  { label: "Regular Updates",            icon: "🔄" },
+  { label: "Dedicated Support Team",     icon: "🤝" },
 ];
 
 export function WhyKassapos() {
@@ -23,13 +23,74 @@ export function WhyKassapos() {
         overflow: "hidden",
       }}
     >
-      <div className="container-xl" style={{ paddingLeft: 40, paddingRight: 0 }}>
+      {/* ══════════ MOBILE ══════════ */}
+      <div className="block lg:hidden px-4">
+        <motion.h2
+          className="font-display font-extrabold text-slate-900 text-center mb-5"
+          style={{ fontSize: "1.6rem", letterSpacing: "-0.01em" }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45, ease: EASE_EXPO }}
+        >
+          Why Choose <span style={{ color: "#1E3A8A" }}>Kassapos?</span>
+        </motion.h2>
+
+        {/* Image */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1, ease: EASE_EXPO }}
+          className="mb-6"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/why kassapos.png"
+            alt="Kassapos Support Team"
+            style={{ width: "100%", height: "auto", display: "block", borderRadius: 16 }}
+          />
+        </motion.div>
+
+        {/* Checklist — 2 columns */}
+        <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+          {REASONS.map((r, i) => (
+            <motion.div
+              key={r.label}
+              className="flex items-center gap-2"
+              initial={{ opacity: 0, x: -12 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.32, delay: i * 0.05, ease: EASE_EXPO }}
+            >
+              <div
+                style={{
+                  width: 22, height: 22,
+                  borderRadius: "50%",
+                  background: "#1E3A8A",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  flexShrink: 0,
+                }}
+              >
+                <svg width="10" height="8" viewBox="0 0 12 10" fill="none">
+                  <path d="M1 5L4.5 8.5L11 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <span className="font-semibold text-slate-700" style={{ fontSize: "0.78rem", lineHeight: 1.4 }}>
+                {r.label}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* ══════════ DESKTOP ══════════ */}
+      <div className="hidden lg:block container-xl" style={{ paddingLeft: 40, paddingRight: 0 }}>
         <div
-          className="grid grid-cols-1 items-center"
+          className="grid items-center"
           style={{ gridTemplateColumns: "1fr 2fr", gap: "40px" }}
         >
-
-          {/* ── LEFT: Why Choose checklist ── */}
+          {/* LEFT: checklist */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -43,9 +104,9 @@ export function WhyKassapos() {
               Why Choose Kassapos?
             </h2>
             <div className="flex flex-col gap-3.5">
-              {REASONS.map((reason, i) => (
+              {REASONS.map((r, i) => (
                 <motion.div
-                  key={reason}
+                  key={r.label}
                   className="flex items-center gap-3"
                   initial={{ opacity: 0, x: -16 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -54,13 +115,10 @@ export function WhyKassapos() {
                 >
                   <div
                     style={{
-                      width: 26,
-                      height: 26,
+                      width: 26, height: 26,
                       borderRadius: "50%",
                       background: "#1E3A8A",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
+                      display: "flex", alignItems: "center", justifyContent: "center",
                       flexShrink: 0,
                     }}
                   >
@@ -69,14 +127,14 @@ export function WhyKassapos() {
                     </svg>
                   </div>
                   <span className="font-semibold text-slate-700" style={{ fontSize: "0.95rem" }}>
-                    {reason}
+                    {r.label}
                   </span>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* ── RIGHT: Full image ── */}
+          {/* RIGHT: image */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -87,14 +145,9 @@ export function WhyKassapos() {
             <img
               src="/why kassapos.png"
               alt="Kassapos Support Team"
-              style={{
-                width: "100%",
-                height: "auto",
-                display: "block",
-              }}
+              style={{ width: "100%", height: "auto", display: "block" }}
             />
           </motion.div>
-
         </div>
       </div>
     </section>

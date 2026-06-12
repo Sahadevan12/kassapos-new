@@ -178,7 +178,7 @@ export function IndustryCardsStrip() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.38, delay: i * 0.055, ease: EASE_EXPO }}
-                  className="flex-none flex flex-col items-center text-center rounded-2xl bg-white border w-[calc(50%-8px)] lg:w-[calc(25%-12px)]"
+                  className="flex-none flex flex-col items-center text-center rounded-2xl bg-white border w-full lg:w-[calc(25%-12px)]"
                   style={{
                     padding: "32px 18px 28px",
                     borderColor: "#E8EEFB",
