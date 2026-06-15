@@ -74,9 +74,10 @@ export function FounderStrip() {
               We built Kassapos because India&apos;s retailers{" "}
               <span
                 style={{
-                  background: "linear-gradient(90deg, #2563EB, #06B6D4)",
+                  backgroundImage: "linear-gradient(90deg, #2563EB, #06B6D4)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
                 }}
               >
                 deserved better

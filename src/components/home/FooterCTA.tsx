@@ -80,9 +80,10 @@ export function FooterCTA() {
             Ready to simplify your{" "}
             <span
               style={{
-                background: "linear-gradient(90deg, #60A5FA, #93C5FD)",
+                backgroundImage: "linear-gradient(90deg, #60A5FA, #93C5FD)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
               }}
             >
               business?
