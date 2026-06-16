@@ -3,6 +3,9 @@ import Image from "next/image";
 import { Phone, Mail, MapPin, ArrowRight, MessageCircle } from "lucide-react";
 import { SITE, OFFICES } from "@/lib/constants";
 
+const GOLD = "#F59E0B";
+const GOLD_DIM = "rgba(245,158,11,0.75)";
+
 const SvgYoutube = () => (
   <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
     <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/>
@@ -66,20 +69,21 @@ const SOCIAL_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden" style={{ background: "#0D1E3C" }}>
-      {/* Subtle top glow */}
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(96,165,250,0.5), transparent)" }} />
+    <footer className="relative overflow-hidden" style={{ background: "#0B1830" }}>
+      {/* Gold top glow line */}
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: `linear-gradient(90deg, transparent, ${GOLD}, transparent)` }} />
 
       {/* CTA Band */}
-      <div style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", background: "#091729" }}>
+      <div style={{ borderBottom: "1px solid rgba(245,158,11,0.15)", background: "#091526" }}>
         <div className="container-xl py-14">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
               <h3 className="text-3xl font-bold text-white mb-2">
-                Ready to modernise your billing?
+                Ready to modernise your{" "}
+                <span style={{ color: GOLD }}>billing?</span>
               </h3>
               <p className="text-lg" style={{ color: "rgba(148,163,184,0.8)" }}>
-                Join 7,500+ businesses across South India. Start free, upgrade anytime.
+                Join <span style={{ color: GOLD, fontWeight: 700 }}>7,500+</span> businesses across South India. Start free, upgrade anytime.
               </p>
             </div>
             <div className="flex items-center gap-4 shrink-0">
@@ -95,7 +99,8 @@ export function Footer() {
               </a>
               <Link
                 href="/register"
-                className="btn-gradient flex items-center gap-2 px-7 py-3.5 rounded-xl text-white text-base font-semibold"
+                className="flex items-center gap-2 px-7 py-3.5 rounded-xl text-base font-semibold transition-all"
+                style={{ background: `linear-gradient(135deg, ${GOLD} 0%, #D97706 100%)`, color: "#0B1830", boxShadow: `0 6px 24px rgba(245,158,11,0.35)` }}
               >
                 Start Free Trial
                 <ArrowRight size={18} />
@@ -117,8 +122,8 @@ export function Footer() {
                   borderRadius: 16,
                   padding: "8px 18px",
                   display: "inline-flex",
-                  border: "1.5px solid rgba(96,165,250,0.3)",
-                  boxShadow: "0 4px 18px rgba(37,99,235,0.25)",
+                  border: `1.5px solid rgba(245,158,11,0.35)`,
+                  boxShadow: `0 4px 18px rgba(245,158,11,0.18)`,
                 }}
               >
                 <Image
@@ -138,7 +143,7 @@ export function Footer() {
             <div className="space-y-5">
               {OFFICES.slice(0, 2).map((office) => (
                 <div key={office.city} className="flex gap-3.5">
-                  <MapPin size={16} className="text-blue-400 mt-1 shrink-0" />
+                  <MapPin size={16} style={{ color: GOLD }} className="mt-1 shrink-0" />
                   <div>
                     <p className="text-base font-semibold text-white mb-1">
                       {office.city} {office.label !== "Headquarters" ? "" : "HQ"}
@@ -146,7 +151,7 @@ export function Footer() {
                     <p className="text-sm leading-relaxed" style={{ color: "rgba(148,163,184,0.6)", lineHeight: 1.7 }}>
                       {office.address}
                     </p>
-                    <a href={`tel:${office.phone}`} className="text-sm text-blue-400 hover:text-blue-300 transition-colors mt-1.5 flex items-center gap-1.5">
+                    <a href={`tel:${office.phone}`} className="text-sm hover:text-white transition-colors mt-1.5 flex items-center gap-1.5" style={{ color: GOLD_DIM }}>
                       <Phone size={13} /> {office.phone}
                     </a>
                   </div>
@@ -164,7 +169,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   aria-label={s.label}
                   className="w-11 h-11 rounded-xl flex items-center justify-center transition-all hover:scale-110"
-                  style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.11)", color: "rgba(148,163,184,0.75)" }}
+                  style={{ background: "rgba(245,158,11,0.1)", border: `1px solid rgba(245,158,11,0.2)`, color: GOLD_DIM }}
                 >
                   {s.icon}
                 </a>
@@ -174,7 +179,7 @@ export function Footer() {
 
           {/* Products */}
           <div>
-            <h4 className="text-xl font-bold text-white mb-6 pb-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.09)", letterSpacing: "-0.01em" }}>
+            <h4 className="text-xl font-bold text-white mb-6 pb-4" style={{ borderBottom: `1px solid rgba(245,158,11,0.25)`, letterSpacing: "-0.01em" }}>
               Products
             </h4>
             <ul style={{ display: "flex", flexDirection: "column", gap: 18 }}>
@@ -185,7 +190,7 @@ export function Footer() {
                     className="flex items-center gap-3 transition-colors group"
                     style={{ color: "rgba(148,163,184,0.75)", fontSize: "1rem", lineHeight: 1.5 }}
                   >
-                    <span className="w-2 h-2 rounded-full shrink-0 transition-colors group-hover:bg-blue-300" style={{ background: "rgba(96,165,250,0.7)" }} />
+                    <span className="w-2 h-2 rounded-full shrink-0" style={{ background: GOLD_DIM }} />
                     <span className="group-hover:text-white transition-colors">{item.label}</span>
                   </Link>
                 </li>
@@ -195,7 +200,7 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-xl font-bold text-white mb-6 pb-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.09)", letterSpacing: "-0.01em" }}>
+            <h4 className="text-xl font-bold text-white mb-6 pb-4" style={{ borderBottom: `1px solid rgba(245,158,11,0.25)`, letterSpacing: "-0.01em" }}>
               Company
             </h4>
             <ul style={{ display: "flex", flexDirection: "column", gap: 18 }}>
@@ -206,7 +211,7 @@ export function Footer() {
                     className="flex items-center gap-3 transition-colors group"
                     style={{ color: "rgba(148,163,184,0.75)", fontSize: "1rem", lineHeight: 1.5 }}
                   >
-                    <span className="w-2 h-2 rounded-full shrink-0 transition-colors group-hover:bg-blue-300" style={{ background: "rgba(96,165,250,0.7)" }} />
+                    <span className="w-2 h-2 rounded-full shrink-0" style={{ background: GOLD_DIM }} />
                     <span className="group-hover:text-white transition-colors">{item.label}</span>
                   </Link>
                 </li>
@@ -216,7 +221,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-xl font-bold text-white mb-6 pb-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.09)", letterSpacing: "-0.01em" }}>
+            <h4 className="text-xl font-bold text-white mb-6 pb-4" style={{ borderBottom: `1px solid rgba(245,158,11,0.25)`, letterSpacing: "-0.01em" }}>
               Get in Touch
             </h4>
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
@@ -225,8 +230,8 @@ export function Footer() {
                 className="flex items-center gap-3.5 transition-colors group"
                 style={{ color: "rgba(148,163,184,0.75)", fontSize: "1rem" }}
               >
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: "rgba(96,165,250,0.18)" }}>
-                  <Phone size={17} className="text-blue-400" />
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: "rgba(245,158,11,0.14)" }}>
+                  <Phone size={17} style={{ color: GOLD }} />
                 </div>
                 <span className="group-hover:text-white transition-colors">{SITE.phone}</span>
               </a>
@@ -235,8 +240,8 @@ export function Footer() {
                 className="flex items-center gap-3.5 transition-colors group"
                 style={{ color: "rgba(148,163,184,0.75)", fontSize: "1rem" }}
               >
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: "rgba(96,165,250,0.18)" }}>
-                  <Mail size={17} className="text-blue-400" />
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: "rgba(245,158,11,0.14)" }}>
+                  <Mail size={17} style={{ color: GOLD }} />
                 </div>
                 <span className="group-hover:text-white transition-colors">{SITE.email}</span>
               </a>
@@ -262,8 +267,8 @@ export function Footer() {
                 { value: "7,500+", label: "Customers" },
                 { value: "24/7", label: "Support" },
               ].map((badge) => (
-                <div key={badge.label} className="rounded-xl text-center" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.09)", padding: "14px 10px" }}>
-                  <p className="text-lg font-bold text-white">{badge.value}</p>
+                <div key={badge.label} className="rounded-xl text-center" style={{ background: "rgba(245,158,11,0.07)", border: `1px solid rgba(245,158,11,0.2)`, padding: "14px 10px" }}>
+                  <p className="text-lg font-bold" style={{ color: GOLD }}>{badge.value}</p>
                   <p className="text-sm mt-1 font-medium" style={{ color: "rgba(148,163,184,0.55)" }}>{badge.label}</p>
                 </div>
               ))}
@@ -273,7 +278,7 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", background: "#071220" }}>
+      <div style={{ borderTop: `1px solid rgba(245,158,11,0.18)`, background: "#060F1C" }}>
         <div className="container-xl py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-sm" style={{ color: "rgba(148,163,184,0.45)" }}>
             © {new Date().getFullYear()} {SITE.fullName}. All rights reserved.
