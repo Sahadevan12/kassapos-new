@@ -100,7 +100,7 @@ export function HeroSection() {
   return (
     <section
       className="flex flex-col relative overflow-x-hidden"
-      style={{ background: "#FFFFFF" }}
+      style={{ background: "linear-gradient(160deg, #E8F0FE 0%, #F0F6FF 40%, #FAFCFF 100%)" }}
     >
       {/* ── Subtle bg blob (desktop only) ── */}
       <div
@@ -110,10 +110,10 @@ export function HeroSection() {
           position: "absolute",
           top: 0, right: 0,
           width: "55%", height: "100%",
-          background: "linear-gradient(150deg, #F0F6FF 0%, #EBF3FF 100%)",
+          background: "linear-gradient(150deg, #DBEAFE 0%, #EFF6FF 100%)",
           clipPath: "ellipse(90% 95% at 90% 50%)",
           zIndex: 0, pointerEvents: "none",
-          opacity: 0.5,
+          opacity: 0.6,
         }}
       />
 

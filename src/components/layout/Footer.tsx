@@ -66,12 +66,12 @@ const SOCIAL_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden" style={{ background: "#1E293B" }}>
+    <footer className="relative overflow-hidden" style={{ background: "#0D1E3C" }}>
       {/* Subtle top glow */}
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(96,165,250,0.5), transparent)" }} />
 
       {/* CTA Band */}
-      <div style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", background: "#162032" }}>
+      <div style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", background: "#091729" }}>
         <div className="container-xl py-14">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
@@ -273,7 +273,7 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", background: "#131E2D" }}>
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", background: "#071220" }}>
         <div className="container-xl py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-sm" style={{ color: "rgba(148,163,184,0.45)" }}>
             © {new Date().getFullYear()} {SITE.fullName}. All rights reserved.
