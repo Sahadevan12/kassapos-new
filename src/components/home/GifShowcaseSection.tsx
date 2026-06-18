@@ -126,13 +126,14 @@ export function GifShowcaseSection() {
               </div>
             </div>
 
-            {/* The actual GIF */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/gif/kassapos.gif"
-              alt="Kassapos POS software demo"
-              loading="lazy"
-              decoding="async"
+            {/* Video (replaces 21 MB GIF — same visual, ~95% smaller) */}
+            <video
+              src="/gif/Kassapos.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="none"
               style={{
                 width: "100%",
                 height: "auto",

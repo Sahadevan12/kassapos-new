@@ -82,6 +82,9 @@ export default function RootLayout({
       suppressHydrationWarning
       style={{ backgroundColor: "#FFFFFF" }}
     >
+      <head>
+        <link rel="preload" as="image" href="/images/hero.png" fetchPriority="high" />
+      </head>
       <body className="min-h-screen text-slate-900 font-sans antialiased overflow-x-hidden" style={{ backgroundColor: "#FFFFFF" }}>
         <SplashScreen />
         <Providers>
