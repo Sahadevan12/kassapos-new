@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { EASE_EXPO } from "@/lib/animations";
 
 const REASONS = [
@@ -44,10 +45,12 @@ export function WhyKassapos() {
           transition={{ duration: 0.5, delay: 0.1, ease: EASE_EXPO }}
           className="mb-6"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/why kassapos.png"
             alt="Kassapos Support Team"
+            width={1280}
+            height={720}
+            loading="lazy"
             style={{ width: "100%", height: "auto", display: "block", borderRadius: 16 }}
           />
         </motion.div>
@@ -141,10 +144,12 @@ export function WhyKassapos() {
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.1, ease: EASE_EXPO }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/why kassapos.png"
               alt="Kassapos Support Team"
+              width={1280}
+              height={720}
+              loading="lazy"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </motion.div>

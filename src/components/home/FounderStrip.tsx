@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Quote, Building2, Users, Award } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -174,10 +175,12 @@ export function FounderStrip() {
                 width: "100%",
               }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/images/founder1.png"
                 alt="T. Saravana Kumar — Founder & Managing Director, Kassapos"
+                width={400}
+                height={500}
+                loading="lazy"
                 style={{ width: "100%", height: "auto", display: "block" }}
               />
 

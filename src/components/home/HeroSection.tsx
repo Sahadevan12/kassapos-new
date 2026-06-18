@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { openDemoModal } from "@/components/ui/DemoModal";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -297,19 +298,14 @@ export function HeroSection() {
             >
               {/* Slide images */}
               {SLIDES.map((s, i) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
+                <Image
                   key={s.image}
                   src={s.image}
                   alt={s.h1}
-                  loading={i === 0 ? "eager" : "lazy"}
-                  fetchPriority={i === 0 ? "high" : "low"}
-                  decoding={i === 0 ? "sync" : "async"}
+                  fill
+                  priority={i === 0}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   style={{
-                    position: "absolute",
-                    inset: 0,
-                    width: "100%",
-                    height: "100%",
                     objectFit: "contain",
                     objectPosition: "center",
                     opacity: i === current ? 1 : 0,
