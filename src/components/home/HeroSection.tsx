@@ -20,7 +20,7 @@ const WaSvg = () => (
 /* ── Slide data ── */
 const SLIDES = [
   {
-    image: "/images/hero.png",
+    image: "/images/hero.webp",
     tag: "India's #1 POS Software",
     h1: "Smart GST",
     h2: "Billing Software",
@@ -33,7 +33,7 @@ const SLIDES = [
     ],
   },
   {
-    image: "/images/hero1.png",
+    image: "/images/hero1.webp",
     tag: "Complete POS Hardware Support",
     h1: "All-in-One POS",
     h2: "Hardware Setup",
@@ -46,7 +46,7 @@ const SLIDES = [
     ],
   },
   {
-    image: "/images/hero2.png",
+    image: "/images/hero2.webp",
     tag: "Instant WhatsApp Bills",
     h1: "Send Receipts",
     h2: "on WhatsApp",
@@ -59,7 +59,7 @@ const SLIDES = [
     ],
   },
   {
-    image: "/images/hero3.png",
+    image: "/images/hero3.webp",
     tag: "Cloud Billing — Anywhere, Anytime",
     h1: "Cloud Billing",
     h2: "Anywhere, Anytime",

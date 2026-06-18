@@ -83,7 +83,7 @@ export default function RootLayout({
       style={{ backgroundColor: "#FFFFFF" }}
     >
       <head>
-        <link rel="preload" as="image" href="/images/hero.png" fetchPriority="high" />
+        <link rel="preload" as="image" href="/images/hero.webp" fetchPriority="high" />
       </head>
       <body className="min-h-screen text-slate-900 font-sans antialiased overflow-x-hidden" style={{ backgroundColor: "#FFFFFF" }}>
         <SplashScreen />
