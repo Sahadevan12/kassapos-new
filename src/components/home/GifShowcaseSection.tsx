@@ -131,6 +131,8 @@ export function GifShowcaseSection() {
             <img
               src="/gif/kassapos.gif"
               alt="Kassapos POS software demo"
+              loading="lazy"
+              decoding="async"
               style={{
                 width: "100%",
                 height: "auto",

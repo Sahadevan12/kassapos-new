@@ -19,8 +19,14 @@ export function SplashScreen() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    // Skip splash on repeat visits within same browser session
+    if (sessionStorage.getItem("splashShown")) {
+      setVisible(false);
+      return;
+    }
+
     const start    = Date.now();
-    const duration = 2400;
+    const duration = 900;
 
     const tick = setInterval(() => {
       const pct = Math.min(100, Math.round(((Date.now() - start) / duration) * 100));
@@ -28,7 +34,10 @@ export function SplashScreen() {
       if (pct >= 100) clearInterval(tick);
     }, 30);
 
-    const hide = setTimeout(() => setVisible(false), 3100);
+    const hide = setTimeout(() => {
+      setVisible(false);
+      sessionStorage.setItem("splashShown", "1");
+    }, 1200);
     return () => { clearInterval(tick); clearTimeout(hide); };
   }, []);
 
@@ -44,7 +53,7 @@ export function SplashScreen() {
           style={{ background: "#E4EFFC" }}
         >
           {/* Background */}
-          <Image src="/images/loading_page.png" alt="" fill priority className="object-cover" />
+          <Image src="/images/loading_page.png" alt="" fill className="object-cover" />
 
           {/* Full-height flex column */}
           <div className="relative z-10 h-full flex flex-col items-center justify-between pt-6 pb-14 px-4">

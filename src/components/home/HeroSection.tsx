@@ -302,6 +302,9 @@ export function HeroSection() {
                   key={s.image}
                   src={s.image}
                   alt={s.h1}
+                  loading={i === 0 ? "eager" : "lazy"}
+                  fetchPriority={i === 0 ? "high" : "low"}
+                  decoding={i === 0 ? "sync" : "async"}
                   style={{
                     position: "absolute",
                     inset: 0,
