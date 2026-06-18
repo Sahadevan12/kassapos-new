@@ -81,9 +81,9 @@ const TRUST = [
 
 
 const contentVariants = {
-  enter:  { opacity: 0, y: 16 },
-  center: { opacity: 1, y: 0  },
-  exit:   { opacity: 0, y: -16 },
+  enter:  { opacity: 0, y: 8 },
+  center: { opacity: 1, y: 0 },
+  exit:   { opacity: 0, y: -8 },
 };
 
 export function HeroSection() {
@@ -138,7 +138,7 @@ export function HeroSection() {
                 key={`tag-${current}`}
                 variants={contentVariants}
                 initial="enter" animate="center" exit="exit"
-                transition={{ duration: 0.3, ease: EASE_EXPO }}
+                transition={{ duration: 0.18, ease: EASE_EXPO }}
               >
                 <div
                   className="inline-flex items-center gap-2 mb-3 px-4 py-1.5 rounded-full text-xs font-semibold"
@@ -160,7 +160,7 @@ export function HeroSection() {
                 key={`h-${current}`}
                 variants={contentVariants}
                 initial="enter" animate="center" exit="exit"
-                transition={{ duration: 0.35, ease: EASE_EXPO }}
+                transition={{ duration: 0.2, ease: EASE_EXPO }}
                 className="font-display font-extrabold mb-3"
                 style={{ lineHeight: 1.13, letterSpacing: "-0.02em" }}
               >
@@ -182,7 +182,7 @@ export function HeroSection() {
                 key={`sub-${current}`}
                 variants={contentVariants}
                 initial="enter" animate="center" exit="exit"
-                transition={{ duration: 0.35, delay: 0.05, ease: EASE_EXPO }}
+                transition={{ duration: 0.2, delay: 0.03, ease: EASE_EXPO }}
                 style={{ color: "#64748B", fontSize: "0.88rem", lineHeight: 1.6, whiteSpace: "pre-line", marginBottom: 14 }}
               >
                 {slide.sub}
@@ -195,7 +195,7 @@ export function HeroSection() {
                 key={`features-${current}`}
                 variants={contentVariants}
                 initial="enter" animate="center" exit="exit"
-                transition={{ duration: 0.35, delay: 0.08, ease: EASE_EXPO }}
+                transition={{ duration: 0.2, delay: 0.05, ease: EASE_EXPO }}
                 className="grid grid-cols-2 mb-5"
                 style={{ gap: "8px 16px" }}
               >

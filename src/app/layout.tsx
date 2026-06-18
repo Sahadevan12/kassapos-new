@@ -83,6 +83,8 @@ export default function RootLayout({
       style={{ backgroundColor: "#FFFFFF" }}
     >
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preload" as="image" href="/images/hero.webp" fetchPriority="high" />
       </head>
       <body className="min-h-screen text-slate-900 font-sans antialiased overflow-x-hidden" style={{ backgroundColor: "#FFFFFF" }}>

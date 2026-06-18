@@ -26,18 +26,18 @@ export function SplashScreen() {
     }
 
     const start    = Date.now();
-    const duration = 900;
+    const duration = 500;
 
     const tick = setInterval(() => {
       const pct = Math.min(100, Math.round(((Date.now() - start) / duration) * 100));
       setProgress(pct);
       if (pct >= 100) clearInterval(tick);
-    }, 30);
+    }, 20);
 
     const hide = setTimeout(() => {
       setVisible(false);
       sessionStorage.setItem("splashShown", "1");
-    }, 1200);
+    }, 700);
     return () => { clearInterval(tick); clearTimeout(hide); };
   }, []);
 
