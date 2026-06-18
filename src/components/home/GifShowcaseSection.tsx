@@ -128,7 +128,7 @@ export function GifShowcaseSection() {
 
             {/* Video (replaces 21 MB GIF — same visual, ~95% smaller) */}
             <video
-              src="/gif/Kassapos.mp4"
+              src="/gif/kassapos.mp4"
               autoPlay
               loop
               muted
