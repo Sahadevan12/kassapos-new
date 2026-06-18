@@ -122,10 +122,27 @@ export function IndustryCardsStrip() {
           >
             Perfect Billing Solution For Every Business
           </h2>
-          <div className="flex items-center justify-center gap-2 mt-3">
-            <div style={{ height: 2, width: 44, background: "#E2E8F0", borderRadius: 99 }} />
-            <div style={{ width: 9, height: 9, borderRadius: 99, background: "#F59E0B" }} />
-            <div style={{ height: 2, width: 44, background: "#E2E8F0", borderRadius: 99 }} />
+          <div className="flex items-center justify-center gap-3 mt-4">
+            <div style={{ height: 1, flex: 1, maxWidth: 80, background: "linear-gradient(90deg, transparent, #CBD5E1)" }} />
+            <div
+              className="inline-flex items-center gap-2"
+              style={{
+                background: "linear-gradient(135deg, rgba(37,99,235,0.08), rgba(245,158,11,0.08))",
+                border: "1px solid rgba(37,99,235,0.18)",
+                borderRadius: 99,
+                padding: "5px 16px",
+                fontSize: "0.72rem",
+                fontWeight: 700,
+                color: "#2563EB",
+                letterSpacing: "0.07em",
+                textTransform: "uppercase",
+              }}
+            >
+              <Sparkles size={11} color="#F59E0B" />
+              16+ Industries
+              <Sparkles size={11} color="#F59E0B" />
+            </div>
+            <div style={{ height: 1, flex: 1, maxWidth: 80, background: "linear-gradient(90deg, #CBD5E1, transparent)" }} />
           </div>
         </div>
 
