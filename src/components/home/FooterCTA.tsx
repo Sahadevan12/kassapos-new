@@ -33,7 +33,7 @@ export function FooterCTA() {
       {/* Background image */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/Footer.png"
+        src="/Footer.webp"
         alt=""
         aria-hidden
         style={{

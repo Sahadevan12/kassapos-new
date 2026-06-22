@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 
 const CLIENTS = [
-  { src: "/clients/brown.png",        alt: "Brown" },
-  { src: "/clients/green_mantra.jpg", alt: "Green Mantra" },
-  { src: "/clients/knt.png",          alt: "KNT" },
-  { src: "/clients/vaer.png",         alt: "Vaer" },
+  { src: "/clients/brown.webp",        alt: "Brown" },
+  { src: "/clients/green_mantra.webp", alt: "Green Mantra" },
+  { src: "/clients/knt.webp",          alt: "KNT" },
+  { src: "/clients/vaer.webp",         alt: "Vaer" },
 ];
 
 // duplicate enough times to fill a wide scroll
