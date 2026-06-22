@@ -71,6 +71,19 @@ const SLIDES = [
       "Multi-Branch",    "Cloud Backup",
     ],
   },
+  {
+    image: "/images/hero4.webp",
+    tag: "All-in-One Billing Platform",
+    h1: "All Kind of Retail",
+    h2: "Billing Software",
+    h3: "for Every Business",
+    sub: "Supermarket  •  Cloud-Based  •  GST Invoice\nMobile App Billing — All in One Place",
+    features: [
+      "All Retail Billing",   "Supermarket Billing",
+      "Cloud Based Billing",  "GST Invoice Billing",
+      "Mobile App Billing",
+    ],
+  },
 ];
 
 const TRUST = [
