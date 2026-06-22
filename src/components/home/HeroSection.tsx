@@ -146,7 +146,7 @@ export function HeroSection() {
           {/* ── LEFT CONTENT ── */}
           <div>
             {/* Badge */}
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={`tag-${current}`}
                 variants={contentVariants}
@@ -168,7 +168,7 @@ export function HeroSection() {
             </AnimatePresence>
 
             {/* Headline */}
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               <motion.h1
                 key={`h-${current}`}
                 variants={contentVariants}
@@ -190,7 +190,7 @@ export function HeroSection() {
             </AnimatePresence>
 
             {/* Subtitle */}
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               <motion.p
                 key={`sub-${current}`}
                 variants={contentVariants}
@@ -203,7 +203,7 @@ export function HeroSection() {
             </AnimatePresence>
 
             {/* Feature grid */}
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={`features-${current}`}
                 variants={contentVariants}
