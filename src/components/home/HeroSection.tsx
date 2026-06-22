@@ -232,7 +232,7 @@ export function HeroSection() {
             </AnimatePresence>
 
             {/* CTA Buttons */}
-            <div className="flex flex-row gap-3 mb-5">
+            <div className="flex flex-col sm:flex-row gap-3 mb-5">
               <button
                 onClick={openDemoModal}
                 className="inline-flex items-center justify-center gap-1.5 font-bold rounded-xl text-white text-sm whitespace-nowrap"
