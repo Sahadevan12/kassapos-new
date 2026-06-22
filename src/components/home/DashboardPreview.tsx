@@ -219,7 +219,7 @@ export function DashboardPreview() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <section className="section-padding" style={{ background: "#F8FAFF", padding: "52px 0 56px" }}>
+    <section className="section-padding overflow-x-hidden" style={{ background: "#F8FAFF", padding: "52px 0 56px" }}>
       <div className="container-xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: Text */}

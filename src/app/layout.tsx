@@ -78,9 +78,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable}`}
+      className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} overflow-x-hidden`}
       suppressHydrationWarning
-      style={{ backgroundColor: "#FFFFFF" }}
+      style={{ backgroundColor: "#FFFFFF", width: "100%" }}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
