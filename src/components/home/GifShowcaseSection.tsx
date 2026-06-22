@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Zap, WifiOff, BarChart3, MessageCircle, ArrowRight } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -39,6 +40,9 @@ const HIGHLIGHTS = [
 ];
 
 export function GifShowcaseSection() {
+  const videoWrapRef = useRef(null);
+  const videoInView = useInView(videoWrapRef, { once: true, margin: "200px" });
+
   return (
     <section
       style={{
@@ -127,19 +131,23 @@ export function GifShowcaseSection() {
             </div>
 
             {/* Video (replaces 21 MB GIF — same visual, ~95% smaller) */}
-            <video
-              src="/gif/kassapos.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="none"
-              style={{
-                width: "100%",
-                height: "auto",
-                display: "block",
-              }}
-            />
+            <div ref={videoWrapRef} style={{ aspectRatio: "880/495", background: "#0F172A" }}>
+              {videoInView && (
+                <video
+                  src="/gif/kassapos.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="none"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    display: "block",
+                  }}
+                />
+              )}
+            </div>
           </div>
         </motion.div>
 

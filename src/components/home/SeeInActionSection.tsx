@@ -72,8 +72,9 @@ export function SeeInActionSection() {
               <>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={`https://img.youtube.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`}
+                  src={`https://img.youtube.com/vi/${YOUTUBE_ID}/hqdefault.jpg`}
                   alt="Play Kassapos Demo Video"
+                  loading="lazy"
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", position: "absolute", inset: 0 }}
                 />
                 <div
@@ -199,8 +200,8 @@ export function SeeInActionSection() {
               alt="Kassapos Demo Screenshot"
               width={520}
               height={360}
+              loading="lazy"
               style={{ width: "100%", height: "auto", display: "block" }}
-              priority
             />
           </motion.div>
 
